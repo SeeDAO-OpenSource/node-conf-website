@@ -1,0 +1,62 @@
+{
+  "season": 1,
+  "startDate": "2022-09-15T09:00:00+08:00",
+  "endDate": "2022-09-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/xyz-abc-def",
+  "sbtToken": {
+    "contractAddress": "0x3210987654321098765432109876543210987654",
+    "tokenId": "0",
+    "explorerUrl": "https://polygonscan.com/token/0x3210987654321098765432109876543210987654"
+  },
+  "currentNodes": 3,
+  "currentCriteria": {
+    "validSCR": 50,
+    "activeSCR": 25,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/65",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/66"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 100,
+    "activeSCR": 50,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/67",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/68"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x2109876543210987654321098765432109876541",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice1"
+    }
+  ],
+  "candidates": [
+    "0x3210987654321098765432109876543211111111"
+  ],
+  "proposals": [
+    {
+      "id": "65",
+      "tag": "Governance",
+      "status": "Completed",
+      "title": "SeeDAO节点共识大会创建提案",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice1"
+      },
+      "link": "https://app.seedao.xyz/proposal/69"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2022-09-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video1-1",
+      "slides": "https://example.com/slides1-1",
+      "article": "https://mirror.xyz/seedao.eth/article1-1"
+    }
+  ]
+}

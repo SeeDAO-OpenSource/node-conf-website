@@ -1,0 +1,62 @@
+{
+  "season": 4,
+  "startDate": "2023-06-15T09:00:00+08:00",
+  "endDate": "2023-06-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/ghi-jkl-mno",
+  "sbtToken": {
+    "contractAddress": "0x6543210987654321098765432109876543210987",
+    "tokenId": "3",
+    "explorerUrl": "https://polygonscan.com/token/0x6543210987654321098765432109876543210987"
+  },
+  "currentNodes": 10,
+  "currentCriteria": {
+    "validSCR": 300,
+    "activeSCR": 150,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/50",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/51"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 400,
+    "activeSCR": 200,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/52",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/53"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x5432109876543210987654321098765432109871",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice4"
+    }
+  ],
+  "candidates": [
+    "0x6543210987654321098765432109876543211111"
+  ],
+  "proposals": [
+    {
+      "id": "50",
+      "tag": "Treasury",
+      "status": "Completed",
+      "title": "财务管理制度优化",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice4"
+      },
+      "link": "https://app.seedao.xyz/proposal/54"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2023-06-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video4-1",
+      "slides": "https://example.com/slides4-1",
+      "article": "https://mirror.xyz/seedao.eth/article4-1"
+    }
+  ]
+}

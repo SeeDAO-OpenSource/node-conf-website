@@ -1,0 +1,63 @@
+{
+  "season": 6,
+  "startDate": "2023-12-15T09:00:00+08:00",
+  "endDate": "2023-12-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/mno-pqr-stu",
+  "sbtToken": {
+    "contractAddress": "0x8765432109876543210987654321098765432109",
+    "tokenId": "5",
+    "explorerUrl": "https://polygonscan.com/token/0x8765432109876543210987654321098765432109"
+  },
+  "currentNodes": 15,
+  "currentCriteria": {
+    "validSCR": 500,
+    "activeSCR": 250,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/40",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/41"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 600,
+    "activeSCR": 300,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/42",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/43"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x7654321098765432109876543210987654321091",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice6"
+    }
+  ],
+  "candidates": [
+    "0x8765432109876543210987654321098765432111",
+    "0x8765432109876543210987654321098765432112"
+  ],
+  "proposals": [
+    {
+      "id": "40",
+      "tag": "Technology",
+      "status": "Completed",
+      "title": "技术基础设施升级",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice6"
+      },
+      "link": "https://app.seedao.xyz/proposal/44"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2023-12-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video6-1",
+      "slides": "https://example.com/slides6-1",
+      "article": "https://mirror.xyz/seedao.eth/article6-1"
+    }
+  ]
+}

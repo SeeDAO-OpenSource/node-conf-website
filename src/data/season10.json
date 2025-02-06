@@ -1,0 +1,126 @@
+{
+  "season": 10,
+  "startDate": "2024-12-15T09:00:00+08:00",
+  "endDate": "2024-12-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/xyz-uvwx-yzw",
+  "sbtToken": {
+    "contractAddress": "0x2345678901234567890123456789012345678901",
+    "tokenId": "2",
+    "explorerUrl": "https://polygonscan.com/token/0x2345678901234567890123456789012345678901"
+  },
+  "currentNodes": 35,
+  "currentCriteria": {
+    "validSCR": 1200,
+    "activeSCR": 600,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/15",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/16"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 1500,
+    "activeSCR": 750,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/17",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/18"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x3456789012345678901234567890123456789012",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice10"
+    },
+    {
+      "sns": "bob.seedao",
+      "walletAddress": "0x3456789012345678901234567890123456789013",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob10"
+    },
+    {
+      "sns": "charlie.seedao",
+      "walletAddress": "0x3456789012345678901234567890123456789014",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie10"
+    },
+    {
+      "sns": "david.seedao",
+      "walletAddress": "0x3456789012345678901234567890123456789015",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david10"
+    },
+    {
+      "sns": "emma.seedao",
+      "walletAddress": "0x3456789012345678901234567890123456789016",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma10"
+    }
+  ],
+  "candidates": [
+    "0x4567890123456789012345678901234567890123",
+    "0x4567890123456789012345678901234567890124",
+    "0x4567890123456789012345678901234567890125",
+    "0x4567890123456789012345678901234567890126",
+    "0x4567890123456789012345678901234567890127",
+    "0x4567890123456789012345678901234567890128",
+    "0x4567890123456789012345678901234567890129",
+    "0x456789012345678901234567890123456789012a",
+    "0x456789012345678901234567890123456789012b",
+    "0x456789012345678901234567890123456789012c"
+  ],
+  "proposals": [
+    {
+      "id": "11",
+      "tag": "Governance",
+      "status": "Active",
+      "title": "提升节点参与度机制",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice10"
+      },
+      "link": "https://app.seedao.xyz/proposal/19"
+    },
+    {
+      "id": "12",
+      "tag": "Treasury",
+      "status": "Pending",
+      "title": "社区基金分配方案",
+      "proposer": {
+        "sns": "bob.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob10"
+      },
+      "link": "https://app.seedao.xyz/proposal/20"
+    },
+    {
+      "id": "13",
+      "tag": "Technology",
+      "status": "Active",
+      "title": "Layer2扩展方案",
+      "proposer": {
+        "sns": "charlie.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie10"
+      },
+      "link": "https://app.seedao.xyz/proposal/21"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2024-12-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    },
+    {
+      "time": "2024-12-15 10:00",
+      "speaker": "Bob.seedao",
+      "topic": "第十季度工作总结"
+    },
+    {
+      "time": "2024-12-15 11:00",
+      "speaker": "Charlie.seedao",
+      "topic": "Layer2扩展方案讨论"
+    },
+    {
+      "time": "2024-12-15 14:00",
+      "speaker": "David.seedao",
+      "topic": "社区基金分配方案"
+    },
+    {
+      "time": "2024-12-15 15:30",
+      "speaker": "Emma.seedao",
+      "topic": "节点参与度机制提案"
+    }
+  ],
+  "recordings": []
+}

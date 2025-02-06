@@ -1,0 +1,62 @@
+{
+  "season": 3,
+  "startDate": "2023-03-15T09:00:00+08:00",
+  "endDate": "2023-03-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/def-ghi-jkl",
+  "sbtToken": {
+    "contractAddress": "0x5432109876543210987654321098765432109876",
+    "tokenId": "2",
+    "explorerUrl": "https://polygonscan.com/token/0x5432109876543210987654321098765432109876"
+  },
+  "currentNodes": 8,
+  "currentCriteria": {
+    "validSCR": 200,
+    "activeSCR": 100,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/55",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/56"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 300,
+    "activeSCR": 150,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/57",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/58"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x4321098765432109876543210987654321098761",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice3"
+    }
+  ],
+  "candidates": [
+    "0x5432109876543210987654321098765432111111"
+  ],
+  "proposals": [
+    {
+      "id": "55",
+      "tag": "Governance",
+      "status": "Completed",
+      "title": "治理框架初步建设",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice3"
+      },
+      "link": "https://app.seedao.xyz/proposal/59"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2023-03-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video3-1",
+      "slides": "https://example.com/slides3-1",
+      "article": "https://mirror.xyz/seedao.eth/article3-1"
+    }
+  ]
+}

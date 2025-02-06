@@ -1,0 +1,157 @@
+{
+  "season": 8,
+  "startDate": "2024-06-15T09:00:00+08:00",
+  "endDate": "2024-06-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/def-ghij-klm",
+  "sbtToken": {
+    "contractAddress": "0x0123456789012345678901234567890123456789",
+    "tokenId": "0",
+    "explorerUrl": "https://polygonscan.com/token/0x0123456789012345678901234567890123456789"
+  },
+  "currentNodes": 25,
+  "currentCriteria": {
+    "validSCR": 800,
+    "activeSCR": 400,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/28",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/29"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 1000,
+    "activeSCR": 500,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/30",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/31"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x0123456789012345678901234567890123456789",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice8"
+    },
+    {
+      "sns": "bob.seedao",
+      "walletAddress": "0x0123456789012345678901234567890123456790",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob8"
+    },
+    {
+      "sns": "charlie.seedao",
+      "walletAddress": "0x0123456789012345678901234567890123456791",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie8"
+    },
+    {
+      "sns": "david.seedao",
+      "walletAddress": "0x0123456789012345678901234567890123456792",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david8"
+    },
+    {
+      "sns": "emma.seedao",
+      "walletAddress": "0x0123456789012345678901234567890123456793",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma8"
+    }
+  ],
+  "candidates": [
+    "0x1234567890123456789012345678901234567890",
+    "0x1234567890123456789012345678901234567891",
+    "0x1234567890123456789012345678901234567892",
+    "0x1234567890123456789012345678901234567893",
+    "0x1234567890123456789012345678901234567894",
+    "0x1234567890123456789012345678901234567895",
+    "0x1234567890123456789012345678901234567896",
+    "0x1234567890123456789012345678901234567897",
+    "0x1234567890123456789012345678901234567898",
+    "0x1234567890123456789012345678901234567899"
+  ],
+  "proposals": [
+    {
+      "id": "31",
+      "tag": "Governance",
+      "status": "Completed",
+      "title": "节点治理框架优化",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice8"
+      },
+      "link": "https://app.seedao.xyz/proposal/32"
+    },
+    {
+      "id": "32",
+      "tag": "Treasury",
+      "status": "Completed",
+      "title": "社区资金管理方案",
+      "proposer": {
+        "sns": "bob.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob8"
+      },
+      "link": "https://app.seedao.xyz/proposal/33"
+    },
+    {
+      "id": "33",
+      "tag": "Technology",
+      "status": "Completed",
+      "title": "技术架构升级计划",
+      "proposer": {
+        "sns": "charlie.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie8"
+      },
+      "link": "https://app.seedao.xyz/proposal/34"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2024-06-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    },
+    {
+      "time": "2024-06-15 10:00",
+      "speaker": "Bob.seedao",
+      "topic": "第八季度工作总结"
+    },
+    {
+      "time": "2024-06-15 11:00",
+      "speaker": "Charlie.seedao",
+      "topic": "技术架构升级计划"
+    },
+    {
+      "time": "2024-06-15 14:00",
+      "speaker": "David.seedao",
+      "topic": "社区资金管理方案"
+    },
+    {
+      "time": "2024-06-15 15:30",
+      "speaker": "Emma.seedao",
+      "topic": "节点治理框架优化"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video8-1",
+      "slides": "https://example.com/slides8-1",
+      "article": "https://mirror.xyz/seedao.eth/article8-1"
+    },
+    {
+      "topic": "第八季度工作总结",
+      "video": "https://example.com/video8-2",
+      "slides": "https://example.com/slides8-2",
+      "article": "https://mirror.xyz/seedao.eth/article8-2"
+    },
+    {
+      "topic": "技术架构升级计划",
+      "video": "https://example.com/video8-3",
+      "slides": "https://example.com/slides8-3",
+      "article": "https://mirror.xyz/seedao.eth/article8-3"
+    },
+    {
+      "topic": "社区资金管理方案",
+      "video": "https://example.com/video8-4",
+      "slides": "https://example.com/slides8-4",
+      "article": "https://mirror.xyz/seedao.eth/article8-4"
+    },
+    {
+      "topic": "节点治理框架优化",
+      "video": "https://example.com/video8-5",
+      "slides": "https://example.com/slides8-5",
+      "article": "https://mirror.xyz/seedao.eth/article8-5"
+    }
+  ]
+}

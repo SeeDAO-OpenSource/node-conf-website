@@ -1,0 +1,74 @@
+{
+  "season": 11,
+  "startDate": "2025-03-15T09:00:00+08:00",
+  "endDate": "2025-03-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/abc-defg-hij",
+  "sbtToken": {
+    "contractAddress": "0x3456789012345678901234567890123456789012",
+    "tokenId": "3",
+    "explorerUrl": "https://polygonscan.com/token/0x3456789012345678901234567890123456789012"
+  },
+  "currentNodes": 40,
+  "currentCriteria": {
+    "validSCR": 1500,
+    "activeSCR": 750,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/22",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/23"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 1800,
+    "activeSCR": 900,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/24",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/25"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x5678901234567890123456789012345678901234",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice11"
+    },
+    {
+      "sns": "bob.seedao",
+      "walletAddress": "0x5678901234567890123456789012345678901235",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob11"
+    },
+    {
+      "sns": "charlie.seedao",
+      "walletAddress": "0x5678901234567890123456789012345678901236",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie11"
+    }
+  ],
+  "candidates": [
+    "0x6789012345678901234567890123456789012345",
+    "0x6789012345678901234567890123456789012346",
+    "0x6789012345678901234567890123456789012347",
+    "0x6789012345678901234567890123456789012348",
+    "0x6789012345678901234567890123456789012349"
+  ],
+  "proposals": [
+    {
+      "id": "21",
+      "tag": "Governance",
+      "status": "Draft",
+      "title": "节点治理框架升级",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice11"
+      },
+      "link": "https://app.seedao.xyz/proposal/26"
+    },
+    {
+      "id": "22",
+      "tag": "Technology",
+      "status": "Draft",
+      "title": "跨链互操作性方案",
+      "proposer": {
+        "sns": "bob.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob11"
+      },
+      "link": "https://app.seedao.xyz/proposal/27"
+    }
+  ],
+  "schedule": [],
+  "recordings": []
+}

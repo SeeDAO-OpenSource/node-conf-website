@@ -1,0 +1,74 @@
+{
+  "season": 7,
+  "startDate": "2024-03-15T09:00:00+08:00",
+  "endDate": "2024-03-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/pqr-stuv-wxy",
+  "sbtToken": {
+    "contractAddress": "0x9876543210987654321098765432109876543210",
+    "tokenId": "6",
+    "explorerUrl": "https://polygonscan.com/token/0x9876543210987654321098765432109876543210"
+  },
+  "currentNodes": 20,
+  "currentCriteria": {
+    "validSCR": 600,
+    "activeSCR": 300,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/35",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/36"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 800,
+    "activeSCR": 400,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/37",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/38"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x8765432109876543210987654321098765432101",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice7"
+    },
+    {
+      "sns": "bob.seedao",
+      "walletAddress": "0x8765432109876543210987654321098765432102",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob7"
+    }
+  ],
+  "candidates": [
+    "0x9876543210987654321098765432109876543211",
+    "0x9876543210987654321098765432109876543212",
+    "0x9876543210987654321098765432109876543213"
+  ],
+  "proposals": [
+    {
+      "id": "35",
+      "tag": "Governance",
+      "status": "Completed",
+      "title": "社区治理架构优化",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice7"
+      },
+      "link": "https://app.seedao.xyz/proposal/39"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2024-03-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    },
+    {
+      "time": "2024-03-15 10:00",
+      "speaker": "Bob.seedao",
+      "topic": "第七季度工作总结"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video7-1",
+      "slides": "https://example.com/slides7-1",
+      "article": "https://mirror.xyz/seedao.eth/article7-1"
+    }
+  ]
+}

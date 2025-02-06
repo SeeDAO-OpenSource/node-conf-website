@@ -1,0 +1,62 @@
+{
+  "season": 2,
+  "startDate": "2022-12-15T09:00:00+08:00",
+  "endDate": "2022-12-17T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/abc-def-ghi",
+  "sbtToken": {
+    "contractAddress": "0x4321098765432109876543210987654321098765",
+    "tokenId": "1",
+    "explorerUrl": "https://polygonscan.com/token/0x4321098765432109876543210987654321098765"
+  },
+  "currentNodes": 5,
+  "currentCriteria": {
+    "validSCR": 100,
+    "activeSCR": 50,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/60",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/61"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 200,
+    "activeSCR": 100,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/62",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/63"
+  },
+  "nodes": [
+    {
+      "sns": "alice.seedao",
+      "walletAddress": "0x3210987654321098765432109876543210987651",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice2"
+    }
+  ],
+  "candidates": [
+    "0x4321098765432109876543210987654321111111"
+  ],
+  "proposals": [
+    {
+      "id": "60",
+      "tag": "Community",
+      "status": "Completed",
+      "title": "社区初步组织架构",
+      "proposer": {
+        "sns": "alice.seedao",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice2"
+      },
+      "link": "https://app.seedao.xyz/proposal/64"
+    }
+  ],
+  "schedule": [
+    {
+      "time": "2022-12-15 09:30",
+      "speaker": "Alice.seedao",
+      "topic": "开幕致辞"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "video": "https://example.com/video2-1",
+      "slides": "https://example.com/slides2-1",
+      "article": "https://mirror.xyz/seedao.eth/article2-1"
+    }
+  ]
+}

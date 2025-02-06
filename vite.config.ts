@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { markdownRawPlugin } from './vite.markdown.plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/node-conf-website/',
-  plugins: [react()],
+  plugins: [
+    react(),
+    markdownRawPlugin()
+  ],
   server: {
     port: 3000,
   },
@@ -12,8 +16,8 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
-  assetsInclude: ['**/*.md'],
+  assetsInclude: ['src/content/*.md'],
   optimizeDeps: {
-    exclude: ['**/*.md']
+    exclude: ['src/content/*.md']
   }
 })

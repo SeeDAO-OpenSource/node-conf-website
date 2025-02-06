@@ -9,7 +9,7 @@ import TermsPage from './pages/Terms';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/node-conf-website">
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />

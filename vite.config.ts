@@ -12,4 +12,7 @@ export default defineConfig({
     sourcemap: true,
   },
   assetsInclude: ['**/*.md'],
+  optimizeDeps: {
+    exclude: ['**/*.md']
+  }
 })

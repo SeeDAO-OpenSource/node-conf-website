@@ -31,41 +31,38 @@ export default function CalendarDropdown({ data }: Props) {
   };
 
   const generateGoogleCalendarLink = () => {
-    const params = new URLSearchParams({
-      action: 'TEMPLATE',
-      text: eventDetails.title,
-      details: eventDetails.description,
-      location: eventDetails.location,
-      dates: `${eventDetails.startTime.format('YYYYMMDD[T]HHmmss')}/${eventDetails.endTime.format('YYYYMMDD[T]HHmmss')}`,
-      ctz: 'Asia/Shanghai',
-    });
+    const params = new URLSearchParams();
+    params.append('action', 'TEMPLATE');
+    params.append('text', eventDetails.title);
+    params.append('details', eventDetails.description);
+    params.append('location', eventDetails.location || '');
+    params.append('dates', `${eventDetails.startTime.format('YYYYMMDD[T]HHmmss')}/${eventDetails.endTime.format('YYYYMMDD[T]HHmmss')}`);
+    params.append('ctz', 'Asia/Shanghai');
 
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
   };
 
   const generateOutlookOnlineLink = () => {
-    const params = new URLSearchParams({
-      path: '/calendar/action/compose',
-      rru: 'addevent',
-      subject: eventDetails.title,
-      body: eventDetails.description,
-      location: eventDetails.location,
-      startdt: eventDetails.startTime.format('YYYY-MM-DD[T]HH:mm:ss'),
-      enddt: eventDetails.endTime.format('YYYY-MM-DD[T]HH:mm:ss'),
-    });
+    const params = new URLSearchParams();
+    params.append('path', '/calendar/action/compose');
+    params.append('rru', 'addevent');
+    params.append('subject', eventDetails.title);
+    params.append('body', eventDetails.description);
+    params.append('location', eventDetails.location || '');
+    params.append('startdt', eventDetails.startTime.format('YYYY-MM-DD[T]HH:mm:ss'));
+    params.append('enddt', eventDetails.endTime.format('YYYY-MM-DD[T]HH:mm:ss'));
 
     return `https://outlook.office.com/calendar/0/${params.toString()}`;
   };
 
   const generateYahooCalendarLink = () => {
-    const params = new URLSearchParams({
-      v: '60',
-      title: eventDetails.title,
-      desc: eventDetails.description,
-      in_loc: eventDetails.location,
-      st: eventDetails.startTime.format('YYYYMMDD[T]HHmmss'),
-      et: eventDetails.endTime.format('YYYYMMDD[T]HHmmss'),
-    });
+    const params = new URLSearchParams();
+    params.append('v', '60');
+    params.append('title', eventDetails.title);
+    params.append('desc', eventDetails.description);
+    params.append('in_loc', eventDetails.location || '');
+    params.append('st', eventDetails.startTime.format('YYYYMMDD[T]HHmmss'));
+    params.append('et', eventDetails.endTime.format('YYYYMMDD[T]HHmmss'));
 
     return `https://calendar.yahoo.com/?${params.toString()}`;
   };

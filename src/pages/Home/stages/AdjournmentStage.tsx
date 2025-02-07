@@ -16,7 +16,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
 
   return (
-    <div className="space-y-0 -mx-[calc((100vw-100%)/2)] overflow-x-hidden">
+    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
       {/* Conference Info Section */}
       <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-gray-50 px-[calc((100vw-100%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
@@ -24,7 +24,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
             <h1 className="text-5xl font-bold mb-6 text-gray-900">
               第{data.season}季节点共识大会
             </h1>
-            
+
             {/* Conference Date */}
             <div className="inline-flex items-center gap-3 text-xl text-gray-600 mb-8">
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -85,13 +85,13 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-6 mt-2 pt-2 border-t border-gray-100">
-                    <div 
+                    <div
                       className="text-primary-600 hover:text-primary-700 cursor-pointer text-xs"
                       onClick={() => setShowNodesModal(true)}
                     >
                       查看节点列表 →
                     </div>
-                    <div 
+                    <div
                       className="text-primary-600 hover:text-primary-700 cursor-pointer text-xs"
                       onClick={() => setShowCandidatesModal(true)}
                     >
@@ -246,7 +246,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
               const [headerLine, ...contentLines] = section.trim().split('\n');
               const [type, title] = headerLine.split(':').map(s => s.trim());
               const content = contentLines.join('\n').trim();
-              
+
               return (
                 <div
                   key={index}

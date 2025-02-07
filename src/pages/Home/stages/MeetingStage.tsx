@@ -30,7 +30,7 @@ export default function MeetingStage({ data }: Props) {
     const now = dayjs();
     const startDate = dayjs(data.startDate);
     const endDate = dayjs(data.endDate).endOf('day');
-    
+
     if (now.isBefore(startDate)) return 'not-started';
     if (now.isAfter(endDate)) return 'ended';
     return 'in-progress';
@@ -38,7 +38,7 @@ export default function MeetingStage({ data }: Props) {
 
   const getMeetingButtonContent = () => {
     const status = getMeetingStatus();
-    
+
     switch (status) {
       case 'not-started':
         return {
@@ -93,7 +93,7 @@ export default function MeetingStage({ data }: Props) {
   );
 
   return (
-    <div className="space-y-0 -mx-[calc((100vw-100%)/2)] overflow-x-hidden">
+    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
       <section className="relative min-h-[80vh] bg-gray-50 px-[calc((100vw-100%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto">
@@ -296,7 +296,7 @@ export default function MeetingStage({ data }: Props) {
       >
         <div className="space-y-4">
           {data.candidates.map((candidate, index) => (
-            <div 
+            <div
               key={index}
               className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
             >

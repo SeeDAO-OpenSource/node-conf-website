@@ -15,6 +15,32 @@
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  [data-page="about"] h1,
+  [data-page="about"] h2,
+  [data-page="about"] h3,
+  [data-page="about"] h4,
+  [data-page="about"] h5,
+  [data-page="about"] h6 {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    @apply font-bold tracking-tight;
+  }
+
+  [data-page="about"] h1 {
+    @apply text-4xl md:text-5xl mb-8 leading-tight;
+  }
+
+  [data-page="about"] h2 {
+    @apply text-3xl md:text-4xl mb-6 mt-12 leading-tight;
+  }
+
+  [data-page="about"] h3 {
+    @apply text-2xl md:text-3xl mb-4 mt-8;
+  }
+
+  [data-page="about"] h4 {
+    @apply text-xl md:text-2xl mb-4 mt-6;
+  }
 }
 
 @layer components {

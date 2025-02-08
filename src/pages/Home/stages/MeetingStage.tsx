@@ -8,6 +8,18 @@ import ClaimButton from '../../../components/ClaimButton';
 import {getStatus} from "../../../utils/public.ts";
 import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
 import {truncateAddress} from "../../../utils/address.ts";
+import styled from "styled-components";
+
+const Box = styled.div`
+  .addeventatc{
+    box-shadow: none!important;
+    z-index: auto!important;
+    position: relative;
+  }
+  .addeventatc_dropdown{
+    z-index: 10!important;
+  }
+`
 
 interface Props {
   data: ConferenceData;
@@ -221,19 +233,20 @@ export default function MeetingStage({ data }: Props) {
               </div>
             )}
           </div>
-          <div className="space-y-6">
+          <Box className="space-y-6">
             {Object.entries(scheduleByDate).map(([date, sessions]) => (
               <div key={date} className="bg-white rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-primary-700 mb-4">
                   {dayjs(date).format('YYYY年MM月DD日')}
                 </h3>
-                <div className="overflow-x-auto">
+                <div >
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-gray-200">
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">时间</th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">主题</th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">演讲人</th>
+                        <th>&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -248,6 +261,17 @@ export default function MeetingStage({ data }: Props) {
                           <td className="py-3 px-4 text-sm text-primary-600">
                             {session.speaker}
                           </td>
+                          <td>
+                            <div title="Add to Calendar" className="addeventatc" >
+                              Add to Calendar
+                              <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>
+                              {/*<span className="end">02/22/2025 10:00 AM</span>*/}
+                              {/*<span className="timezone">America/Los_Angeles</span>*/}
+                              <span className="title">{session.topic}</span>
+                              {/*<span className="description">Description of the event</span>*/}
+                              {/*<span className="location">Location of the event</span>*/}
+                            </div>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -255,14 +279,14 @@ export default function MeetingStage({ data }: Props) {
                 </div>
               </div>
             ))}
-          </div>
+          </Box>
         </div>
       </section>
 
       {/* Proposals Section */}
       <section className="relative bg-gray-50 px-[calc((100vw-100%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map((proposal) => (
               <div

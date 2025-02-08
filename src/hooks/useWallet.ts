@@ -1,23 +1,25 @@
 import { useState, useCallback, useEffect } from 'react';
 import { connectWallet, checkSBTOwnership, claimSBT } from '../services/web3';
+import {useSelector} from "react-redux";
 
 export function useWallet() {
   const [account, setAccount] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
   const [claiming, setClaiming] = useState(false);
+  const address = useSelector((store:any) => store.account);
 
-  // Handle account changes
-  useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on('accountsChanged', (accounts: string[]) => {
-        setAccount(accounts[0] || null);
-      });
-
-      window.ethereum.on('chainChanged', () => {
-        window.location.reload();
-      });
-    }
-  }, []);
+  // // Handle account changes
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     window.ethereum.on('accountsChanged', (accounts: string[]) => {
+  //       setAccount(accounts[0] || null);
+  //     });
+  //
+  //     window.ethereum.on('chainChanged', () => {
+  //       window.location.reload();
+  //     });
+  //   }
+  // }, []);
 
   const connect = useCallback(async () => {
     setConnecting(true);
@@ -34,8 +36,8 @@ export function useWallet() {
   }, []);
 
   const claim = useCallback(async (contractAddress: string) => {
-    if (!account) throw new Error('Wallet not connected');
-    
+    if (!address) throw new Error('Wallet not connected');
+
     setClaiming(true);
     try {
       await claimSBT(contractAddress);
@@ -46,12 +48,12 @@ export function useWallet() {
     } finally {
       setClaiming(false);
     }
-  }, [account]);
+  }, [address]);
 
   const checkOwnership = useCallback(async (contractAddress: string, tokenId: string) => {
-    if (!account) return false;
-    return checkSBTOwnership(contractAddress, tokenId, account);
-  }, [account]);
+    if (!address) return false;
+    return checkSBTOwnership(contractAddress, tokenId, address);
+  }, [address]);
 
   return {
     account,

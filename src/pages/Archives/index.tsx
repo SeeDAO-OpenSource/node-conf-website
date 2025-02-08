@@ -50,7 +50,7 @@ export default function ArchivesPage() {
             module.default.candidates = candidates??[];
             module.default.proposals = proposals?.data??[];
 
-            handleSNS(module.default.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+            handleSNS(module.default.proposals.filter((d:any) => !!d.applicant).map((d:any) => d.applicant));
 
 
             seasonData[i] = module.default;

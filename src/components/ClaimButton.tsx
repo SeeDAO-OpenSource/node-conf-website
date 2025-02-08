@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ClaimButton({ contractAddress, tokenId, candidates }: Props) {
-  const { claiming, checkOwnership } = useWallet();
+  const { claiming, checkOwnership,claim } = useWallet();
   const {isConnecting} = useAccount();
 
   const account = useSelector((store:any) => store.account);
@@ -52,20 +52,21 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
   }, [account, candidates, contractAddress, tokenId, checkOwnership]);
 
   const handleClick = async () => {
-    // if (!account) {
-    //   await connect();
-    //   return;
-    // }
-    //
-    // if (status === 'unclaimed') {
-    //   try {
-    //     await claim(contractAddress);
-    //     setStatus('claimed');
-    //   } catch (error) {
-    //     console.error('Failed to claim:', error);
-    //   }
-    // }
-    setShow(true)
+    if (!account) {
+      // await connect();
+      setShow(true)
+      return;
+    }
+
+    if (status === 'unclaimed') {
+      try {
+        await claim(contractAddress);
+        setStatus('claimed');
+      } catch (error) {
+        console.error('Failed to claim:', error);
+      }
+    }
+
   };
   const handleClose = () => {
     setShow(false)

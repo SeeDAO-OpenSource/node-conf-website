@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+// @ts-ignore
 import { markdownRawPlugin } from './vite.markdown.plugin'
 
 // https://vitejs.dev/config/

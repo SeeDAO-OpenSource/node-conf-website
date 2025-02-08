@@ -74,8 +74,9 @@ const LoginModalContent = ({handleClose}: { handleClose: () => void }) => {
 
 
   useEffect(() => {
+    if(!selectConnectorId)return;
     store.dispatch(saveAccount(address));
-  }, [address]);
+  }, [address,selectConnectorId]);
 
 
 

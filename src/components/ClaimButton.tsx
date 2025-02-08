@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useWallet } from '../hooks/useWallet';
-import {useAccount,useDisconnect} from "wagmi";
+import {useAccount} from "wagmi";
 import LoginModal from "./login/login.tsx";
 import {useSelector} from "react-redux";
-import {saveAccount} from "../store/reducer.ts";
-import store from "../store";
-
 interface Props {
   contractAddress: string;
   tokenId: string;
@@ -14,8 +11,7 @@ interface Props {
 
 export default function ClaimButton({ contractAddress, tokenId, candidates }: Props) {
   const { claiming, checkOwnership } = useWallet();
-  const { address,isConnecting,isConnected } = useAccount();
-  const {disconnect} = useDisconnect();
+  const {isConnecting} = useAccount();
 
   const account = useSelector((store:any) => store.account);
   const [status, setStatus] = useState<'unclaimed' | 'claimed' | 'not-eligible'>('unclaimed');
@@ -75,10 +71,7 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
     setShow(false)
   }
 
-  const handleDisconnect = () => {
-    disconnect()
-    store.dispatch(saveAccount(null));
-  }
+
   return (
       <>
         <LoginModal showModal={show} handleClose={handleClose} />
@@ -136,7 +129,7 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
               }
           </>
         }
-        <div onClick={()=>handleDisconnect()}>断开连接</div>
+
 
       </>
   );

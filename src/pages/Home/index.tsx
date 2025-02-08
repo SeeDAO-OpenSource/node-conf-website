@@ -4,6 +4,8 @@ import AdjournmentStage from './stages/AdjournmentStage';
 import PreparatoryStage from './stages/PreparatoryStage';
 import MeetingStage from './stages/MeetingStage';
 import type { ConferenceData } from '../../types/conference';
+import {getSeasonCandidate} from "../../api/getSeasonCandidate.ts";
+import {getSeasonProposals} from "../../api/getSeasonProposals.ts";
 
 export default function HomePage() {
   const [currentSeasonData, setCurrentSeasonData] = useState<ConferenceData | null>(null);
@@ -20,19 +22,44 @@ export default function HomePage() {
         const nextSeasonFormatted = String(NEXT_SEASON).padStart(2, '0');
 
         // Load current and next season data first
-        const [currentSeasonModule, nextSeasonModule] = await Promise.all([
+        const [currentSeasonModule, nextSeasonModule,candidates,proposals,candidatesNext,proposalsNext] = await Promise.all([
           import(`../../data/season${currentSeasonFormatted}.json`),
-          import(`../../data/season${nextSeasonFormatted}.json`)
+          import(`../../data/season${nextSeasonFormatted}.json`),
+          getSeasonCandidate(Number(currentSeasonFormatted)),
+          getSeasonProposals(Number(currentSeasonFormatted)),
+          getSeasonCandidate(Number(nextSeasonFormatted)),
+          getSeasonProposals(Number(nextSeasonFormatted))
+
         ]);
-        
+
+
+
+        currentSeasonModule.default.candidates = candidates;
+        currentSeasonModule.default.proposals = proposals.data;
         setCurrentSeasonData(currentSeasonModule.default);
+
+        nextSeasonModule.default.candidatesNext = candidatesNext;
+        nextSeasonModule.default.proposalsNext = proposalsNext.data;
         setNextSeasonData(nextSeasonModule.default);
 
         // Only try to load previous season data if we're in meeting stage
         if (CONFERENCE_STAGE === 'meeting') {
           try {
             const previousSeasonFormatted = String(CURRENT_SEASON - 1).padStart(2, '0');
-            const previousSeasonModule = await import(`../../data/season${previousSeasonFormatted}.json`);
+            // const previousSeasonModule = await import(`../../data/season${previousSeasonFormatted}.json`);
+
+            const [previousSeasonModule, candidates,proposals] = await Promise.all([
+              import(`../../data/season${previousSeasonFormatted}.json`),
+              getSeasonCandidate(Number(previousSeasonFormatted)),
+              getSeasonProposals(Number(previousSeasonFormatted)),
+
+            ]);
+            // const previousSeasonModule = await getSeasonCandidate(Number(previousSeasonFormatted));
+
+            previousSeasonModule.default.candidates = candidates;
+            previousSeasonModule.default.proposals = proposals.data;
+
+
             setPreviousSeasonData(previousSeasonModule.default);
           } catch (error) {
             console.warn('Previous season data not available:', error);
@@ -53,7 +80,7 @@ export default function HomePage() {
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-500 mb-4">{error}</div>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="btn btn-primary"
           >
@@ -83,8 +110,8 @@ export default function HomePage() {
           <MeetingStage data={currentSeasonData} />
           {previousSeasonData && (
             <div className="mt-20">
-              <AdjournmentStage 
-                data={previousSeasonData} 
+              <AdjournmentStage
+                data={previousSeasonData}
                 nextSeasonData={currentSeasonData}
               />
             </div>
@@ -92,8 +119,8 @@ export default function HomePage() {
         </>
       )}
       {CONFERENCE_STAGE === 'adjournment' && (
-        <AdjournmentStage 
-          data={currentSeasonData} 
+        <AdjournmentStage
+          data={currentSeasonData}
           nextSeasonData={nextSeasonData}
         />
       )}

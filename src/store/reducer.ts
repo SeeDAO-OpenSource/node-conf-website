@@ -8,12 +8,15 @@ const mainSlice = createSlice({
         saveAccount(state, action) {
             state.account = action.payload;
         },
+        saveSnsMap(state, action) {
+            state.snsMap = action.payload;
+        }
 
     },
 });
 
 export const {
     saveAccount,
-
+    saveSnsMap,
 } = mainSlice.actions;
 export default mainSlice.reducer;

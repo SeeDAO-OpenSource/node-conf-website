@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Countdown from 'react-countdown';
 import type { ConferenceData } from '../../../types/conference';
 import dayjs from 'dayjs';
 import CalendarDropdown from '../../../components/CalendarDropdown';
 import Modal from '../../../components/Modal';
 import ClaimButton from '../../../components/ClaimButton';
+import {getStatus} from "../../../utils/public.ts";
+import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
+import {truncateAddress} from "../../../utils/address.ts";
 
 interface Props {
   data: ConferenceData;
@@ -14,6 +17,23 @@ export default function MeetingStage({ data }: Props) {
   const [claimEndTime] = useState(() => Date.now() + 24 * 60 * 60 * 1000);
   const [showClaim, setShowClaim] = useState(true);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
+  const [snsMap, setSnsMap] = useState<any>({});
+
+  const { getMultiSNS } = useQuerySNS();
+
+  useEffect(() => {
+    handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+  },[data])
+
+  const handleSNS = async (wallets: string[]) => {
+    try{
+      const sns_map = await getMultiSNS(wallets);
+      setSnsMap(sns_map);
+    }catch(error:any){
+      console.log(error);
+    }
+
+  };
 
   // Group schedule by date
   const scheduleByDate = data.schedule.reduce((acc, session) => {
@@ -243,15 +263,15 @@ export default function MeetingStage({ data }: Props) {
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map((proposal) => (
               <div
-                key={proposal.id}
+                key={proposal.link}
                 className="bg-white rounded-lg p-6 transition-all duration-200 group"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className="tag tag-primary group-hover:bg-primary-100 transition-colors">
-                    {proposal.tag}
+                    {proposal.category}
                   </span>
                   <span className="tag tag-accent group-hover:bg-accent-100 transition-colors">
-                    {proposal.status}
+                    {getStatus(proposal.state!)}
                   </span>
                 </div>
                 <h3 className="text-xl font-medium mb-4 text-gray-900 group-hover:text-primary-700 transition-colors">
@@ -259,17 +279,16 @@ export default function MeetingStage({ data }: Props) {
                 </h3>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {proposal.proposer.avatar && (
+                    {proposal.avatar && (
                       <img
-                        src={proposal.proposer.avatar}
-                        alt={proposal.proposer.sns}
+                        src={proposal.avatar}
                         className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
                       />
                     )}
                     <div>
-                      <span className="text-gray-900 font-medium block">
-                        {proposal.proposer.sns}
-                      </span>
+                      {!!proposal.applicant && <span className="text-gray-900 font-medium block">
+                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
+                      </span>}
                       <span className="text-sm text-gray-500">提案人</span>
                     </div>
                   </div>

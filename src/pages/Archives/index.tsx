@@ -4,6 +4,10 @@ import Modal from '../../components/Modal';
 import { truncateAddress } from '../../utils/address';
 import dayjs from 'dayjs';
 import { CURRENT_SEASON } from '../../config/stage';
+import useQuerySNS from "../../hooks/useQuerySNS.tsx";
+import {getStatus} from "../../utils/public.ts";
+import {getSeasonCandidate} from "../../api/getSeasonCandidate.ts";
+import {getSeasonProposals} from "../../api/getSeasonProposals.ts";
 
 export default function ArchivesPage() {
   const [data, setData] = useState<Record<number, ConferenceData>>({});
@@ -13,16 +17,42 @@ export default function ArchivesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [snsMap, setSnsMap] = useState<any>({});
+
+  const { getMultiSNS } = useQuerySNS();
+
+  const handleSNS = async (wallets: string[]) => {
+    try{
+      const sns_map = await getMultiSNS(wallets);
+      setSnsMap(sns_map);
+    }catch(error:any){
+      console.log(error);
+    }
+
+  };
+
   useEffect(() => {
     const loadSeasonData = async () => {
       try {
         const seasonData: Record<number, ConferenceData> = {};
-        
+
         // Load all season data up to current season
         for (let i = 1; i <= CURRENT_SEASON; i++) {
           try {
             const seasonNumber = String(i).padStart(2, '0');
-            const module = await import(`../../data/season${seasonNumber}.json`);
+            const module = await import(`../../data/season${seasonNumber}.json`)??{};
+
+
+            const candidates =  await getSeasonCandidate(Number(seasonNumber))
+
+            const proposals =  await getSeasonProposals(Number(seasonNumber))
+
+            module.default.candidates = candidates??[];
+            module.default.proposals = proposals?.data??[];
+
+            handleSNS(module.default.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+
+
             seasonData[i] = module.default;
           } catch (error) {
             console.warn(`Season ${i} data not available:`, error);
@@ -33,9 +63,9 @@ export default function ArchivesPage() {
         const filteredData = Object.fromEntries(
           Object.entries(seasonData).filter(([_, value]) => value !== null)
         );
-        
+
         setData(filteredData);
-        
+
         // Set the initial selected season to the latest available season
         const seasons = Object.keys(filteredData).map(Number);
         if (seasons.length > 0) {
@@ -68,7 +98,7 @@ export default function ArchivesPage() {
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-500 mb-4">{error}</div>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="btn btn-primary"
           >
@@ -172,13 +202,13 @@ export default function ArchivesPage() {
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-6 mt-2 pt-2 border-t border-gray-200">
-                    <div 
+                    <div
                       className="text-primary-600 hover:text-primary-700 cursor-pointer text-xs"
                       onClick={() => setShowNodesModal(true)}
                     >
                       查看节点列表 →
                     </div>
-                    <div 
+                    <div
                       className="text-primary-600 hover:text-primary-700 cursor-pointer text-xs"
                       onClick={() => setShowCandidatesModal(true)}
                     >
@@ -327,27 +357,28 @@ export default function ArchivesPage() {
             <div className="grid md:grid-cols-2 gap-6">
               {selectedSeasonData.proposals.map((proposal) => (
                 <div
-                  key={proposal.id}
+                  key={proposal.link}
                   className="bg-gray-50 rounded-lg p-6 transition-all duration-200 group hover:bg-gray-100"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <span className="tag tag-primary">{proposal.tag}</span>
-                    <span className="tag tag-accent">{proposal.status}</span>
+                    <span className="tag tag-primary">{proposal.category}</span>
+                    <span className="tag tag-accent">{getStatus(proposal.state!)}</span>
                   </div>
                   <h3 className="text-xl font-medium mb-4 group-hover:text-primary-600 transition-colors">
                     {proposal.title}
                   </h3>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <img
-                        src={proposal.proposer.avatar}
-                        alt={proposal.proposer.sns}
-                        className="w-10 h-10 rounded-full"
-                      />
+                      {proposal.avatar && (
+                          <img
+                              src={proposal.avatar}
+                              className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
+                          />
+                      )}
                       <div>
-                        <span className="text-gray-900 font-medium block">
-                          {proposal.proposer.sns}
-                        </span>
+                        {!!proposal.applicant && <span className="text-gray-900 font-medium block">
+                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
+                      </span>}
                         <span className="text-sm text-gray-500">提案人</span>
                       </div>
                     </div>

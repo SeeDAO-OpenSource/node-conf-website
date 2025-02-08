@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import type { ConferenceData } from '../../../types/conference';
 import Modal from '../../../components/Modal';
 import { truncateAddress } from '../../../utils/address';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import faqContent from '../../../content/faq.md?raw';
+import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
+import {getStatus} from "../../../utils/public.ts";
 
 interface Props {
   data: ConferenceData;
@@ -14,6 +16,22 @@ interface Props {
 export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   const [showNodesModal, setShowNodesModal] = useState(false);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
+  const [snsMap, setSnsMap] = useState<any>({});
+  const { getMultiSNS } = useQuerySNS();
+
+  useEffect(() => {
+    handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+  },[data])
+
+  const handleSNS = async (wallets: string[]) => {
+    try{
+      const sns_map = await getMultiSNS(wallets);
+      setSnsMap(sns_map);
+    }catch(error:any){
+      console.log(error);
+    }
+
+  };
 
   return (
     <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
@@ -198,27 +216,28 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map((proposal) => (
               <div
-                key={proposal.id}
+                key={proposal.link}
                 className="bg-white rounded-xl p-6 shadow-lg transition-all duration-200 group hover:shadow-xl"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className="tag tag-primary">{proposal.tag}</span>
-                  <span className="tag tag-accent">{proposal.status}</span>
+                  <span className="tag tag-primary">{proposal.category}</span>
+                  <span className="tag tag-accent"> {getStatus(proposal.state!)}</span>
                 </div>
                 <h3 className="text-xl font-medium mb-4 group-hover:text-primary-600 transition-colors">
                   {proposal.title}
                 </h3>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img
-                      src={proposal.proposer.avatar}
-                      alt={proposal.proposer.sns}
-                      className="w-10 h-10 rounded-full"
-                    />
+                    {proposal.avatar && (
+                        <img
+                            src={proposal.avatar}
+                            className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
+                        />
+                    )}
                     <div>
-                      <span className="text-gray-900 font-medium block">
-                        {proposal.proposer.sns}
-                      </span>
+                      {!!proposal.applicant && <span className="text-gray-900 font-medium block">
+                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
+                      </span>}
                       <span className="text-sm text-gray-500">提案人</span>
                     </div>
                   </div>

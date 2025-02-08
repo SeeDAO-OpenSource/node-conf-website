@@ -11,7 +11,11 @@ export interface Proposal {
   tag: string;
   status: string;
   title: string;
-  proposer: {
+  category?: string;
+  avatar: string;
+  applicant: string;
+  state?: number;
+  proposer?: {
     sns: string;
     avatar?: string;
   };

@@ -4,7 +4,7 @@ import { markdownRawPlugin } from './vite.markdown.plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/node-conf-website/',
+  base: '/node-conf-website',
   plugins: [
     react(),
     markdownRawPlugin()

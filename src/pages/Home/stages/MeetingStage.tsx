@@ -22,7 +22,10 @@ export default function MeetingStage({ data }: Props) {
   const { getMultiSNS } = useQuerySNS();
 
   useEffect(() => {
-    handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+    // handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+    const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
+    const arr =[...proposalArr,...data.nodes,...data.candidates]
+    handleSNS([...new Set(arr)]);
   },[data])
 
   const handleSNS = async (wallets: string[]) => {
@@ -317,9 +320,13 @@ export default function MeetingStage({ data }: Props) {
           {data.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
             >
-              <div className="font-mono text-gray-900">{candidate}</div>
+
+              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
+              <div className="text-sm  text-gray-500 font-mono">
+                {truncateAddress(candidate)}
+              </div>
             </div>
           ))}
         </div>

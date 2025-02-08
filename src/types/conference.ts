@@ -57,7 +57,7 @@ export interface ConferenceData {
   currentNodes: number;
   currentCriteria: SeasonCriteria;
   nextSeasonCriteria: SeasonCriteria;
-  nodes: Node[];
+  nodes: string[];
   candidates: string[];
   proposals: Proposal[];
   schedule: ScheduleSession[];

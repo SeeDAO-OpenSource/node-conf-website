@@ -20,7 +20,12 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   const { getMultiSNS } = useQuerySNS();
 
   useEffect(() => {
-    handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+
+    const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
+    const arr =[...proposalArr,...data.nodes,...data.candidates]
+    handleSNS([...new Set(arr)]);
+
+
   },[data])
 
   const handleSNS = async (wallets: string[]) => {
@@ -66,7 +71,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">节点数量</span>
-                    <span className="font-bold text-primary-600">{data.currentNodes}</span>
+                    <span className="font-bold text-primary-600">{data.nodes.length}</span>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
@@ -303,17 +308,17 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
               className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div className="flex items-center gap-4">
-                <img
-                  src={node.avatar}
-                  alt={node.sns}
-                  className="w-10 h-10 rounded-full"
-                />
-                <div>
-                  <div className="font-medium text-gray-900">{node.sns}</div>
+                {/*<img*/}
+                {/*  src={node.avatar}*/}
+                {/*  alt={node.sns}*/}
+                {/*  className="w-10 h-10 rounded-full"*/}
+                {/*/>*/}
+                {/*<div>*/}
+                  <div className="font-medium text-gray-900"> {snsMap[node.toLowerCase()] ?? truncateAddress(node)}</div>
                   <div className="text-sm text-gray-500 font-mono">
-                    {truncateAddress(node.walletAddress)}
+                    {truncateAddress(node)}
                   </div>
-                </div>
+                {/*</div>*/}
               </div>
             </div>
           ))}
@@ -329,9 +334,11 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
           {data.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
             >
-              <div className="font-mono text-gray-900">
+
+              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
+              <div className="text-sm  text-gray-500 font-mono">
                 {truncateAddress(candidate)}
               </div>
             </div>

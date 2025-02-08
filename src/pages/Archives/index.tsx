@@ -8,6 +8,7 @@ import useQuerySNS from "../../hooks/useQuerySNS.tsx";
 import {getStatus} from "../../utils/public.ts";
 import {getSeasonCandidate} from "../../api/getSeasonCandidate.ts";
 import {getSeasonProposals} from "../../api/getSeasonProposals.ts";
+import {getSeasonNodes} from "../../api/getSeasonNodes.ts";
 
 export default function ArchivesPage() {
   const [data, setData] = useState<Record<number, ConferenceData>>({});
@@ -46,11 +47,16 @@ export default function ArchivesPage() {
             const candidates =  await getSeasonCandidate(Number(seasonNumber))
 
             const proposals =  await getSeasonProposals(Number(seasonNumber))
+            const nodes =  await getSeasonNodes(Number(seasonNumber))
 
             module.default.candidates = candidates??[];
             module.default.proposals = proposals?.data??[];
+            module.default.nodes = nodes?.data??[];
 
-            handleSNS(module.default.proposals.filter((d:any) => !!d.applicant).map((d:any) => d.applicant));
+
+            const  proposalArr = proposals?.data.filter((d:any) => !!d.applicant).map((d:any) => d.applicant);
+            const arr =[...proposalArr,...nodes?.data,...candidates]
+            handleSNS([...new Set(arr)]);
 
 
             seasonData[i] = module.default;
@@ -165,7 +171,7 @@ export default function ArchivesPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">节点数量</span>
-                    <span className="font-bold text-primary-600">{selectedSeasonData.currentNodes}</span>
+                    <span className="font-bold text-primary-600">{selectedSeasonData.nodes.length}</span>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
@@ -411,17 +417,17 @@ export default function ArchivesPage() {
               className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div className="flex items-center gap-4">
-                <img
-                  src={node.avatar}
-                  alt={node.sns}
-                  className="w-10 h-10 rounded-full"
-                />
-                <div>
-                  <div className="font-medium text-gray-900">{node.sns}</div>
+                {/*<img*/}
+                {/*  src={node.avatar}*/}
+                {/*  alt={node.sns}*/}
+                {/*  className="w-10 h-10 rounded-full"*/}
+                {/*/>*/}
+                {/*<div>*/}
+                  <div className="font-medium text-gray-900"> {snsMap[node.toLowerCase()] ?? truncateAddress(node)}</div>
                   <div className="text-sm text-gray-500 font-mono">
-                    {truncateAddress(node.walletAddress)}
+                    {truncateAddress(node)}
                   </div>
-                </div>
+                {/*</div>*/}
               </div>
             </div>
           ))}
@@ -437,9 +443,10 @@ export default function ArchivesPage() {
           {selectedSeasonData?.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
             >
-              <div className="font-mono text-gray-900">
+              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
+              <div className="text-sm  text-gray-500 font-mono">
                 {truncateAddress(candidate)}
               </div>
             </div>

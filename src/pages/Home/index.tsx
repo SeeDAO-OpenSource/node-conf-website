@@ -6,6 +6,7 @@ import MeetingStage from './stages/MeetingStage';
 import type { ConferenceData } from '../../types/conference';
 import {getSeasonCandidate} from "../../api/getSeasonCandidate.ts";
 import {getSeasonProposals} from "../../api/getSeasonProposals.ts";
+import {getSeasonNodes} from "../../api/getSeasonNodes.ts";
 
 export default function HomePage() {
   const [currentSeasonData, setCurrentSeasonData] = useState<ConferenceData | null>(null);
@@ -22,24 +23,26 @@ export default function HomePage() {
         const nextSeasonFormatted = String(NEXT_SEASON).padStart(2, '0');
 
         // Load current and next season data first
-        const [currentSeasonModule, nextSeasonModule,candidates,proposals,candidatesNext,proposalsNext] = await Promise.all([
+        const [currentSeasonModule, nextSeasonModule,candidates,proposals,nodes,candidatesNext,proposalsNext,nodesNext] = await Promise.all([
           import(`../../data/season${currentSeasonFormatted}.json`),
           import(`../../data/season${nextSeasonFormatted}.json`),
           getSeasonCandidate(Number(currentSeasonFormatted)),
           getSeasonProposals(Number(currentSeasonFormatted)),
+          getSeasonNodes(Number(currentSeasonFormatted)),
           getSeasonCandidate(Number(nextSeasonFormatted)),
-          getSeasonProposals(Number(nextSeasonFormatted))
+          getSeasonProposals(Number(nextSeasonFormatted)),
+          getSeasonNodes(Number(nextSeasonFormatted)),
 
         ]);
 
-
-
         currentSeasonModule.default.candidates = candidates;
         currentSeasonModule.default.proposals = proposals.data;
+        currentSeasonModule.default.nodes = nodes.data;
         setCurrentSeasonData(currentSeasonModule.default);
 
         nextSeasonModule.default.candidatesNext = candidatesNext;
         nextSeasonModule.default.proposalsNext = proposalsNext.data;
+        nextSeasonModule.default.nodes = nodesNext.data;
         setNextSeasonData(nextSeasonModule.default);
 
         // Only try to load previous season data if we're in meeting stage
@@ -48,16 +51,18 @@ export default function HomePage() {
             const previousSeasonFormatted = String(CURRENT_SEASON - 1).padStart(2, '0');
             // const previousSeasonModule = await import(`../../data/season${previousSeasonFormatted}.json`);
 
-            const [previousSeasonModule, candidates,proposals] = await Promise.all([
+            const [previousSeasonModule, candidates,proposals,nodes] = await Promise.all([
               import(`../../data/season${previousSeasonFormatted}.json`),
               getSeasonCandidate(Number(previousSeasonFormatted)),
               getSeasonProposals(Number(previousSeasonFormatted)),
+              getSeasonNodes(Number(previousSeasonFormatted)),
 
             ]);
             // const previousSeasonModule = await getSeasonCandidate(Number(previousSeasonFormatted));
 
             previousSeasonModule.default.candidates = candidates;
             previousSeasonModule.default.proposals = proposals.data;
+            previousSeasonModule.default.nodes = nodes.data;
 
 
             setPreviousSeasonData(previousSeasonModule.default);

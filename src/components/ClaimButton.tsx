@@ -96,7 +96,6 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
               加载中...
             </button>
         }
-        --{account}--{JSON.stringify(isConnected)}--{address}
 
         {
             !loading &&<>

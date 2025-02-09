@@ -1,7 +1,7 @@
 {
   "season": 7,
-  "startDate": "2024-03-15T09:00:00+08:00",
-  "endDate": "2024-03-17T17:00:00+08:00",
+  "startDate": "2024-05-31T09:00:00+08:00",
+  "endDate": "2024-06-02T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/pqr-stuv-wxy",
   "sbtToken": {
     "contractAddress": "0x9876543210987654321098765432109876543210",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 20,
   "currentCriteria": {
-    "validSCR": 600,
-    "activeSCR": 300,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/35",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/36"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-508125",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-508125"
   },
   "nextSeasonCriteria": {
-    "validSCR": 800,
-    "activeSCR": 400,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/37",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/38"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/111",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/112"
   },
   "nodes": [
     {
@@ -53,14 +53,79 @@
   ],
   "schedule": [
     {
-      "time": "2024-03-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2024-05-31 20:00",
+      "speaker": "咖啡 & Shawna",
+      "topic": "S6 社区运行情况和财务说明"
     },
     {
-      "time": "2024-03-15 10:00",
-      "speaker": "Bob.seedao",
-      "topic": "第七季度工作总结"
+      "time": "2024-05-31 20:40",
+      "speaker": "Shawn",
+      "topic": "本季孵化器回顾"
+    },
+    {
+      "time": "2024-05-31 21:00",
+      "speaker": "Jason",
+      "topic": "卧虎藏龙项目分享"
+    },
+    {
+      "time": "2024-05-31 20:20",
+      "speaker": "Frozen",
+      "topic": "SeeDAO App的维护情况和积分贷的进展情况"
+    },
+    {
+      "time": "2024-05-31 20:20",
+      "speaker": "栗子",
+      "topic": "SeeDAO 学园简要分享"
+    },
+    {
+      "time": "2024-05-31 20:40",
+      "speaker": "自由交流",
+      "topic": "讨论 S7 愿景、重大社区举措"
+    },
+    {
+      "time": "2024-06-01 14:00",
+      "speaker": "Forever",
+      "topic": "社区数据量化讨论与介绍"
+    },
+    {
+      "time": "2024-06-01 14:20",
+      "speaker": "古忆",
+      "topic": "社区记者公共项目"
+    },
+    {
+      "time": "2024-06-01 14:40",
+      "speaker": "Ines",
+      "topic": "用哈伯格税卖广告的介绍"
+    },
+    {
+      "time": "2024-06-01 15:00",
+      "speaker": "ivea",
+      "topic": "积分流通与落地计划"
+    },
+    {
+      "time": "2024-06-01 15:20",
+      "speaker": "Shawn",
+      "topic": "SeeDAO 创业大赛"
+    },
+    {
+      "time": "2024-06-01 15:40",
+      "speaker": "自由交流",
+      "topic": "S7 公共项目的机会与展望开放探讨"
+    },
+    {
+      "time": "2024-06-02 20:00",
+      "speaker": "S7市政厅成员",
+      "topic": "S7 市政厅亮相与规划"
+    },
+    {
+      "time": "2024-06-02 20:20",
+      "speaker": "Baiyu",
+      "topic": "BTC生态历险记"
+    },
+    {
+      "time": "2024-06-02 21:00",
+      "speaker": "自由交流",
+      "topic": "共识畅想(SeeDAO技术开发畅想、社区畅想)"
     }
   ],
   "recordings": [

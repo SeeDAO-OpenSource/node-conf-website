@@ -1,7 +1,7 @@
 {
   "season": 2,
-  "startDate": "2022-12-15T09:00:00+08:00",
-  "endDate": "2022-12-17T17:00:00+08:00",
+  "startDate": "2023-02-24T09:00:00+08:00",
+  "endDate": "2023-02-26T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/abc-def-ghi",
   "sbtToken": {
     "contractAddress": "0x4321098765432109876543210987654321098765",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 5,
   "currentCriteria": {
-    "validSCR": 100,
-    "activeSCR": 50,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/60",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/61"
+    "validSCR": 20000,
+    "activeSCR": 3000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-40885",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-40885"
   },
   "nextSeasonCriteria": {
-    "validSCR": 200,
-    "activeSCR": 100,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/62",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/63"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-42530",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-42530"
   },
   "nodes": [
     {
@@ -46,9 +46,64 @@
   ],
   "schedule": [
     {
-      "time": "2022-12-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2023-02-24 21:00",
+      "speaker": "Ricky",
+      "topic": "第一届市政厅回顾报告"
+    },
+    {
+      "time": "2023-02-24 21:30",
+      "speaker": "白鱼 & 唐晗",
+      "topic": "《数字城邦2049》"
+    },
+    {
+      "time": "2023-02-24 22:00",
+      "speaker": "咖啡",
+      "topic": "本届提案说明 & 流程说明"
+    },
+    {
+      "time": "2023-02-24 22:15",
+      "speaker": "主持人",
+      "topic": "第一轮投票"
+    },
+    {
+      "time": "2023-02-25 19:00",
+      "speaker": "shawn",
+      "topic": "孵化器Season1回顾报告"
+    },
+    {
+      "time": "2023-02-25 19:30",
+      "speaker": "Vincent",
+      "topic": "SeeDAO圆桌 一起来说"
+    },
+    {
+      "time": "2023-02-25 20:00",
+      "speaker": "脑暴",
+      "topic": "SGN赋能畅想"
+    },
+    {
+      "time": "2023-02-25 21:30",
+      "speaker": "主持人",
+      "topic": "第二轮投票"
+    },
+    {
+      "time": "2023-02-26 13:00",
+      "speaker": "Shawn",
+      "topic": "最前线：其他的DAO都在干什么？"
+    },
+    {
+      "time": "2023-02-26 13:30",
+      "speaker": "Grace",
+      "topic": "IRL：线下SeeDAO的建设？"
+    },
+    {
+      "time": "2023-02-26 14:00",
+      "speaker": "唐晗",
+      "topic": "Season2 SeeDAO展望"
+    },
+    {
+      "time": "2023-02-26 14:30",
+      "speaker": "主持人",
+      "topic": "第三轮投票"
     }
   ],
   "recordings": [

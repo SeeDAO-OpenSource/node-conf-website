@@ -1,7 +1,7 @@
 {
   "season": 6,
-  "startDate": "2023-12-15T09:00:00+08:00",
-  "endDate": "2023-12-17T17:00:00+08:00",
+  "startDate": "2024-03-01T09:00:00+08:00",
+  "endDate": "2024-03-03T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/mno-pqr-stu",
   "sbtToken": {
     "contractAddress": "0x8765432109876543210987654321098765432109",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 15,
   "currentCriteria": {
-    "validSCR": 500,
-    "activeSCR": 250,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/40",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/41"
+    "validSCR": 30000,
+    "activeSCR": 8000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/sip-120-47638",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/sip-120-47638"
   },
   "nextSeasonCriteria": {
-    "validSCR": 600,
-    "activeSCR": 300,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/42",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/43"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-50812",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-50812"
   },
   "nodes": [
     {
@@ -47,9 +47,94 @@
   ],
   "schedule": [
     {
-      "time": "2023-12-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2024-03-01 20:00",
+      "speaker": "阿冷&Queeny",
+      "topic": "S5 运行情况和财务说明"
+    },
+    {
+      "time": "2024-03-01 20:15",
+      "speaker": "Shawn",
+      "topic": "孵化器回顾"
+    },
+    {
+      "time": "2024-03-01 20:45",
+      "speaker": "咖啡",
+      "topic": "开放节点平日投票"
+    },
+    {
+      "time": "2024-03-01 21:05",
+      "speaker": "Frozen",
+      "topic": "SeeDAO APP和OS当前进度"
+    },
+    {
+      "time": "2024-03-01 21:20",
+      "speaker": "Baiyu",
+      "topic": "S6 目标和重大社区举措"
+    },
+    {
+      "time": "2024-03-01 21:50",
+      "speaker": "S6 节点发言",
+      "topic": "讨论 S6 目标、重大社区举措和预算"
+    },
+    {
+      "time": "2024-03-02 14:00",
+      "speaker": "文倩",
+      "topic": "城邦之道-分布式内容小队"
+    },
+    {
+      "time": "2024-03-02 14:10",
+      "speaker": "Ashley",
+      "topic": "AMA形式和嘉宾等的探讨 & 公益课汇报"
+    },
+    {
+      "time": "2024-03-02 14:30",
+      "speaker": "定慧",
+      "topic": "S5 公共项目反思-新手村"
+    },
+    {
+      "time": "2024-03-02 14:35",
+      "speaker": "竞选人",
+      "topic": "市政厅竞选人分享和现场拉票"
+    },
+    {
+      "time": "2024-03-02 15:00",
+      "speaker": "Baiyu",
+      "topic": "市政厅改革"
+    },
+    {
+      "time": "2024-03-02 15:20",
+      "speaker": "Shawn",
+      "topic": "社区内积分新玩法"
+    },
+    {
+      "time": "2024-03-02 15:40",
+      "speaker": "Owen",
+      "topic": "社区金库投资小组 & 投研公会降级提案"
+    },
+    {
+      "time": "2024-03-03 20:00",
+      "speaker": "S6 市政厅成员",
+      "topic": "S6 市政厅主要规划"
+    },
+    {
+      "time": "2024-03-03 20:30",
+      "speaker": "全体",
+      "topic": "S6 公共项目的机会与展望开放探讨"
+    },
+    {
+      "time": "2024-03-03 21:00",
+      "speaker": "文倩",
+      "topic": "“因作而是”联欢会"
+    },
+    {
+      "time": "2024-03-03 21:30",
+      "speaker": "DJ Henry + 全体参与",
+      "topic": "在线猜歌"
+    },
+    {
+      "time": "2024-03-03 21:50",
+      "speaker": "合唱",
+      "topic": "相亲相爱"
     }
   ],
   "recordings": [

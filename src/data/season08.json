@@ -1,7 +1,7 @@
 {
   "season": 8,
-  "startDate": "2024-06-15T09:00:00+08:00",
-  "endDate": "2024-06-17T17:00:00+08:00",
+  "startDate": "2024-08-31T09:00:00+08:00",
+  "endDate": "2024-09-01T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/def-ghij-klm",
   "sbtToken": {
     "contractAddress": "0x0123456789012345678901234567890123456789",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 25,
   "currentCriteria": {
-    "validSCR": 800,
-    "activeSCR": 400,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/28",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/29"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/111",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/112"
   },
   "nextSeasonCriteria": {
-    "validSCR": 1000,
-    "activeSCR": 500,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/30",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/31"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/201",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/202"
   },
   "nodes": [
     {
@@ -97,29 +97,64 @@
   ],
   "schedule": [
     {
-      "time": "2024-06-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2024-08-31 20:00",
+      "speaker": "栗子 & Fivea",
+      "topic": "S7 社区运行情况和财务说明"
     },
     {
-      "time": "2024-06-15 10:00",
-      "speaker": "Bob.seedao",
-      "topic": "第八季度工作总结"
+      "time": "2024-08-31 20:20",
+      "speaker": "Fivea",
+      "topic": "积分信用贷的季度运行分享"
     },
     {
-      "time": "2024-06-15 11:00",
-      "speaker": "Charlie.seedao",
-      "topic": "技术架构升级计划"
+      "time": "2024-08-31 20:40",
+      "speaker": "Fivea",
+      "topic": "积分的有限流通与落地计划"
     },
     {
-      "time": "2024-06-15 14:00",
-      "speaker": "David.seedao",
-      "topic": "社区资金管理方案"
+      "time": "2024-08-31 21:00",
+      "speaker": "Shawna",
+      "topic": "创业大赛介绍及优胜项目分享"
     },
     {
-      "time": "2024-06-15 15:30",
-      "speaker": "Emma.seedao",
-      "topic": "节点治理框架优化"
+      "time": "2024-08-31 21:30",
+      "speaker": "S8竞选候选人",
+      "topic": "S8市政厅岗位竞选自由拉票"
+    },
+    {
+      "time": "2024-08-31 21:50",
+      "speaker": "自由交流",
+      "topic": "讨论本届提案、S8 愿景、社区举措"
+    },
+    {
+      "time": "2024-08-31 22:10",
+      "speaker": "Ricky",
+      "topic": "为Ricky庆生"
+    },
+    {
+      "time": "2024-09-01 20:00",
+      "speaker": "Cliff",
+      "topic": "去中心化，自治的华语独立电影社区倡议"
+    },
+    {
+      "time": "2024-09-01 20:20",
+      "speaker": "栗子",
+      "topic": "SeeDAOx南塘的乡建实验探索"
+    },
+    {
+      "time": "2024-09-01 20:40",
+      "speaker": "Ricky",
+      "topic": "See 不DAO的想像 — See+ 的战略提议"
+    },
+    {
+      "time": "2024-09-01 21:00",
+      "speaker": "Lee",
+      "topic": "Seedao的社区激活思路讨论"
+    },
+    {
+      "time": "2024-09-01 21:20",
+      "speaker": "自由交流",
+      "topic": "S8 公共项目的机会与展望开放探讨"
     }
   ],
   "recordings": [

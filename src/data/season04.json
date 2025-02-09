@@ -1,7 +1,7 @@
 {
   "season": 4,
-  "startDate": "2023-06-15T09:00:00+08:00",
-  "endDate": "2023-06-17T17:00:00+08:00",
+  "startDate": "2023-09-01T09:00:00+08:00",
+  "endDate": "2023-09-03T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/ghi-jkl-mno",
   "sbtToken": {
     "contractAddress": "0x6543210987654321098765432109876543210987",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 10,
   "currentCriteria": {
-    "validSCR": 300,
-    "activeSCR": 150,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/50",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/51"
+    "validSCR": 20000,
+    "activeSCR": 4000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-44523",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-44523"
   },
   "nextSeasonCriteria": {
-    "validSCR": 400,
-    "activeSCR": 200,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/52",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/53"
+    "validSCR": 30000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-46023",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-46023"
   },
   "nodes": [
     {
@@ -46,9 +46,59 @@
   ],
   "schedule": [
     {
-      "time": "2023-06-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2023-09-01 21:00",
+      "speaker": "咖啡",
+      "topic": "S3 运行情况 & S4 预算说明"
+    },
+    {
+      "time": "2023-09-01 21:30",
+      "speaker": "Grace",
+      "topic": "城市联络人"
+    },
+    {
+      "time": "2023-09-01 22:00",
+      "speaker": "Baiyu",
+      "topic": "SeeDAO白皮书"
+    },
+    {
+      "time": "2023-09-01 23:00",
+      "speaker": "主持人",
+      "topic": "本届节点大会讨论 & 提案投票"
+    },
+    {
+      "time": "2023-09-02 19:00",
+      "speaker": "Rebecca",
+      "topic": "元规则修订动议质询"
+    },
+    {
+      "time": "2023-09-02 19:20",
+      "speaker": "Seed团队",
+      "topic": "SeeD说明"
+    },
+    {
+      "time": "2023-09-02 20:00",
+      "speaker": "Shawn",
+      "topic": "孵化器当前小结与未来展望"
+    },
+    {
+      "time": "2023-09-02 20:30",
+      "speaker": "Shawn",
+      "topic": "公共教育"
+    },
+    {
+      "time": "2023-09-02 21:00",
+      "speaker": "主持人",
+      "topic": "本届节点大会讨论 & 提案投票"
+    },
+    {
+      "time": "2023-09-03 14:00",
+      "speaker": "Ricky",
+      "topic": "新手村"
+    },
+    {
+      "time": "2023-09-03 15:00",
+      "speaker": "主持人",
+      "topic": "本届节点大会讨论 & 提案投票"
     }
   ],
   "recordings": [

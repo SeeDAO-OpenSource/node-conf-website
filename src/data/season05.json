@@ -1,7 +1,7 @@
 {
   "season": 5,
-  "startDate": "2023-09-15T09:00:00+08:00",
-  "endDate": "2023-09-17T17:00:00+08:00",
+  "startDate": "2023-12-01T09:00:00+08:00",
+  "endDate": "2023-12-03T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/jkl-mno-pqr",
   "sbtToken": {
     "contractAddress": "0x7654321098765432109876543210987654321098",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 12,
   "currentCriteria": {
-    "validSCR": 400,
-    "activeSCR": 200,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/45",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/46"
+    "validSCR": 30000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-46023",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-46023"
   },
   "nextSeasonCriteria": {
-    "validSCR": 500,
-    "activeSCR": 250,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/47",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/48"
+    "validSCR": 30000,
+    "activeSCR": 8000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/sip-120-47638",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/sip-120-47638"
   },
   "nodes": [
     {
@@ -46,9 +46,84 @@
   ],
   "schedule": [
     {
-      "time": "2023-09-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2023-12-01 20:00",
+      "speaker": "Baiyu",
+      "topic": "S4 运行情况和财务说明"
+    },
+    {
+      "time": "2023-12-01 20:15",
+      "speaker": "Shawn",
+      "topic": "孵化器回顾"
+    },
+    {
+      "time": "2023-12-01 20:45",
+      "speaker": "Polis开发组 Frozen",
+      "topic": "SeeDAO APP和OS当前进度和未来规划"
+    },
+    {
+      "time": "2023-12-01 21:00",
+      "speaker": "唐晗",
+      "topic": "2年路线图和S5季度目标"
+    },
+    {
+      "time": "2023-12-01 21:30",
+      "speaker": "S5 节点发言",
+      "topic": "讨论路线图、S5 季度目标和预算"
+    },
+    {
+      "time": "2023-12-01 22:00",
+      "speaker": "咖啡",
+      "topic": "第六季节点资格门槛设置"
+    },
+    {
+      "time": "2023-12-02 14:00",
+      "speaker": "竞选人",
+      "topic": "市政厅竞选人分享和现场拉票"
+    },
+    {
+      "time": "2023-12-02 14:40",
+      "speaker": "竞选人",
+      "topic": "公共项目竞选人分享和现场拉票"
+    },
+    {
+      "time": "2023-12-02 15:20",
+      "speaker": "咖啡 & Baiyu",
+      "topic": "S5 治理手册修订"
+    },
+    {
+      "time": "2023-12-02 15:40",
+      "speaker": "Rebecca",
+      "topic": "元规则修改案"
+    },
+    {
+      "time": "2023-12-03 20:00",
+      "speaker": "S5 市政厅成员",
+      "topic": "S5 市政厅主要规划"
+    },
+    {
+      "time": "2023-12-03 20:30",
+      "speaker": "S5 公共项目负责人",
+      "topic": "S5 公共项目打算"
+    },
+    {
+      "time": "2023-12-03 21:00",
+      "speaker": "Grace",
+      "topic": "Polis 清迈"
+    },
+    {
+      "time": "2023-12-03 21:15",
+      "speaker": "康师傅 Rap、唐晗诗歌朗诵等",
+      "topic": "才艺表演"
+    },
+    {
+      "time": "2023-12-03 21:30",
+      "speaker": "文倩和获奖者",
+      "topic": "“因作而是”作品颁奖和发言"
+    },
+    {
+      "time": "2023-12-03 21:55",
+      "speaker": "合唱",
+      "topic": "“难忘今宵"
     }
   ],
   "recordings": [

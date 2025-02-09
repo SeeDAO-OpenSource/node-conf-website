@@ -1,7 +1,7 @@
 {
   "season": 1,
-  "startDate": "2022-09-15T09:00:00+08:00",
-  "endDate": "2022-09-17T17:00:00+08:00",
+  "startDate": "2022-10-28T09:00:00+08:00",
+  "endDate": "2022-10-30T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/xyz-abc-def",
   "sbtToken": {
     "contractAddress": "0x3210987654321098765432109876543210987654",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 3,
   "currentCriteria": {
-    "validSCR": 50,
-    "activeSCR": 25,
+    "validSCR": 20000,
+    "activeSCR": 0,
     "validSCRProposalLink": "https://app.seedao.xyz/proposal/65",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/66"
+    "activeSCRProposalLink": ""
   },
   "nextSeasonCriteria": {
-    "validSCR": 100,
-    "activeSCR": 50,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/67",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/68"
+    "validSCR": 20000,
+    "activeSCR": 3000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-40885",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-40885"
   },
   "nodes": [
     {
@@ -46,9 +46,64 @@
   ],
   "schedule": [
     {
-      "time": "2022-09-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2022-10-28 21:00",
+      "speaker": "Ricky",
+      "topic": "市政厅回顾"
+    },
+    {
+      "time": "2022-10-28 21:15",
+      "speaker": "Shawn",
+      "topic": "战略孵化器回顾"
+    },
+    {
+      "time": "2022-10-28 21:30",
+      "speaker": "Ricky",
+      "topic": "本届提案说明 & 流程说明"
+    },
+    {
+      "time": "2022-10-28 22:00",
+      "speaker": "主持人",
+      "topic": "第一轮提案投票"
+    },
+    {
+      "time": "2022-10-29 13:00",
+      "speaker": "唐晗、白鱼",
+      "topic": "数字城邦讨论"
+    },
+    {
+      "time": "2022-10-29 13:30",
+      "speaker": "定慧、Fefe",
+      "topic": "SeeShore 大理回顾"
+    },
+    {
+      "time": "2022-10-29 14:00",
+      "speaker": "主持人",
+      "topic": "第一轮未通过提案修正讨论形成第二轮提案"
+    },
+    {
+      "time": "2022-10-29 14:30",
+      "speaker": "主持人",
+      "topic": "第二轮提案投票"
+    },
+    {
+      "time": "2022-10-30 13:00",
+      "speaker": "婉卿、咖啡",
+      "topic": "元规则讨论"
+    },
+    {
+      "time": "2022-10-30 13:30",
+      "speaker": "主持人",
+      "topic": "第二轮未通过提案修正案讨论"
+    },
+    {
+      "time": "2022-10-30 14:00",
+      "speaker": "主持人",
+      "topic": "第三轮提案投票"
+    },
+    {
+      "time": "2022-10-30 14:30",
+      "speaker": "主持人",
+      "topic": "下一季节点门槛投票"
     }
   ],
   "recordings": [

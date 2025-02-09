@@ -1,7 +1,7 @@
 {
   "season": 3,
-  "startDate": "2023-03-15T09:00:00+08:00",
-  "endDate": "2023-03-17T17:00:00+08:00",
+  "startDate": "2023-06-02T09:00:00+08:00",
+  "endDate": "2023-06-04T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/def-ghi-jkl",
   "sbtToken": {
     "contractAddress": "0x5432109876543210987654321098765432109876",
@@ -10,16 +10,16 @@
   },
   "currentNodes": 8,
   "currentCriteria": {
-    "validSCR": 200,
-    "activeSCR": 100,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/55",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/56"
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-42530",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-42530"
   },
   "nextSeasonCriteria": {
-    "validSCR": 300,
-    "activeSCR": 150,
-    "validSCRProposalLink": "https://app.seedao.xyz/proposal/57",
-    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/58"
+    "validSCR": 20000,
+    "activeSCR": 4000,
+    "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-44523",
+    "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-44523"
   },
   "nodes": [
     {
@@ -46,9 +46,52 @@
   ],
   "schedule": [
     {
-      "time": "2023-03-15 09:30",
-      "speaker": "Alice.seedao",
-      "topic": "开幕致辞"
+      "time": "2023-06-02 20:00",
+      "speaker": "唐晗",
+      "topic": "SeeDAO的外部环境、使命及机遇"
+    },
+    {
+      "time": "2023-06-02 21:00",
+      "speaker": "主持人",
+      "topic": "本届节点大会提案讨论 & 第一轮投票"
+    }, {
+      "time": "2023-06-02 21:00",
+      "speaker": "主持人",
+      "topic": "本届节点大会提案讨论 & 第一轮投票"
+    }, {
+      "time": "2023-06-02 21:00",
+      "speaker": "主持人",
+      "topic": "本届节点大会提案讨论 & 第一轮投票"
+    },
+    {
+      "time": "2023-06-03 19:00",
+      "speaker": "Shawn",
+      "topic": "“SeeDAO 全球网络”技术基础设施建设"
+    },
+    {
+      "time": "2023-06-03 19:30",
+      "speaker": "Baiyu",
+      "topic": "SeeDAO 数字城邦2049 的实践"
+    },
+    {
+      "time": "2023-06-03 20:00",
+      "speaker": "主持人",
+      "topic": "提案讨论 & 第二轮投票"
+    },
+    {
+      "time": "2023-06-04 14:00",
+      "speaker": "唐晗",
+      "topic": "SEED —— 数字城邦的护照"
+    },
+    {
+      "time": "2023-06-04 14:30",
+      "speaker": "黄喆",
+      "topic": "新手村和公共教育介绍"
+    },
+    {
+      "time": "2023-06-04 15:00",
+      "speaker": "主持人",
+      "topic": "提案讨论 & 第三轮投票"
     }
   ],
   "recordings": [

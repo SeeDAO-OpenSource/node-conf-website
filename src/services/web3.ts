@@ -58,15 +58,20 @@ import {CURRENT_SEASON} from "../config/stage.ts";
 //   }
 // }
 
-export async function checkSBTOwnership(contractAddress: string, tokenId: string, walletAddress: string,provider:any) {
+export async function checkSBTOwnership(contractAddress: string, walletAddress: string,provider:any) {
   // if (!window.ethereum) return false;
 
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
   const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI.abi, provider);
 
   try {
-    const owner = await sbtContract.ownerOf(tokenId);
-    return owner.toLowerCase() === walletAddress.toLowerCase();
+    // const owner = await sbtContract.ownerOf(tokenId);
+    // return owner.toLowerCase() === walletAddress.toLowerCase();
+
+    const status = await sbtContract.balanceOf(walletAddress, CURRENT_SEASON)
+
+    return status.toNumber() > 0
+
   } catch (error) {
     return false;
   }
@@ -90,16 +95,12 @@ export async function claimSBT(contractAddress: string,signer:any,address:string
       return address.toLocaleLowerCase() === info.account.toLocaleLowerCase()
     })
 
-
-
     if (index >= 0) {
       proof = nodesRT.leaves[index].proof;
     }else{
       throw new Error(   `no proof`);
     }
 
-    console.log("nodesRT", nodesRT)
-    console.log("proof", proof)
 
     const tx = await sbtContract.claim(CURRENT_SEASON,proof);
     await tx.wait();

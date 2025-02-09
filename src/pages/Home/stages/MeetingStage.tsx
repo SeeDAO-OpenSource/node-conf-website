@@ -156,7 +156,6 @@ export default function MeetingStage({ data }: Props) {
                     <div className="flex flex-col items-center gap-6">
                       <ClaimButton
                         contractAddress={data.sbtToken.contractAddress}
-                        tokenId={data.sbtToken.tokenId}
                         candidates={data.candidates}
                       />
 

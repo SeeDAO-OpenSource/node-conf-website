@@ -6,11 +6,10 @@ import {useSelector} from "react-redux";
 import {toast} from "react-toastify";
 interface Props {
   contractAddress: string;
-  tokenId: string;
   candidates: string[];
 }
 
-export default function ClaimButton({ contractAddress, tokenId, candidates }: Props) {
+export default function ClaimButton({ contractAddress, candidates }: Props) {
   const { claiming, checkOwnership,claim } = useWallet();
   const {isConnecting} = useAccount();
 
@@ -40,7 +39,7 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
         }
 
         // Check if already claimed
-        const hasToken = await checkOwnership(contractAddress, tokenId);
+        const hasToken = await checkOwnership(contractAddress);
         setStatus(hasToken ? 'claimed' : 'unclaimed');
       } catch (error) {
         console.error('Error checking claim status:', error);
@@ -52,7 +51,7 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
     }
 
     checkStatus();
-  }, [account, candidates, contractAddress, tokenId, checkOwnership]);
+  }, [account, candidates, contractAddress, checkOwnership]);
 
   const handleClick = async () => {
     if (!account) {

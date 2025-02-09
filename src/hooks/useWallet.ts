@@ -57,10 +57,10 @@ export function useWallet() {
     }
   }, [address,signer]);
 
-  const checkOwnership = useCallback(async (contractAddress: string, tokenId: string) => {
+  const checkOwnership = useCallback(async (contractAddress: string) => {
     if (!address) return false;
     if(!provider)return false;
-    return checkSBTOwnership(contractAddress, tokenId, address,provider);
+    return checkSBTOwnership(contractAddress, address,provider);
   }, [address,provider]);
 
   return {

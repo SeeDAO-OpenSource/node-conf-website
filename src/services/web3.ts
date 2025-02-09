@@ -112,3 +112,13 @@ export async function claimSBT(contractAddress: string,signer:any,address:string
     throw error;
   }
 }
+
+export const  handleExpiration = async(contractAddress: string,signer:any) => {
+  const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI.abi, signer);
+
+  try {
+    return await sbtContract.expirations(CURRENT_SEASON)
+  } catch (error) {
+    return 0;
+  }
+}

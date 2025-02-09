@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { checkSBTOwnership, claimSBT } from '../services/web3';
+import {checkSBTOwnership, claimSBT, handleExpiration} from '../services/web3';
 import {useSelector} from "react-redux";
 
 import {useEthersProvider, useEthersSigner} from "./ethersNew";
@@ -63,10 +63,17 @@ export function useWallet() {
     return checkSBTOwnership(contractAddress, address,provider);
   }, [address,provider]);
 
+  const checkExpiration =  useCallback(async (contractAddress: string) => {
+    if (!address) return false;
+    if(!provider)return false;
+    return await handleExpiration(contractAddress,provider);
+  }, [address,provider]);
+
   return {
     account,
     connecting,
     claiming,
+    checkExpiration,
     // connect,
     claim,
     checkOwnership,

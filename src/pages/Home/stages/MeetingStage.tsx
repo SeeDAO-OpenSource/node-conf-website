@@ -9,6 +9,7 @@ import {getStatus} from "../../../utils/public.ts";
 import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
 import {truncateAddress} from "../../../utils/address.ts";
 import styled from "styled-components";
+import {useWallet} from "../../../hooks/useWallet.ts";
 
 const Box = styled.div`
   .addeventatc{
@@ -30,10 +31,12 @@ interface Props {
 }
 
 export default function MeetingStage({ data }: Props) {
-  const [claimEndTime] = useState(() => Date.now() + 24 * 60 * 60 * 1000);
+  // const [claimEndTime] = useState(() => Date.now() + 24 * 60 * 60 * 1000);
+  const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
   const [showClaim, setShowClaim] = useState(true);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
   const [snsMap, setSnsMap] = useState<any>({});
+  const { checkExpiration } = useWallet();
 
   const { getMultiSNS } = useQuerySNS();
 
@@ -45,8 +48,16 @@ export default function MeetingStage({ data }: Props) {
 
     const arr =[...proposalArr,...nodesArr,...data.candidates]
     handleSNS([...new Set(arr)]);
+
+    getExp()
   },[data])
 
+  const getExp = async () =>{
+
+    let rt = await checkExpiration(data.sbtToken.contractAddress)
+    setClaimEndTime(rt.toString() * 1000)
+    console.log("checkExpiration",rt.toString() * 1000)
+  }
   const handleSNS = async (wallets: string[]) => {
     try{
       const sns_map = await getMultiSNS(wallets);
@@ -147,17 +158,20 @@ export default function MeetingStage({ data }: Props) {
             </p>
 
             {/* Claim Section */}
-            {showClaim && (
+            {(
               <div className="relative mt-12 mb-16">
                 <div className="relative max-w-2xl mx-auto">
                   <div className="space-y-8">
                     <p className="text-gray-600">成为SeeDAO节点，参与社区治理</p>
 
                     <div className="flex flex-col items-center gap-6">
-                      <ClaimButton
-                        contractAddress={data.sbtToken.contractAddress}
-                        candidates={data.candidates}
-                      />
+                      {
+                          showClaim && <ClaimButton
+                              contractAddress={data.sbtToken.contractAddress}
+                              candidates={data.candidates}
+                          />
+                      }
+
 
                       <button
                         onClick={() => setShowCandidatesModal(true)}
@@ -166,29 +180,31 @@ export default function MeetingStage({ data }: Props) {
                         查看候选人名单
                       </button>
                     </div>
-
-                    <div>
-                      <p className="text-gray-600 mb-3">剩余认领时间</p>
-                      <Countdown
-                        date={claimEndTime}
-                        onComplete={() => setShowClaim(false)}
-                        renderer={({ hours, minutes, seconds }) => (
-                          <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
+                    {
+                        showClaim && <div>
+                          <p className="text-gray-600 mb-3">剩余认领时间</p>
+                          <Countdown
+                              date={claimEndTime}
+                              onComplete={() => setShowClaim(false)}
+                              renderer={({ hours, minutes, seconds }) => (
+                                  <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
                             <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
                               {String(hours).padStart(2, '0')}
                             </span>
-                            <span className="w-4 text-center">:</span>
-                            <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                    <span className="w-4 text-center">:</span>
+                                    <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
                               {String(minutes).padStart(2, '0')}
                             </span>
-                            <span className="w-4 text-center">:</span>
-                            <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                    <span className="w-4 text-center">:</span>
+                                    <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
                               {String(seconds).padStart(2, '0')}
                             </span>
-                          </div>
-                        )}
-                      />
-                    </div>
+                                  </div>
+                              )}
+                          />
+                        </div>
+                    }
+
                   </div>
                 </div>
               </div>

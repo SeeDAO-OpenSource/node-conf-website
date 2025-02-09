@@ -181,6 +181,12 @@ export default function MeetingStage({ data }: Props) {
                       </button>
                     </div>
                     {
+                        !showClaim && <div>
+                          <p className="text-gray-600">Mint结束时间:</p>
+                            <div className=""> {dayjs(ClAIM_END_AT).format('YYYY年MM月DD日')}</div>
+                        </div>
+                    }
+                    {
                         showClaim && <div>
                           <p className="text-gray-600 mb-3">剩余认领时间</p>
                           <Countdown

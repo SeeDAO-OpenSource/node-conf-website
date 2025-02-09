@@ -81,7 +81,7 @@ export async function claimSBT(contractAddress: string,signer:any) {
   //   throw new Error('MetaMask is not installed');
   // }
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
   // const signer = provider.getSigner();
   const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI, signer);
 

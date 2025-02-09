@@ -3,6 +3,7 @@ import { useWallet } from '../hooks/useWallet';
 import {useAccount} from "wagmi";
 import LoginModal from "./login/login.tsx";
 import {useSelector} from "react-redux";
+import {toast} from "react-toastify";
 interface Props {
   contractAddress: string;
   tokenId: string;
@@ -43,6 +44,8 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
         setStatus(hasToken ? 'claimed' : 'unclaimed');
       } catch (error) {
         console.error('Error checking claim status:', error);
+
+
       } finally {
         setLoading(false);
       }
@@ -62,8 +65,9 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
       try {
         await claim(contractAddress);
         setStatus('claimed');
-      } catch (error) {
+      } catch (error:any) {
         console.error('Failed to claim:', error);
+        toast.error(error.message);
       }
     }
 

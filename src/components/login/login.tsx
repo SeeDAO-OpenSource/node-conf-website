@@ -18,6 +18,7 @@ import {SELECT_WALLET, USE_NETWORK} from '../../utils/constant';
 import CHAIN from "../../utils/chain.ts";
 import {saveAccount} from "../../store/reducer.ts";
 import store from "../../store";
+import {toast} from "react-toastify";
 
 
 enum CONNECTOR_ID {
@@ -88,6 +89,8 @@ const LoginModalContent = ({handleClose}: { handleClose: () => void }) => {
   };
 
   const handleClickWallet = async (connector: Connector) => {
+
+
     if (connector.id === CONNECTOR_ID.METAMASK && !connector.ready) {
       // showToast("还没有钱包？去安装", ToastType.Danger);
       window.open('https://metamask.io/download.html', '_blank');
@@ -114,7 +117,7 @@ const LoginModalContent = ({handleClose}: { handleClose: () => void }) => {
           setClickConnectFlag(true);
         }
       }
-      console.log('=======', error, error.mesaage);
+      console.log(error.message);
     }
     handleClose()
   };

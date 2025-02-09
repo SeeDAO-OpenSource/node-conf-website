@@ -9,6 +9,7 @@ import TermsPage from './pages/Terms';
 import store,{persistor} from "./store";
 import { Provider } from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
+import { ToastContainer } from 'react-toastify';
 
 import WagmiProvider from './providers/wagmiProvider';
 
@@ -29,6 +30,7 @@ function App() {
                   </Layout>
                 </Router>
             </WagmiProvider>
+            <ToastContainer />
         </Provider>
       </PersistGate>
   );

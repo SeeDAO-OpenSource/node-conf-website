@@ -16,7 +16,7 @@ const Box = styled.div`
     z-index: auto!important;
     position: relative;
     background-color: transparent!important;
-    font-size: 12px;
+    font-size: 12px!important;
     color: #222!important;
     font-weight: normal!important;
   }

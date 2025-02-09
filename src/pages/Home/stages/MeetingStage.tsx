@@ -16,6 +16,9 @@ const Box = styled.div`
     z-index: auto!important;
     position: relative;
     background-color: transparent!important;
+    font-size: 12px;
+    color: #222!important;
+    font-weight: normal!important;
   }
   .addeventatc_dropdown{
     z-index: 10!important;

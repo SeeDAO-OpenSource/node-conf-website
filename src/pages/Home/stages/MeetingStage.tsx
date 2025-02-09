@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Countdown from 'react-countdown';
 import type { ConferenceData } from '../../../types/conference';
 import dayjs from 'dayjs';
 import CalendarDropdown from '../../../components/CalendarDropdown';
 import Modal from '../../../components/Modal';
 import ClaimButton from '../../../components/ClaimButton';
+import {getStatus} from "../../../utils/public.ts";
+import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
+import {truncateAddress} from "../../../utils/address.ts";
+import styled from "styled-components";
+
+const Box = styled.div`
+  .addeventatc{
+    box-shadow: none!important;
+    z-index: auto!important;
+    position: relative;
+    background-color: transparent!important;
+    font-size: 12px!important;
+    color: #222!important;
+    font-weight: normal!important;
+  }
+  .addeventatc_dropdown{
+    z-index: 10!important;
+  }
+`
 
 interface Props {
   data: ConferenceData;
@@ -14,6 +33,29 @@ export default function MeetingStage({ data }: Props) {
   const [claimEndTime] = useState(() => Date.now() + 24 * 60 * 60 * 1000);
   const [showClaim, setShowClaim] = useState(true);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
+  const [snsMap, setSnsMap] = useState<any>({});
+
+  const { getMultiSNS } = useQuerySNS();
+
+  useEffect(() => {
+    // handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
+    const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
+
+    const nodesArr = data.nodes.filter((d) => !!d.wallet).map((d) => d.wallet)
+
+    const arr =[...proposalArr,...nodesArr,...data.candidates]
+    handleSNS([...new Set(arr)]);
+  },[data])
+
+  const handleSNS = async (wallets: string[]) => {
+    try{
+      const sns_map = await getMultiSNS(wallets);
+      setSnsMap(sns_map);
+    }catch(error:any){
+      console.log(error);
+    }
+
+  };
 
   // Group schedule by date
   const scheduleByDate = data.schedule.reduce((acc, session) => {
@@ -30,7 +72,7 @@ export default function MeetingStage({ data }: Props) {
     const now = dayjs();
     const startDate = dayjs(data.startDate);
     const endDate = dayjs(data.endDate).endOf('day');
-    
+
     if (now.isBefore(startDate)) return 'not-started';
     if (now.isAfter(endDate)) return 'ended';
     return 'in-progress';
@@ -38,7 +80,7 @@ export default function MeetingStage({ data }: Props) {
 
   const getMeetingButtonContent = () => {
     const status = getMeetingStatus();
-    
+
     switch (status) {
       case 'not-started':
         return {
@@ -93,8 +135,8 @@ export default function MeetingStage({ data }: Props) {
   );
 
   return (
-    <div className="space-y-0 -mx-[calc((100vw-100%)/2)] overflow-x-hidden">
-      <section className="relative min-h-[80vh] bg-gray-50 px-[calc((100vw-100%)/2)]">
+    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
+      <section className="relative min-h-[80vh] bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 text-gray-900">
@@ -175,7 +217,7 @@ export default function MeetingStage({ data }: Props) {
       </section>
 
       {/* Schedule Section */}
-      <section className="relative bg-white px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="relative flex items-center mb-12">
             <h2 className="text-4xl font-bold w-full text-center text-gray-900">会议日程</h2>
@@ -198,19 +240,20 @@ export default function MeetingStage({ data }: Props) {
               </div>
             )}
           </div>
-          <div className="space-y-6">
+          <Box className="space-y-6">
             {Object.entries(scheduleByDate).map(([date, sessions]) => (
               <div key={date} className="bg-white rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-primary-700 mb-4">
                   {dayjs(date).format('YYYY年MM月DD日')}
                 </h3>
-                <div className="overflow-x-auto">
+                <div >
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-gray-200">
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">时间</th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">主题</th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">演讲人</th>
+                        <th>&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -225,6 +268,17 @@ export default function MeetingStage({ data }: Props) {
                           <td className="py-3 px-4 text-sm text-primary-600">
                             {session.speaker}
                           </td>
+                          <td>
+                            <div title="Add to Calendar" className="addeventatc" >
+                              添加到日历
+                              <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>
+                              {/*<span className="end">02/22/2025 10:00 AM</span>*/}
+                              {/*<span className="timezone">America/Los_Angeles</span>*/}
+                              <span className="title">{session.topic}</span>
+                              {/*<span className="description">Description of the event</span>*/}
+                              {/*<span className="location">Location of the event</span>*/}
+                            </div>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -232,26 +286,26 @@ export default function MeetingStage({ data }: Props) {
                 </div>
               </div>
             ))}
-          </div>
+          </Box>
         </div>
       </section>
 
       {/* Proposals Section */}
-      <section className="relative bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
+        <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map((proposal) => (
               <div
-                key={proposal.id}
+                key={proposal.link}
                 className="bg-white rounded-lg p-6 transition-all duration-200 group"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className="tag tag-primary group-hover:bg-primary-100 transition-colors">
-                    {proposal.tag}
+                    {proposal.category}
                   </span>
                   <span className="tag tag-accent group-hover:bg-accent-100 transition-colors">
-                    {proposal.status}
+                    {getStatus(proposal.state!)}
                   </span>
                 </div>
                 <h3 className="text-xl font-medium mb-4 text-gray-900 group-hover:text-primary-700 transition-colors">
@@ -259,17 +313,16 @@ export default function MeetingStage({ data }: Props) {
                 </h3>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {proposal.proposer.avatar && (
+                    {proposal.avatar && (
                       <img
-                        src={proposal.proposer.avatar}
-                        alt={proposal.proposer.sns}
+                        src={proposal.avatar}
                         className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
                       />
                     )}
                     <div>
-                      <span className="text-gray-900 font-medium block">
-                        {proposal.proposer.sns}
-                      </span>
+                      {!!proposal.applicant && <span className="text-gray-900 font-medium block">
+                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
+                      </span>}
                       <span className="text-sm text-gray-500">提案人</span>
                     </div>
                   </div>
@@ -296,11 +349,15 @@ export default function MeetingStage({ data }: Props) {
       >
         <div className="space-y-4">
           {data.candidates.map((candidate, index) => (
-            <div 
+            <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
             >
-              <div className="font-mono text-gray-900">{candidate}</div>
+
+              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
+              <div className="text-sm  text-gray-500 font-mono">
+                {truncateAddress(candidate)}
+              </div>
             </div>
           ))}
         </div>

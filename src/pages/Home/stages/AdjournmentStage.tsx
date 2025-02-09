@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import type { ConferenceData } from '../../../types/conference';
 import Modal from '../../../components/Modal';
 import { truncateAddress } from '../../../utils/address';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import faqContent from '../../../content/faq.md?raw';
+import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
+import {getStatus} from "../../../utils/public.ts";
+import DefaultImg from "../../../assets/images/defaultAvatar.png";
 
 interface Props {
   data: ConferenceData;
@@ -14,17 +17,41 @@ interface Props {
 export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   const [showNodesModal, setShowNodesModal] = useState(false);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
+  const [snsMap, setSnsMap] = useState<any>({});
+  const { getMultiSNS } = useQuerySNS();
+
+  useEffect(() => {
+
+    const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
+
+    const nodesArr = data.nodes.filter((d) => !!d.wallet).map((d) => d.wallet)
+
+    const arr =[...proposalArr,...nodesArr,...data.candidates]
+    handleSNS([...new Set(arr)]);
+
+
+  },[data])
+
+  const handleSNS = async (wallets: string[]) => {
+    try{
+      const sns_map = await getMultiSNS(wallets);
+      setSnsMap(sns_map);
+    }catch(error:any){
+      console.log(error);
+    }
+
+  };
 
   return (
-    <div className="space-y-0 -mx-[calc((100vw-100%)/2)] overflow-x-hidden">
+    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
       {/* Conference Info Section */}
-      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 text-gray-900">
               第{data.season}季节点共识大会
             </h1>
-            
+
             {/* Conference Date */}
             <div className="inline-flex items-center gap-3 text-xl text-gray-600 mb-8">
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -48,7 +75,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">节点数量</span>
-                    <span className="font-bold text-primary-600">{data.currentNodes}</span>
+                    <span className="font-bold text-primary-600">{data.nodes.length}</span>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
@@ -85,13 +112,13 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-6 mt-2 pt-2 border-t border-gray-100">
-                    <div 
+                    <div
                       className="text-primary-600 hover:text-primary-700 cursor-pointer text-xs"
                       onClick={() => setShowNodesModal(true)}
                     >
                       查看节点列表 →
                     </div>
-                    <div 
+                    <div
                       className="text-primary-600 hover:text-primary-700 cursor-pointer text-xs"
                       onClick={() => setShowCandidatesModal(true)}
                     >
@@ -145,7 +172,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       </section>
 
       {/* Schedule Section */}
-      <section className="relative bg-white px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">会议日程</h2>
           <div className="space-y-6">
@@ -192,33 +219,34 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       </section>
 
       {/* Proposals Section */}
-      <section className="relative bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">本季提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map((proposal) => (
               <div
-                key={proposal.id}
+                key={proposal.link}
                 className="bg-white rounded-xl p-6 shadow-lg transition-all duration-200 group hover:shadow-xl"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className="tag tag-primary">{proposal.tag}</span>
-                  <span className="tag tag-accent">{proposal.status}</span>
+                  <span className="tag tag-primary">{proposal.category}</span>
+                  <span className="tag tag-accent"> {getStatus(proposal.state!)}</span>
                 </div>
                 <h3 className="text-xl font-medium mb-4 group-hover:text-primary-600 transition-colors">
                   {proposal.title}
                 </h3>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img
-                      src={proposal.proposer.avatar}
-                      alt={proposal.proposer.sns}
-                      className="w-10 h-10 rounded-full"
-                    />
+                    {proposal.avatar && (
+                        <img
+                            src={proposal.avatar}
+                            className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
+                        />
+                    )}
                     <div>
-                      <span className="text-gray-900 font-medium block">
-                        {proposal.proposer.sns}
-                      </span>
+                      {!!proposal.applicant && <span className="text-gray-900 font-medium block">
+                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
+                      </span>}
                       <span className="text-sm text-gray-500">提案人</span>
                     </div>
                   </div>
@@ -238,7 +266,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       </section>
 
       {/* FAQ Section */}
-      <section className="relative bg-white px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">常见问题</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -246,7 +274,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
               const [headerLine, ...contentLines] = section.trim().split('\n');
               const [type, title] = headerLine.split(':').map(s => s.trim());
               const content = contentLines.join('\n').trim();
-              
+
               return (
                 <div
                   key={index}
@@ -285,16 +313,16 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
             >
               <div className="flex items-center gap-4">
                 <img
-                  src={node.avatar}
-                  alt={node.sns}
+                  src={node.avatar || DefaultImg}
+                  alt={snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
                   className="w-10 h-10 rounded-full"
                 />
-                <div>
-                  <div className="font-medium text-gray-900">{node.sns}</div>
+                {/*<div>*/}
+                  <div className="font-medium text-gray-900"> {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}</div>
                   <div className="text-sm text-gray-500 font-mono">
-                    {truncateAddress(node.walletAddress)}
+                    {truncateAddress(node?.wallet)}
                   </div>
-                </div>
+                {/*</div>*/}
               </div>
             </div>
           ))}
@@ -310,9 +338,11 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
           {data.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
             >
-              <div className="font-mono text-gray-900">
+
+              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
+              <div className="text-sm  text-gray-500 font-mono">
                 {truncateAddress(candidate)}
               </div>
             </div>

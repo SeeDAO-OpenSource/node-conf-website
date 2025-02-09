@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useWallet } from '../hooks/useWallet';
-
+import {useAccount} from "wagmi";
+import LoginModal from "./login/login.tsx";
+import {useSelector} from "react-redux";
+import {toast} from "react-toastify";
 interface Props {
   contractAddress: string;
   tokenId: string;
@@ -8,9 +11,13 @@ interface Props {
 }
 
 export default function ClaimButton({ contractAddress, tokenId, candidates }: Props) {
-  const { account, connecting, claiming, connect, claim, checkOwnership } = useWallet();
+  const { claiming, checkOwnership,claim } = useWallet();
+  const {isConnecting} = useAccount();
+
+  const account = useSelector((store:any) => store.account);
   const [status, setStatus] = useState<'unclaimed' | 'claimed' | 'not-eligible'>('unclaimed');
   const [loading, setLoading] = useState(true);
+  const [show,setShow] = useState<boolean>(false);
 
   useEffect(() => {
     async function checkStatus() {
@@ -37,6 +44,8 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
         setStatus(hasToken ? 'claimed' : 'unclaimed');
       } catch (error) {
         console.error('Error checking claim status:', error);
+
+
       } finally {
         setLoading(false);
       }
@@ -47,7 +56,8 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
 
   const handleClick = async () => {
     if (!account) {
-      await connect();
+      // await connect();
+      setShow(true)
       return;
     }
 
@@ -55,68 +65,77 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
       try {
         await claim(contractAddress);
         setStatus('claimed');
-      } catch (error) {
+      } catch (error:any) {
         console.error('Failed to claim:', error);
+        toast.error(error.reason|| error.message);
       }
     }
+
   };
-
-  if (loading) {
-    return (
-      <button
-        disabled
-        className="btn btn-primary text-lg px-12 py-4 opacity-50 cursor-not-allowed"
-      >
-        <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-        </svg>
-        加载中...
-      </button>
-    );
+  const handleClose = () => {
+    setShow(false)
   }
 
-  if (status === 'claimed') {
-    return (
-      <button
-        disabled
-        className="btn btn-secondary text-lg px-12 py-4 cursor-not-allowed"
-      >
-        已领取
-      </button>
-    );
-  }
-
-  if (status === 'not-eligible') {
-    return (
-      <button
-        disabled
-        className="btn btn-secondary text-lg px-12 py-4 cursor-not-allowed"
-      >
-        您不是本季节点候选人
-      </button>
-    );
-  }
 
   return (
-    <button
-      onClick={handleClick}
-      disabled={connecting || claiming}
-      className="btn btn-primary text-lg px-12 py-4 hover:scale-105 transition-transform duration-200 shadow-xl hover:shadow-2xl bg-primary-600 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
-    >
-      {connecting || claiming ? (
-        <>
-          <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-          </svg>
-          {connecting ? '连接钱包中...' : '领取中...'}
-        </>
-      ) : account ? (
-        '领取'
-      ) : (
-        '连接钱包'
-      )}
-    </button>
+      <>
+        <LoginModal showModal={show} handleClose={handleClose} />
+
+
+        {
+          loading &&    <button
+                disabled
+                className="btn btn-primary text-lg px-12 py-4 opacity-50 cursor-not-allowed"
+            >
+              <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              </svg>
+              加载中...
+            </button>
+        }
+
+        {
+            !loading &&<>
+              { !!account && status === 'not-eligible' && <button
+                  disabled
+                  className="btn btn-secondary text-lg px-12 py-4 cursor-not-allowed"
+              >
+                您不是本季节点候选人
+              </button>}
+              {
+                  !!account && status === 'claimed' && <button
+                      disabled
+                      className="btn btn-secondary text-lg px-12 py-4 cursor-not-allowed"
+                  >
+                    已领取
+                  </button>
+              }
+              {
+                  ( status !== 'not-eligible' &&  status !== 'claimed' ) &&  <button
+                      onClick={handleClick}
+                      disabled={isConnecting || claiming}
+                      className="btn btn-primary text-lg px-12 py-4 hover:scale-105 transition-transform duration-200 shadow-xl hover:shadow-2xl bg-primary-600 hover:bg-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isConnecting || claiming ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          {isConnecting ? '连接钱包中...' : '领取中...'}
+                        </>
+                    ) : account ? (
+                        '领取'
+                    ) : (
+                        '连接钱包'
+                    )}
+                  </button>
+              }
+          </>
+        }
+
+
+      </>
   );
 }

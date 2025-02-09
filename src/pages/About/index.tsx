@@ -102,7 +102,7 @@ export default function AboutPage() {
       {/* Main Content */}
       <div className="flex-1">
         <div className="bg-white rounded-lg shadow-md p-8">
-          <div className="prose max-w-none" ref={contentRef}>
+          <div className="prose max-w-none" ref={contentRef} data-page="about">
             <ReactMarkdown
               components={{
                 h2: ({ children, ...props }) => {

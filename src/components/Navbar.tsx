@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {useSelector} from "react-redux";
 import { useDisconnect} from "wagmi";
@@ -6,6 +6,9 @@ import {truncateAddress} from "../utils/address.ts";
 import store from "../store";
 import {saveAccount} from "../store/reducer.ts";
 import CloseImg from '../assets/images/close-circle.svg';
+import {useSwitchNetwork} from 'wagmi';
+import {USE_NETWORK} from "../utils/constant.ts";
+import Chain from "../utils/chain.ts";
 
 
 const navigation = [
@@ -18,6 +21,13 @@ export default function Navbar() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {disconnect} = useDisconnect();
+
+  const {switchNetwork} =useSwitchNetwork()
+
+  useEffect(() => {
+
+    switchNetwork && switchNetwork(Chain[USE_NETWORK].chainId)
+  }, [switchNetwork]);
 
   const account = useSelector((store:any) => store.account);
 

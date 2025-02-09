@@ -159,7 +159,7 @@ const LoginModalContent = ({handleClose}: { handleClose: () => void }) => {
 };
 
 export default function LoginModal({ showModal,handleClose }: { showModal?: boolean,handleClose: () => void }) {
-  //   console.log('window.ethereum:', window.ethereum);
+
   if (showModal) {
     return <LoginModalContent handleClose={handleClose}  />;
   } else {

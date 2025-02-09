@@ -36,7 +36,10 @@ export default function MeetingStage({ data }: Props) {
   useEffect(() => {
     // handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
     const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
-    const arr =[...proposalArr,...data.nodes,...data.candidates]
+
+    const nodesArr = data.nodes.filter((d) => !!d.wallet).map((d) => d.wallet)
+
+    const arr =[...proposalArr,...nodesArr,...data.candidates]
     handleSNS([...new Set(arr)]);
   },[data])
 

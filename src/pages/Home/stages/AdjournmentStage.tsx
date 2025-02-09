@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import faqContent from '../../../content/faq.md?raw';
 import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
 import {getStatus} from "../../../utils/public.ts";
+import DefaultImg from "../../../assets/images/defaultAvatar.png";
 
 interface Props {
   data: ConferenceData;
@@ -22,7 +23,10 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   useEffect(() => {
 
     const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
-    const arr =[...proposalArr,...data.nodes,...data.candidates]
+
+    const nodesArr = data.nodes.filter((d) => !!d.wallet).map((d) => d.wallet)
+
+    const arr =[...proposalArr,...nodesArr,...data.candidates]
     handleSNS([...new Set(arr)]);
 
 
@@ -308,15 +312,15 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
               className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div className="flex items-center gap-4">
-                {/*<img*/}
-                {/*  src={node.avatar}*/}
-                {/*  alt={node.sns}*/}
-                {/*  className="w-10 h-10 rounded-full"*/}
-                {/*/>*/}
+                <img
+                  src={node.avatar || DefaultImg}
+                  alt={snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                  className="w-10 h-10 rounded-full"
+                />
                 {/*<div>*/}
-                  <div className="font-medium text-gray-900"> {snsMap[node.toLowerCase()] ?? truncateAddress(node)}</div>
+                  <div className="font-medium text-gray-900"> {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}</div>
                   <div className="text-sm text-gray-500 font-mono">
-                    {truncateAddress(node)}
+                    {truncateAddress(node?.wallet)}
                   </div>
                 {/*</div>*/}
               </div>

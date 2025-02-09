@@ -9,6 +9,7 @@ import {getStatus} from "../../utils/public.ts";
 import {getSeasonCandidate} from "../../api/getSeasonCandidate.ts";
 import {getSeasonProposals} from "../../api/getSeasonProposals.ts";
 import {getSeasonNodes} from "../../api/getSeasonNodes.ts";
+import DefaultImg from "../../assets/images/defaultAvatar.png";
 
 export default function ArchivesPage() {
   const [data, setData] = useState<Record<number, ConferenceData>>({});
@@ -62,7 +63,9 @@ export default function ArchivesPage() {
 
 
         const  proposalArr = proposals?.data.filter((d:any) => !!d.applicant).map((d:any) => d.applicant);
-        const arr =[...proposalArr,...nodes?.data,...candidates]
+
+        const nodesArr = nodes?.data.filter((d:any) => !!d.wallet).map((d:any) => d.wallet) ?? []
+        const arr =[...proposalArr,...nodesArr,...candidates]
         handleSNS([...new Set(arr)]);
 
 
@@ -440,15 +443,15 @@ export default function ArchivesPage() {
               className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div className="flex items-center gap-4">
-                {/*<img*/}
-                {/*  src={node.avatar}*/}
-                {/*  alt={node.sns}*/}
-                {/*  className="w-10 h-10 rounded-full"*/}
-                {/*/>*/}
+                <img
+                    src={node.avatar || DefaultImg}
+                    alt={snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                    className="w-10 h-10 rounded-full"
+                />
                 {/*<div>*/}
-                  <div className="font-medium text-gray-900"> {snsMap[node.toLowerCase()] ?? truncateAddress(node)}</div>
+                  <div className="font-medium text-gray-900"> {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}</div>
                   <div className="text-sm text-gray-500 font-mono">
-                    {truncateAddress(node)}
+                    {truncateAddress(node?.wallet)}
                   </div>
                 {/*</div>*/}
               </div>

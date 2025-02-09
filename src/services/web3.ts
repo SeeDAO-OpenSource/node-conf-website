@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import SBT_CONTRACT_ABI from "../abi/nodeContractAbi.json";
-import {CURRENT_SEASON} from "../config/stage.ts";
+import {CURRENT_SEASON} from "../config/config.ts";
 
 // export const SBT_CONTRACT_ABI = [
 //   'function balanceOf(address owner) view returns (uint256)',

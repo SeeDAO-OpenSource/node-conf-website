@@ -45,7 +45,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   return (
     <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
       {/* Conference Info Section */}
-      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 text-gray-900">
@@ -172,7 +172,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       </section>
 
       {/* Schedule Section */}
-      <section className="relative bg-white px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">会议日程</h2>
           <div className="space-y-6">
@@ -219,7 +219,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       </section>
 
       {/* Proposals Section */}
-      <section className="relative bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">本季提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -266,7 +266,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       </section>
 
       {/* FAQ Section */}
-      <section className="relative bg-white px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">常见问题</h2>
           <div className="grid md:grid-cols-2 gap-6">

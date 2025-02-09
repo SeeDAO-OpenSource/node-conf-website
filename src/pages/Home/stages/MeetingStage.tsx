@@ -136,7 +136,7 @@ export default function MeetingStage({ data }: Props) {
 
   return (
     <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
-      <section className="relative min-h-[80vh] bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative min-h-[80vh] bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 text-gray-900">
@@ -217,7 +217,7 @@ export default function MeetingStage({ data }: Props) {
       </section>
 
       {/* Schedule Section */}
-      <section className="relative bg-white px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="relative flex items-center mb-12">
             <h2 className="text-4xl font-bold w-full text-center text-gray-900">会议日程</h2>
@@ -291,7 +291,7 @@ export default function MeetingStage({ data }: Props) {
       </section>
 
       {/* Proposals Section */}
-      <section className="relative bg-gray-50 px-[calc((100vw-100%)/2)]">
+      <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
           <div className="grid md:grid-cols-2 gap-6">

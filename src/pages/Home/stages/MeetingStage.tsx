@@ -15,6 +15,7 @@ const Box = styled.div`
     box-shadow: none!important;
     z-index: auto!important;
     position: relative;
+    background-color: transparent!important;
   }
   .addeventatc_dropdown{
     z-index: 10!important;
@@ -266,7 +267,7 @@ export default function MeetingStage({ data }: Props) {
                           </td>
                           <td>
                             <div title="Add to Calendar" className="addeventatc" >
-                              Add to Calendar
+                              添加到日历
                               <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>
                               {/*<span className="end">02/22/2025 10:00 AM</span>*/}
                               {/*<span className="timezone">America/Los_Angeles</span>*/}

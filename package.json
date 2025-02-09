@@ -1,6 +1,5 @@
 {
   "name": "seedao-node-conference",
-  "homepage" : "https://taoist-labs.github.io/node-conf-website",
   "private": true,
   "version": "0.1.0",
   "type": "module",

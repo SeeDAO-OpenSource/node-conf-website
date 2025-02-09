@@ -355,7 +355,8 @@ export default function MeetingStage({ data }: Props) {
 
               <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
               <div className="text-sm  text-gray-500 font-mono">
-                {truncateAddress(candidate)}
+                {/*{truncateAddress(candidate)}*/}
+                {candidate}
               </div>
             </div>
           ))}

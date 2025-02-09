@@ -320,7 +320,8 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                 {/*<div>*/}
                   <div className="font-medium text-gray-900"> {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}</div>
                   <div className="text-sm text-gray-500 font-mono">
-                    {truncateAddress(node?.wallet)}
+                    {/*{truncateAddress(node?.wallet)}*/}
+                    {node?.wallet}
                   </div>
                 {/*</div>*/}
               </div>
@@ -343,7 +344,8 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
 
               <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
               <div className="text-sm  text-gray-500 font-mono">
-                {truncateAddress(candidate)}
+                {/*{truncateAddress(candidate)}*/}
+                {candidate}
               </div>
             </div>
           ))}

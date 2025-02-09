@@ -13,7 +13,7 @@ import DefaultImg from "../../assets/images/defaultAvatar.png";
 
 export default function ArchivesPage() {
   const [data, setData] = useState<Record<number, ConferenceData>>({});
-  const [selectedSeason, setSelectedSeason] = useState<number>(CURRENT_SEASON);
+  const [selectedSeason, setSelectedSeason] = useState<number>(CURRENT_SEASON - 1);
   const [showNodesModal, setShowNodesModal] = useState(false);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -131,22 +131,22 @@ export default function ArchivesPage() {
           <h2 className="text-xl font-bold mb-6">历史会议</h2>
           <nav className="space-y-2">
             {
-              [...Array(CURRENT_SEASON)].map((_, index) => (
+              [...Array(CURRENT_SEASON -1)].map((_, index) => (
                   <button
-                      key={CURRENT_SEASON-index}
-                      onClick={() => setSelectedSeason(CURRENT_SEASON - index)}
+                      key={CURRENT_SEASON-1-index}
+                      onClick={() => setSelectedSeason(CURRENT_SEASON-1 - index)}
                       className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group ${
-                          selectedSeason === CURRENT_SEASON-index
+                          selectedSeason === CURRENT_SEASON-1-index
                               ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700'
                               : 'hover:bg-gray-50 text-gray-600 hover:text-gray-900'
                       }`}
                   >
                   <span className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                      selectedSeason === CURRENT_SEASON - index
+                      selectedSeason === CURRENT_SEASON-1 - index
                           ? 'bg-primary-500 scale-125'
                           : 'bg-gray-300 group-hover:bg-gray-400'
                   }`}></span>
-                    第{CURRENT_SEASON - index}季
+                    第{CURRENT_SEASON-1 - index}季
                   </button>
               ))
             }

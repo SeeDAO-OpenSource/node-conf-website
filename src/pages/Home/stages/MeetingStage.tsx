@@ -252,7 +252,7 @@ export default function MeetingStage({ data }: Props) {
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">时间</th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">主题</th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">演讲人</th>
-                        <th>&nbsp;</th>
+                        {/*<th>&nbsp;</th>*/}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -267,17 +267,17 @@ export default function MeetingStage({ data }: Props) {
                           <td className="py-3 px-4 text-sm text-primary-600">
                             {session.speaker}
                           </td>
-                          <td>
-                            <div title="Add to Calendar" className="addeventatc" >
-                              添加到日历
-                              <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>
-                              {/*<span className="end">02/22/2025 10:00 AM</span>*/}
-                              {/*<span className="timezone">America/Los_Angeles</span>*/}
-                              <span className="title">{session.topic}</span>
-                              {/*<span className="description">Description of the event</span>*/}
-                              {/*<span className="location">Location of the event</span>*/}
-                            </div>
-                          </td>
+                          {/*<td>*/}
+                          {/*  <div title="Add to Calendar" className="addeventatc" >*/}
+                          {/*    添加到日历*/}
+                          {/*    <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>*/}
+                          {/*    /!*<span className="end">02/22/2025 10:00 AM</span>*!/*/}
+                          {/*    /!*<span className="timezone">America/Los_Angeles</span>*!/*/}
+                          {/*    <span className="title">{session.topic}</span>*/}
+                          {/*    /!*<span className="description">Description of the event</span>*!/*/}
+                          {/*    /!*<span className="location">Location of the event</span>*!/*/}
+                          {/*  </div>*/}
+                          {/*</td>*/}
                         </tr>
                       ))}
                     </tbody>

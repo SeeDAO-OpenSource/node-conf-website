@@ -9,7 +9,7 @@ import {getStatus} from "../../../utils/public.ts";
 import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
 import {truncateAddress} from "../../../utils/address.ts";
 import styled from "styled-components";
-import {useWallet} from "../../../hooks/useWallet.ts";
+import {ClAIM_END_AT} from "../../../config/stage.ts";
 
 const Box = styled.div`
   .addeventatc{
@@ -31,12 +31,12 @@ interface Props {
 }
 
 export default function MeetingStage({ data }: Props) {
-  // const [claimEndTime] = useState(() => Date.now() + 24 * 60 * 60 * 1000);
-  const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
+  const [claimEndTime] = useState(ClAIM_END_AT);
+  // const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
   const [showClaim, setShowClaim] = useState(true);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
   const [snsMap, setSnsMap] = useState<any>({});
-  const { checkExpiration } = useWallet();
+  // const { checkExpiration } = useWallet();
 
   const { getMultiSNS } = useQuerySNS();
 
@@ -49,15 +49,15 @@ export default function MeetingStage({ data }: Props) {
     const arr =[...proposalArr,...nodesArr,...data.candidates]
     handleSNS([...new Set(arr)]);
 
-    getExp()
+    // getExp()
   },[data])
 
-  const getExp = async () =>{
-
-    let rt = await checkExpiration(data.sbtToken.contractAddress)
-    setClaimEndTime(rt.toString() * 1000)
-    console.log("checkExpiration",rt.toString() * 1000)
-  }
+  // const getExp = async () =>{
+  //
+  //   let rt = await checkExpiration(data.sbtToken.contractAddress)
+  //   setClaimEndTime(rt.toString() * 1000)
+  //   console.log("checkExpiration",rt.toString() * 1000)
+  // }
   const handleSNS = async (wallets: string[]) => {
     try{
       const sns_map = await getMultiSNS(wallets);

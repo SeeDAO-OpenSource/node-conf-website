@@ -47,7 +47,7 @@ export function useWallet() {
 
     setClaiming(true);
     try {
-      await claimSBT(contractAddress,signer);
+      await claimSBT(contractAddress,signer,address);
       return true;
     } catch (error) {
       console.error('Failed to claim SBT:', error);

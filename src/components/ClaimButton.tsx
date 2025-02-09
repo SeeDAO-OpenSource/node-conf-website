@@ -67,7 +67,7 @@ export default function ClaimButton({ contractAddress, tokenId, candidates }: Pr
         setStatus('claimed');
       } catch (error:any) {
         console.error('Failed to claim:', error);
-        toast.error(error.message);
+        toast.error(error.reason|| error.message);
       }
     }
 

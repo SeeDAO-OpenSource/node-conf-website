@@ -1,16 +1,13 @@
 import { ethers } from 'ethers';
+import SBT_CONTRACT_ABI from "../abi/nodeContractAbi.json";
+import {CURRENT_SEASON} from "../config/stage.ts";
 
-export const SBT_CONTRACT_ABI = [
-  'function balanceOf(address owner) view returns (uint256)',
-  'function ownerOf(uint256 tokenId) view returns (address)',
-  'function claim() external',
-];
+// export const SBT_CONTRACT_ABI = [
+//   'function balanceOf(address owner) view returns (uint256)',
+//   'function ownerOf(uint256 tokenId) view returns (address)',
+//   'function claim() external',
+// ];
 
-declare global {
-  interface Window {
-    ethereum?: any;
-  }
-}
 
 // export async function connectWallet() {
 //   if (typeof window.ethereum !== 'undefined') {
@@ -65,7 +62,7 @@ export async function checkSBTOwnership(contractAddress: string, tokenId: string
   // if (!window.ethereum) return false;
 
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI, provider);
+  const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI.abi, provider);
 
   try {
     const owner = await sbtContract.ownerOf(tokenId);
@@ -75,7 +72,7 @@ export async function checkSBTOwnership(contractAddress: string, tokenId: string
   }
 }
 
-export async function claimSBT(contractAddress: string,signer:any) {
+export async function claimSBT(contractAddress: string,signer:any,address:string) {
   // if (!window.ethereum) {
   //   window.open('https://metamask.io/download/', '_blank');
   //   throw new Error('MetaMask is not installed');
@@ -83,10 +80,28 @@ export async function claimSBT(contractAddress: string,signer:any) {
 
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
   // const signer = provider.getSigner();
-  const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI, signer);
+  const sbtContract = new ethers.Contract(contractAddress, SBT_CONTRACT_ABI.abi, signer);
 
   try {
-    const tx = await sbtContract.claim();
+    const nodesRT =  await import(`../data/node/s${CURRENT_SEASON}Nodes.json`);
+
+    let proof = [];
+    const index = nodesRT.leaves.findIndex((info:any) => {
+      return address.toLocaleLowerCase() === info.account.toLocaleLowerCase()
+    })
+
+
+
+    if (index >= 0) {
+      proof = nodesRT.leaves[index].proof;
+    }else{
+      throw new Error(   `no proof`);
+    }
+
+    console.log("nodesRT", nodesRT)
+    console.log("proof", proof)
+
+    const tx = await sbtContract.claim(CURRENT_SEASON,proof);
     await tx.wait();
     return true;
   } catch (error: any) {

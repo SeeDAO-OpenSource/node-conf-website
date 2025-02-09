@@ -12,7 +12,7 @@ import {getSeasonNodes} from "../../api/getSeasonNodes.ts";
 
 export default function ArchivesPage() {
   const [data, setData] = useState<Record<number, ConferenceData>>({});
-  const [selectedSeason, setSelectedSeason] = useState<number | null>(null);
+  const [selectedSeason, setSelectedSeason] = useState<number>(CURRENT_SEASON);
   const [showNodesModal, setShowNodesModal] = useState(false);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -33,60 +33,63 @@ export default function ArchivesPage() {
   };
 
   useEffect(() => {
-    const loadSeasonData = async () => {
-      try {
-        const seasonData: Record<number, ConferenceData> = {};
-
-        // Load all season data up to current season
-        for (let i = 1; i <= CURRENT_SEASON; i++) {
-          try {
-            const seasonNumber = String(i).padStart(2, '0');
-            const module = await import(`../../data/season${seasonNumber}.json`)??{};
-
-
-            const candidates =  await getSeasonCandidate(Number(seasonNumber))
-
-            const proposals =  await getSeasonProposals(Number(seasonNumber))
-            const nodes =  await getSeasonNodes(Number(seasonNumber))
-
-            module.default.candidates = candidates??[];
-            module.default.proposals = proposals?.data??[];
-            module.default.nodes = nodes?.data??[];
-
-
-            const  proposalArr = proposals?.data.filter((d:any) => !!d.applicant).map((d:any) => d.applicant);
-            const arr =[...proposalArr,...nodes?.data,...candidates]
-            handleSNS([...new Set(arr)]);
-
-
-            seasonData[i] = module.default;
-          } catch (error) {
-            console.warn(`Season ${i} data not available:`, error);
-          }
-        }
-
-        // Filter out seasons with no data
-        const filteredData = Object.fromEntries(
-          Object.entries(seasonData).filter(([_, value]) => value !== null)
-        );
-
-        setData(filteredData);
-
-        // Set the initial selected season to the latest available season
-        const seasons = Object.keys(filteredData).map(Number);
-        if (seasons.length > 0) {
-          setSelectedSeason(Math.max(...seasons));
-        }
-      } catch (error) {
-        console.error('Error loading season data:', error);
-        setError('加载数据时发生错误，请稍后再试');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     loadSeasonData();
-  }, []);
+  }, [selectedSeason]);
+
+  const loadSeasonData = async () => {
+    try {
+      const seasonData: Record<number, ConferenceData> = {};
+      //
+      // // Load all season data up to current season
+      // for (let i = 1; i <= CURRENT_SEASON; i++) {
+      //
+      // }
+
+      setLoading(true);
+      try {
+        const seasonNumber = String(selectedSeason).padStart(2, '0');
+        const module = await import(`../../data/season${seasonNumber}.json`)??{};
+
+
+        const candidates =  await getSeasonCandidate(Number(seasonNumber))
+
+        const proposals =  await getSeasonProposals(Number(seasonNumber))
+        const nodes =  await getSeasonNodes(Number(seasonNumber))
+
+        module.default.candidates = candidates??[];
+        module.default.proposals = proposals?.data??[];
+        module.default.nodes = nodes?.data??[];
+
+
+        const  proposalArr = proposals?.data.filter((d:any) => !!d.applicant).map((d:any) => d.applicant);
+        const arr =[...proposalArr,...nodes?.data,...candidates]
+        handleSNS([...new Set(arr)]);
+
+
+        seasonData[selectedSeason] = module.default;
+      } catch (error) {
+        console.warn(`Season ${selectedSeason} data not available:`, error);
+      }
+
+      // Filter out seasons with no data
+      const filteredData = Object.fromEntries(
+          Object.entries(seasonData).filter(([_, value]) => value !== null)
+      );
+
+      setData(filteredData);
+
+      // Set the initial selected season to the latest available season
+      const seasons = Object.keys(filteredData).map(Number);
+      if (seasons.length > 0) {
+        setSelectedSeason(Math.max(...seasons));
+      }
+    } catch (error) {
+      console.error('Error loading season data:', error);
+      setError('加载数据时发生错误，请稍后再试');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -124,27 +127,47 @@ export default function ArchivesPage() {
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-bold mb-6">历史会议</h2>
           <nav className="space-y-2">
-            {Object.keys(data)
-              .map(Number)
-              .sort((a, b) => b - a) // Sort in descending order
-              .map((season) => (
-                <button
-                  key={season}
-                  onClick={() => setSelectedSeason(season)}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group ${
-                    selectedSeason === season
-                      ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700'
-                      : 'hover:bg-gray-50 text-gray-600 hover:text-gray-900'
-                  }`}
-                >
+            {
+              [...Array(CURRENT_SEASON)].map((_, index) => (
+                  <button
+                      key={CURRENT_SEASON-index}
+                      onClick={() => setSelectedSeason(CURRENT_SEASON - index)}
+                      className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group ${
+                          selectedSeason === CURRENT_SEASON-index
+                              ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700'
+                              : 'hover:bg-gray-50 text-gray-600 hover:text-gray-900'
+                      }`}
+                  >
                   <span className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                    selectedSeason === season 
-                      ? 'bg-primary-500 scale-125' 
-                      : 'bg-gray-300 group-hover:bg-gray-400'
+                      selectedSeason === CURRENT_SEASON - index
+                          ? 'bg-primary-500 scale-125'
+                          : 'bg-gray-300 group-hover:bg-gray-400'
                   }`}></span>
-                  第{season}季
-                </button>
-              ))}
+                    第{CURRENT_SEASON - index}季
+                  </button>
+              ))
+            }
+            {/*{Object.keys(data)*/}
+            {/*  .map(Number)*/}
+            {/*  .sort((a, b) => b - a) // Sort in descending order*/}
+            {/*  .map((season) => (*/}
+            {/*    <button*/}
+            {/*      key={season}*/}
+            {/*      onClick={() => setSelectedSeason(season)}*/}
+            {/*      className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group ${*/}
+            {/*        selectedSeason === season*/}
+            {/*          ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700'*/}
+            {/*          : 'hover:bg-gray-50 text-gray-600 hover:text-gray-900'*/}
+            {/*      }`}*/}
+            {/*    >*/}
+            {/*      <span className={`w-2 h-2 rounded-full transition-all duration-200 ${*/}
+            {/*        selectedSeason === season */}
+            {/*          ? 'bg-primary-500 scale-125' */}
+            {/*          : 'bg-gray-300 group-hover:bg-gray-400'*/}
+            {/*      }`}></span>*/}
+            {/*      第{season}季*/}
+            {/*    </button>*/}
+            {/*  ))}*/}
           </nav>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const BASE_URL = 'https://taoist-labs.github.io/node-conf-website'
+const BASE_URL = 'https://node.seedao.xyz'
 
 // Define routes and their metadata
 const routes = [

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "copy-images": "node --experimental-json-modules scripts/copyImages.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
     "dev": "vite",
-    "build": "npm run copy-images && tsc && vite build",
+    "build": "npm run copy-images && tsc && vite build && npm run generate-sitemap",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

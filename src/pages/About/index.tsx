@@ -1,133 +1,78 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import aboutContent from '../../content/about.md?raw';
+import { useNavigate, useParams } from 'react-router-dom';
+import clsx from 'clsx';
 
-interface Section {
+interface NavItem {
   id: string;
   title: string;
+  file: string;
 }
 
+const navItems: NavItem[] = [
+  { id: 'overview', title: '节点共识大会概述', file: 'overview.md' },
+  { id: 'history', title: '历史渊源', file: 'history.md' },
+  { id: 'process', title: '会议流程', file: 'process.md' },
+  { id: 'rules', title: '参与规则', file: 'rules.md' },
+  { id: 'participation', title: '如何参与', file: 'participation.md' },
+  { id: 'faq', title: '常见问题', file: 'faq.md' },
+];
+
 export default function AboutPage() {
-  const [activeSection, setActiveSection] = useState<string>('');
-  const [sections, setSections] = useState<Section[]>([]);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const headingRefs = useRef<Map<string, HTMLElement>>(new Map());
-
-  // Extract sections from markdown content
-  useEffect(() => {
-    const headingRegex = /^## (.*$)/gm;
-    const matches = [...aboutContent.matchAll(headingRegex)];
-    const extractedSections = matches.map((match) => ({
-      id: match[1].toLowerCase().replace(/\s+/g, '-'),
-      title: match[1]
-    }));
-    setSections(extractedSections);
-    if (extractedSections.length > 0) {
-      setActiveSection(extractedSections[0].id);
-    }
-  }, []);
+  const { sectionId = 'overview' } = useParams();
+  const navigate = useNavigate();
+  const [content, setContent] = useState<string>('');
 
   useEffect(() => {
-    const updateActiveSection = () => {
-      let currentSection = '';
-      const scrollPosition = window.scrollY + 200; // Add offset for better accuracy
-
-      // Find the current section based on scroll position
-      headingRefs.current.forEach((element, id) => {
-        const { top } = element.getBoundingClientRect();
-        const absoluteTop = top + window.scrollY;
-        if (absoluteTop <= scrollPosition) {
-          currentSection = id;
+    const loadContent = async () => {
+      try {
+        const selectedItem = navItems.find(item => item.id === sectionId);
+        if (!selectedItem) {
+          navigate('/about/overview');
+          return;
         }
-      });
-
-      if (currentSection !== activeSection) {
-        setActiveSection(currentSection);
+        const response = await fetch(`/src/content/about/${selectedItem.file}`);
+        const text = await response.text();
+        setContent(text);
+      } catch (error) {
+        console.error('Error loading content:', error);
+        setContent('# Error\nFailed to load content.');
       }
     };
-
-    // Add scroll event listener
-    window.addEventListener('scroll', updateActiveSection);
-    // Initial check
-    updateActiveSection();
-
-    return () => window.removeEventListener('scroll', updateActiveSection);
-  }, [activeSection]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = headingRefs.current.get(sectionId);
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setActiveSection(sectionId);
-    }
-  };
+    loadContent();
+  }, [sectionId, navigate]);
 
   return (
-    <div className="max-w-6xl mx-auto flex gap-8">
-      {/* Left Navigation Panel */}
-      <div className="hidden lg:block w-64 sticky top-24 h-fit">
-        <div className="card-gradient bg-white/80 p-6">
-          <h2 className="heading-gradient text-xl font-bold mb-6">目录</h2>
-          <nav className="space-y-2">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group ${
-                  activeSection === section.id
-                    ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700'
-                    : 'hover:bg-gray-50 text-gray-600 hover:text-gray-900'
-                }`}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="hidden lg:block lg:col-span-3">
+          <nav className="sticky top-4 space-y-2" aria-label="Sidebar">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(`/about/${item.id}`);
+                }}
+                href={`/about/${item.id}`}
+                className={clsx(
+                  'block px-3 py-2 text-sm font-medium rounded-md cursor-pointer',
+                  sectionId === item.id
+                    ? 'bg-gray-200 text-gray-900'
+                    : 'text-gray-600 hover:bg-gray-50'
+                )}
+                aria-current={sectionId === item.id ? 'page' : undefined}
               >
-                <span className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                  activeSection === section.id 
-                    ? 'bg-primary-500 scale-125' 
-                    : 'bg-gray-300 group-hover:bg-gray-400'
-                }`}></span>
-                {section.title}
-              </button>
+                {item.title}
+              </a>
             ))}
           </nav>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1">
-        <div className="bg-white rounded-lg shadow-md p-8">
-          <div className="prose max-w-none" ref={contentRef} data-page="about">
-            <ReactMarkdown
-              components={{
-                h2: ({ children, ...props }) => {
-                  const sectionId = children?.toString().toLowerCase().replace(/\s+/g, '-');
-                  return (
-                    <h2
-                      {...props}
-                      ref={el => {
-                        if (el && sectionId) {
-                          headingRefs.current.set(sectionId, el);
-                        }
-                      }}
-                      data-section={sectionId}
-                      className="scroll-mt-24"
-                    >
-                      {children}
-                    </h2>
-                  );
-                }
-              }}
-            >
-              {aboutContent}
-            </ReactMarkdown>
+        <main className="lg:col-span-9">
+          <div className="prose prose-lg prose-indigo mx-auto text-gray-500">
+            <ReactMarkdown>{content}</ReactMarkdown>
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );

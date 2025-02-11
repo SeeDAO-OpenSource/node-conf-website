@@ -23,7 +23,7 @@ function App() {
                     <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/archives" element={<ArchivesPage />} />
-                      <Route path="/about" element={<AboutPage />} />
+                      <Route path="/about/:sectionId?" element={<AboutPage />} />
                       <Route path="/privacy" element={<PrivacyPage />} />
                       <Route path="/terms" element={<TermsPage />} />
                     </Routes>

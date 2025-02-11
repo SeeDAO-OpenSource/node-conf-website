@@ -33,9 +33,37 @@ export default function AboutPage() {
           navigate('/about/overview');
           return;
         }
-        const response = await fetch(`/src/content/about/${selectedItem.file}`);
-        const text = await response.text();
-        setContent(text);
+
+        let content = '';
+        switch (selectedItem.id) {
+          case 'overview':
+            content = (await import('../../content/about/overview.md?raw')).default;
+            break;
+          case 'history':
+            content = (await import('../../content/about/history.md?raw')).default;
+            break;
+          case 'process':
+            content = (await import('../../content/about/process.md?raw')).default;
+            break;
+          case 'rules':
+            content = (await import('../../content/about/rules.md?raw')).default;
+            break;
+          case 'participation':
+            content = (await import('../../content/about/participation.md?raw')).default;
+            break;
+          case 'faq':
+            content = (await import('../../content/about/faq.md?raw')).default;
+            break;
+          case 'metarule':
+            content = (await import('../../content/about/metarule.md?raw')).default;
+            break;
+          case 'noderules':
+            content = (await import('../../content/about/noderules.md?raw')).default;
+            break;
+          default:
+            content = '# Error\nSection not found.';
+        }
+        setContent(content);
       } catch (error) {
         console.error('Error loading content:', error);
         setContent('# Error\nFailed to load content.');
@@ -76,8 +104,8 @@ export default function AboutPage() {
               components={{
                 img: ({node, ...props}) => {
                   const src = props.src?.startsWith('./') 
-                    ? `/images/about/${props.src.slice(2)}` 
-                    : `/images/about/${props.src}`;
+                    ? `/node-conf-website/images/about/${props.src.slice(2)}` 
+                    : `/node-conf-website/images/about/${props.src}`;
                   return <img {...props} src={src} />;
                 }
               }}

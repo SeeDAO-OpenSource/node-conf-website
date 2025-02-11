@@ -6,7 +6,7 @@
   "scripts": {
     "copy-images": "node --experimental-json-modules scripts/copyImages.js",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run copy-images && tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

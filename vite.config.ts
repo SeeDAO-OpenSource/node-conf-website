@@ -19,8 +19,8 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
-  assetsInclude: ['src/content/*.md'],
+  assetsInclude: ['src/content/about/*.md'],
   optimizeDeps: {
-    exclude: ['src/content/*.md']
+    exclude: ['src/content/about/*.md']
   }
 })

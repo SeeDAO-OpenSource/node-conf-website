@@ -2,6 +2,17 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
+import styled from "styled-components";
+const Box = styled.div`
+  word-break: break-all;
+  img{
+    max-width: 50vw;
+    margin: 0 auto;
+  }
+  pre{
+    white-space: pre-wrap;
+  }
+`
 
 interface NavItem {
   id: string;
@@ -73,10 +84,11 @@ export default function AboutPage() {
   }, [sectionId, navigate]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-        <div className="hidden lg:block lg:col-span-3">
-          <nav className="sticky top-4 space-y-2" aria-label="Sidebar">
+    // <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <Box className="flex gap-8">
+
+        <div className="hidden lg:block lg:col-span-3 shrink-0">
+          <nav className="sticky top-4 space-y-2 bg-white rounded-lg shadow-lg p-8" aria-label="Sidebar">
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -86,25 +98,31 @@ export default function AboutPage() {
                 }}
                 href={`/about/${item.id}`}
                 className={clsx(
-                  'block px-3 py-2 text-sm font-medium rounded-md cursor-pointer',
+                  'w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group',
                   sectionId === item.id
-                    ? 'bg-gray-200 text-gray-900'
-                    : 'text-gray-600 hover:bg-gray-50'
+                    ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700'
+                    : 'hover:bg-gray-50 text-gray-600 hover:text-gray-900'
                 )}
                 aria-current={sectionId === item.id ? 'page' : undefined}
               >
+
+                  <span className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                      sectionId === item.id
+                          ? 'bg-primary-500 scale-125'
+                          : 'bg-gray-300 group-hover:bg-gray-400'
+                  }`}></span>
                 {item.title}
               </a>
             ))}
           </nav>
         </div>
-        <main className="lg:col-span-9">
+        <main className="lg:col-span-9 bg-white rounded-lg shadow-lg p-8 flex-1 ">
           <div className="prose prose-lg prose-indigo mx-auto text-gray-500">
             <ReactMarkdown
               components={{
                 img: ({node, ...props}) => {
-                  const src = props.src?.startsWith('./') 
-                    ? `/node-conf-website/images/about/${props.src.slice(2)}` 
+                  const src = props.src?.startsWith('./')
+                    ? `/node-conf-website/images/about/${props.src.slice(2)}`
                     : `/node-conf-website/images/about/${props.src}`;
                   return <img {...props} src={src} />;
                 }
@@ -114,7 +132,7 @@ export default function AboutPage() {
             </ReactMarkdown>
           </div>
         </main>
-      </div>
-    </div>
+
+    </Box>
   );
 }

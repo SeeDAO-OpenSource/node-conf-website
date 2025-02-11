@@ -1,0 +1,22 @@
+.navbar-custom {
+  background-color: rgba(164, 144, 249, 0.5);
+}
+
+.nav-link {
+  color: #333333;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #6C63FF;
+}
+
+.nav-link-active {
+  color: #6C63FF !important;
+}
+
+/* 移除所有下划线和背景效果 */
+.nav-link span span,
+.nav-link-active::after {
+  display: none;
+} 

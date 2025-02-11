@@ -45,7 +45,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
   return (
     <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
       {/* Conference Info Section */}
-      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col bg-gray-50 px-[calc((100vw-101%)/2)]">
+      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 text-gray-900">

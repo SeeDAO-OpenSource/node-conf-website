@@ -13,6 +13,17 @@ import { ToastContainer } from 'react-toastify';
 
 import WagmiProvider from './providers/wagmiProvider';
 
+const Hero = () => {
+  return (
+    <section className="hero">
+      <div className="hero-content">
+        <h1>SeeDAO 治理规则</h1>
+        <p>探索去中心化自治组织的治理之道</p>
+      </div>
+    </section>
+  )
+}
+
 function App() {
   return (
       <PersistGate loading={null} persistor={persistor} >

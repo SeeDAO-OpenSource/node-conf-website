@@ -37,6 +37,15 @@ export default function Navbar() {
     store.dispatch(saveAccount(null));
   }
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      // 如果不在首页，先导航到首页
+      window.location.href = '/node-conf-website/';
+    }
+  };
+
   return (
     <nav className="navbar-custom sticky top-0 z-50 backdrop-blur-sm border-b border-white/20">
       <div className="container">
@@ -44,6 +53,7 @@ export default function Navbar() {
           <Link
             to="/"
             className="hover:opacity-80 transition-opacity"
+            onClick={handleLogoClick}
           >
             <img
               src="https://app.seedao.xyz/static/media/logo.ff952187ebb322404b138c2c7b4629f8.svg"

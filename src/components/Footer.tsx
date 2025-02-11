@@ -113,11 +113,11 @@ export default function Footer() {
                         <span className="text-gray-600 group-hover:text-gray-900 transition-colors">
                           {link.name}
                         </span>
-                        {showQRCode && (
+                        {/* {showQRCode && (
                           <div className="absolute bottom-full left-0 mb-2 bg-white p-2 rounded-lg shadow-xl">
                             <img src={link.qrCode} alt="WeChat QR Code" className="w-32 h-32" />
                           </div>
-                        )}
+                        )} */}
                       </button>
                     ) : (
                       <a

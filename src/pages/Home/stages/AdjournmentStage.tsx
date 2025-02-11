@@ -135,10 +135,10 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">有效SCR要求</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-primary-600">{nextSeasonData.currentCriteria.validSCR}</span>
-                      {nextSeasonData.currentCriteria.validSCRProposalLink && (
+                      <span className="font-bold text-primary-600">{data.nextSeasonCriteria.validSCR}</span>
+                      {data.nextSeasonCriteria.validSCRProposalLink && (
                         <a
-                          href={nextSeasonData.currentCriteria.validSCRProposalLink}
+                          href={data.nextSeasonCriteria.validSCRProposalLink}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs text-primary-600 hover:text-primary-700"
@@ -151,10 +151,10 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">活跃SCR要求</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-primary-600">{nextSeasonData.currentCriteria.activeSCR}</span>
-                      {nextSeasonData.currentCriteria.activeSCRProposalLink && (
+                      <span className="font-bold text-primary-600">{data.nextSeasonCriteria.activeSCR}</span>
+                      {data.nextSeasonCriteria.activeSCRProposalLink && (
                         <a
-                          href={nextSeasonData.currentCriteria.activeSCRProposalLink}
+                          href={data.nextSeasonCriteria.activeSCRProposalLink}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs text-primary-600 hover:text-primary-700"

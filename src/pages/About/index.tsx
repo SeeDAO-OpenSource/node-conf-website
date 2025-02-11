@@ -75,7 +75,9 @@ export default function AboutPage() {
             <ReactMarkdown
               components={{
                 img: ({node, ...props}) => {
-                  const src = props.src?.replace(/^(?!http|\/)/, '/images/about/');
+                  const src = props.src?.startsWith('./') 
+                    ? `/images/about/${props.src.slice(2)}` 
+                    : `/images/about/${props.src}`;
                   return <img {...props} src={src} />;
                 }
               }}

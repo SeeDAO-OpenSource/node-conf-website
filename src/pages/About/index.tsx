@@ -16,6 +16,8 @@ const navItems: NavItem[] = [
   { id: 'rules', title: '参与规则', file: 'rules.md' },
   { id: 'participation', title: '如何参与', file: 'participation.md' },
   { id: 'faq', title: '常见问题', file: 'faq.md' },
+  { id: 'metarule', title: '元规则', file: 'metarule.md' },
+  { id: 'noderules', title: '节点共识大会规则', file: 'noderules.md' }
 ];
 
 export default function AboutPage() {
@@ -70,7 +72,16 @@ export default function AboutPage() {
         </div>
         <main className="lg:col-span-9">
           <div className="prose prose-lg prose-indigo mx-auto text-gray-500">
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                img: ({node, ...props}) => {
+                  const src = props.src?.replace(/^(?!http|\/)/, '/images/about/');
+                  return <img {...props} src={src} />;
+                }
+              }}
+            >
+              {content}
+            </ReactMarkdown>
           </div>
         </main>
       </div>

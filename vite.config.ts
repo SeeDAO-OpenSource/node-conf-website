@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// @ts-expect-error - markdown plugin types are not available
 import { markdownRawPlugin } from './vite.markdown.plugin'
 import imagePlugin from './vite.image.plugin'
 

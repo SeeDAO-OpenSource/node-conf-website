@@ -3,19 +3,19 @@
     
     <url>
         <loc>https://node.seedao.xyz/</loc>
-        <lastmod>2025-02-11T19:05:18.699Z</lastmod>
+        <lastmod>2025-02-11T19:25:05.850Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://node.seedao.xyz/archives</loc>
-        <lastmod>2025-02-11T19:05:18.699Z</lastmod>
+        <lastmod>2025-02-11T19:25:05.850Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://node.seedao.xyz/about</loc>
-        <lastmod>2025-02-11T19:05:18.699Z</lastmod>
+        <lastmod>2025-02-11T19:25:05.850Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

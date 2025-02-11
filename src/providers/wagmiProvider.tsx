@@ -1,20 +1,19 @@
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { mainnet, polygon, Chain, goerli, sepolia } from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
-import { InjectedConnector } from 'wagmi/connectors/injected';
-import { JoyIdConnector } from '@joyid/wagmi';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi'
+import { mainnet, polygon, Chain, goerli, sepolia } from 'wagmi/chains'
+import { publicProvider } from 'wagmi/providers/public'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { JoyIdConnector } from '@joyid/wagmi'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
-import React from "react";
-import JoyidURL from "../utils/joyidURL";
-import { USE_NETWORK } from "../utils/constant";
+import React from 'react'
+import JoyidURL from '../utils/joyidURL'
+import { USE_NETWORK } from '../utils/constant'
 
-
-const APP_NAME = 'SeeDAO';
-const APP_ICON = `${window.location.origin}/icon192.png`;
+const APP_NAME = 'SeeDAO'
+const APP_ICON = `${window.location.origin}/icon192.png`
 
 export default function WagmiProvider(props: React.PropsWithChildren) {
-  const supportChains: Chain[] = [mainnet, polygon, goerli, sepolia];
+  const supportChains: Chain[] = [mainnet, polygon, goerli, sepolia]
   // switch (networkConfig.chainId) {
   //   case 1:
   //     supportChains = [mainnet, goerli];
@@ -26,7 +25,7 @@ export default function WagmiProvider(props: React.PropsWithChildren) {
   //     throw new Error(`[config] Unsupported chainId:${networkConfig.chainId}`);
   // }
 
-  const { chains, publicClient } = configureChains(supportChains, [publicProvider()]);
+  const { chains, publicClient } = configureChains(supportChains, [publicProvider()])
 
   // const unipass = new UniPassConnector({
   //   options: {
@@ -39,7 +38,7 @@ export default function WagmiProvider(props: React.PropsWithChildren) {
   //   },
   // });
 
-  const JOY_ID_URL =JoyidURL[USE_NETWORK];
+  const JOY_ID_URL = JoyidURL[USE_NETWORK]
 
   const joyidConnector = new JoyIdConnector({
     chains,
@@ -48,7 +47,7 @@ export default function WagmiProvider(props: React.PropsWithChildren) {
       logo: APP_ICON,
       joyidAppURL: JOY_ID_URL,
     },
-  });
+  })
 
   const config = createConfig({
     autoConnect: true,
@@ -63,19 +62,26 @@ export default function WagmiProvider(props: React.PropsWithChildren) {
         chains,
         options: {
           showQrModal: true,
-          projectId:"bfa9036cfdc020f867087ce4cadffe13",
-          qrModalOptions:{
-            themeVariables:{
-              "--wcm-z-index": "9999999999999"
-            }
-          }
+          projectId: 'bfa9036cfdc020f867087ce4cadffe13',
+          qrModalOptions: {
+            themeVariables: {
+              '--wcm-z-index': '9999999999999',
+            },
+          },
+          relayUrl: 'wss://relay.walletconnect.com',
+          metadata: {
+            name: APP_NAME,
+            description: 'SeeDAO Node Conference',
+            url: window.location.origin,
+            icons: [APP_ICON],
+          },
         },
       }),
       joyidConnector,
       // unipass,
     ],
     publicClient,
-  });
+  })
 
-  return <WagmiConfig config={config}>{props.children}</WagmiConfig>;
+  return <WagmiConfig config={config}>{props.children}</WagmiConfig>
 }

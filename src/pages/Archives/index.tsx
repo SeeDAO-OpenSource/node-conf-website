@@ -3,7 +3,7 @@ import { ConferenceData } from '../../types/conference';
 import Modal from '../../components/Modal';
 import { truncateAddress } from '../../utils/address';
 import dayjs from 'dayjs';
-import { CURRENT_SEASON } from '../../config/stage';
+import { CURRENT_SEASON } from '../../config/config';
 import useQuerySNS from "../../hooks/useQuerySNS.tsx";
 import {getStatus} from "../../utils/public.ts";
 import {getSeasonCandidate} from "../../api/getSeasonCandidate.ts";

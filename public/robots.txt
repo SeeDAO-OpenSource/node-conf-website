@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://taoist-labs.github.io/node-conf-website/sitemap.xml

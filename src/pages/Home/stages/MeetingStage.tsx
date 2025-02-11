@@ -9,7 +9,7 @@ import {getStatus} from "../../../utils/public.ts";
 import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
 import {truncateAddress} from "../../../utils/address.ts";
 import styled from "styled-components";
-import {ClAIM_END_AT} from "../../../config/stage.ts";
+import { CLAIM_END_AT } from "../../../config/config.ts";
 
 const Box = styled.div`
   .addeventatc{
@@ -31,7 +31,7 @@ interface Props {
 }
 
 export default function MeetingStage({ data }: Props) {
-  const [claimEndTime] = useState(ClAIM_END_AT);
+  const [claimEndTime] = useState(CLAIM_END_AT);
   // const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
   const [showClaim, setShowClaim] = useState(true);
   const [showCandidatesModal, setShowCandidatesModal] = useState(false);
@@ -180,6 +180,12 @@ export default function MeetingStage({ data }: Props) {
                         查看候选人名单
                       </button>
                     </div>
+                    {
+                        !showClaim && <div>
+                          <p className="text-gray-600">Mint结束时间:</p>
+                            <div className=""> {dayjs(CLAIM_END_AT).format('YYYY年MM月DD日')}</div>
+                        </div>
+                    }
                     {
                         showClaim && <div>
                           <p className="text-gray-600 mb-3">剩余认领时间</p>

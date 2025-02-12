@@ -202,7 +202,7 @@ export default function ArchivesPage() {
       {selectedSeasonData && (
         <div className="flex-1 space-y-8">
           {/* Season Overview */}
-          <section className="bg-white rounded-lg shadow-lg p-8">
+          <section className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold mb-4">
                 第{selectedSeasonData.season}季节点共识大会
@@ -326,7 +326,7 @@ export default function ArchivesPage() {
           </section>
 
           {/* Schedule Section */}
-          <section className="bg-white rounded-lg shadow-lg p-8">
+          <section className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
             <h2 className="text-2xl font-bold mb-6">会议日程</h2>
             <div className="space-y-6">
               {Object.entries(
@@ -351,7 +351,7 @@ export default function ArchivesPage() {
                           <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-[120px]">
                             时间
                           </th>
-                          <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                          <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-1/2">
                             主题
                           </th>
                           <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
@@ -453,13 +453,13 @@ export default function ArchivesPage() {
           </section>
 
           {/* Proposals Section */}
-          <section className="bg-white rounded-lg shadow-lg p-8">
+          <section className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
             <h2 className="text-2xl font-bold mb-6">提案记录</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {selectedSeasonData.proposals.map(proposal => (
                 <div
                   key={proposal.link}
-                  className="bg-gray-50 rounded-lg p-6 transition-all duration-200 group hover:bg-gray-100"
+                  className="bg-gray-50 rounded-lg transition-all duration-200 group hover:bg-gray-100 p-3 sm:p-6"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <span className="tag tag-primary">{proposal.category}</span>
@@ -490,7 +490,7 @@ export default function ArchivesPage() {
                       href={proposal.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-primary"
+                      className="btn btn-primary px-2 sm:px-4 "
                     >
                       查看提案
                     </a>
@@ -516,16 +516,16 @@ export default function ArchivesPage() {
                   alt={snsMap[node?.wallet?.toLowerCase()] ?? truncateAddress(node?.wallet)}
                   className="w-10 h-10 rounded-full"
                 />
-                {/*<div>*/}
-                <div className="font-medium text-gray-900">
-                  {' '}
-                  {snsMap[node?.wallet?.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:items-center ">
+                  <div className="font-medium text-gray-900">
+                    {' '}
+                    {snsMap[node?.wallet?.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                  </div>
+                  <div className="text-sm text-gray-500 font-mono break-all">
+                    {/*{truncateAddress(node?.wallet)}*/}
+                    {node?.wallet}
+                  </div>
                 </div>
-                <div className="text-sm text-gray-500 font-mono">
-                  {/*{truncateAddress(node?.wallet)}*/}
-                  {node?.wallet}
-                </div>
-                {/*</div>*/}
               </div>
             </div>
           ))}
@@ -541,13 +541,13 @@ export default function ArchivesPage() {
           {selectedSeasonData?.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors  flex flex-col sm:flex-row items-start gap-4 sm:items-center"
             >
               <div className="font-medium text-gray-900">
                 {' '}
                 {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}
               </div>
-              <div className="text-sm  text-gray-500 font-mono">{candidate}</div>
+              <div className="text-sm  text-gray-500 font-mono break-all">{candidate}</div>
             </div>
           ))}
         </div>

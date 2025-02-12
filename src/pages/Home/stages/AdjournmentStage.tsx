@@ -8,6 +8,14 @@ import faqContent from '../../../content/faq.md?raw'
 import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
 import { getStatus } from '../../../utils/public.ts'
 import DefaultImg from '../../../assets/images/defaultAvatar.png'
+import styled from 'styled-components'
+
+const Box = styled.div`
+  td,
+  th {
+    white-space: nowrap;
+  }
+`
 
 interface Props {
   data: ConferenceData
@@ -19,15 +27,6 @@ export default function AdjournmentStage({ data }: Props) {
   const [snsMap, setSnsMap] = useState<Record<string, string>>({})
   const { getMultiSNS } = useQuerySNS()
 
-  useEffect(() => {
-    const proposalArr = data.proposals.filter(d => !!d.applicant).map(d => d.applicant)
-
-    const nodesArr = data.nodes.filter(d => !!d.wallet).map(d => d.wallet)
-
-    const arr = [...proposalArr, ...nodesArr, ...data.candidates]
-    handleSNS([...new Set(arr)])
-  }, [data])
-
   const handleSNS = async (wallets: string[]) => {
     try {
       const sns_map = await getMultiSNS(wallets)
@@ -37,8 +36,17 @@ export default function AdjournmentStage({ data }: Props) {
     }
   }
 
+  useEffect(() => {
+    const proposalArr = data.proposals.filter(d => !!d.applicant).map(d => d.applicant)
+
+    const nodesArr = data.nodes.filter(d => !!d.wallet).map(d => d.wallet)
+
+    const arr = [...proposalArr, ...nodesArr, ...data.candidates]
+    handleSNS([...new Set(arr)])
+  }, [data])
+
   return (
-    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
+    <Box className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
       {/* Conference Info Section */}
       <section className="relative min-h-[calc(100vh-4rem)] flex flex-col hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
@@ -205,7 +213,7 @@ export default function AdjournmentStage({ data }: Props) {
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-[120px]">
                           时间
                         </th>
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-1/2">
                           主题
                         </th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
@@ -273,7 +281,7 @@ export default function AdjournmentStage({ data }: Props) {
                     href={proposal.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary"
+                    className="btn btn-primary px-2 sm:px-4"
                   >
                     查看提案
                   </a>
@@ -325,11 +333,11 @@ export default function AdjournmentStage({ data }: Props) {
 
       {/* Modals */}
       <Modal isOpen={showNodesModal} onClose={() => setShowNodesModal(false)} title="节点列表">
-        <div className="space-y-4">
+        <div className="space-y-4 ">
           {data.nodes.map((node, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors "
             >
               <div className="flex items-center gap-4">
                 <img
@@ -337,16 +345,15 @@ export default function AdjournmentStage({ data }: Props) {
                   alt={snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
                   className="w-10 h-10 rounded-full"
                 />
-                {/*<div>*/}
-                <div className="font-medium text-gray-900">
-                  {' '}
-                  {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:items-center ">
+                  <div className="font-medium text-gray-900">
+                    {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                  </div>
+                  <div className="text-sm text-gray-500 font-mono break-all">
+                    {/*{truncateAddress(node?.wallet)}*/}
+                    {node?.wallet}
+                  </div>
                 </div>
-                <div className="text-sm text-gray-500 font-mono">
-                  {/*{truncateAddress(node?.wallet)}*/}
-                  {node?.wallet}
-                </div>
-                {/*</div>*/}
               </div>
             </div>
           ))}
@@ -362,13 +369,13 @@ export default function AdjournmentStage({ data }: Props) {
           {data.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex flex-col sm:flex-row items-start gap-4 sm:items-center"
             >
               <div className="font-medium text-gray-900">
                 {' '}
                 {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}
               </div>
-              <div className="text-sm  text-gray-500 font-mono">
+              <div className="text-sm  text-gray-500 font-mono break-all">
                 {/*{truncateAddress(candidate)}*/}
                 {candidate}
               </div>
@@ -376,6 +383,6 @@ export default function AdjournmentStage({ data }: Props) {
           ))}
         </div>
       </Modal>
-    </div>
+    </Box>
   )
 }

@@ -1,56 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import Countdown from 'react-countdown';
-import type { ConferenceData } from '../../../types/conference';
-import dayjs from 'dayjs';
-import CalendarDropdown from '../../../components/CalendarDropdown';
-import Modal from '../../../components/Modal';
-import ClaimButton from '../../../components/ClaimButton';
-import {getStatus} from "../../../utils/public.ts";
-import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
-import {truncateAddress} from "../../../utils/address.ts";
-import styled from "styled-components";
-import { CLAIM_END_AT } from "../../../config/config.ts";
+import React, { useEffect, useState } from 'react'
+import Countdown from 'react-countdown'
+import type { ConferenceData } from '../../../types/conference'
+import dayjs from 'dayjs'
+import CalendarDropdown from '../../../components/CalendarDropdown'
+import Modal from '../../../components/Modal'
+import ClaimButton from '../../../components/ClaimButton'
+import { getStatus } from '../../../utils/public.ts'
+import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
+import { truncateAddress } from '../../../utils/address.ts'
+import styled from 'styled-components'
+import { CLAIM_END_AT } from '../../../config/config.ts'
 
 const Box = styled.div`
-  .addeventatc{
-    box-shadow: none!important;
-    z-index: auto!important;
+  .addeventatc {
+    box-shadow: none !important;
+    z-index: auto !important;
     position: relative;
-    background-color: transparent!important;
-    font-size: 12px!important;
-    color: #222!important;
-    font-weight: normal!important;
+    background-color: transparent !important;
+    font-size: 12px !important;
+    color: #222 !important;
+    font-weight: normal !important;
   }
-  .addeventatc_dropdown{
-    z-index: 10!important;
+  .addeventatc_dropdown {
+    z-index: 10 !important;
+  }
+  td,
+  th {
+    white-space: nowrap;
   }
 `
 
 interface Props {
-  data: ConferenceData;
+  data: ConferenceData
 }
 
 export default function MeetingStage({ data }: Props) {
-  const [claimEndTime] = useState(CLAIM_END_AT);
+  const [claimEndTime] = useState(CLAIM_END_AT)
   // const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
-  const [showClaim, setShowClaim] = useState(true);
-  const [showCandidatesModal, setShowCandidatesModal] = useState(false);
-  const [snsMap, setSnsMap] = useState<any>({});
+  const [showClaim, setShowClaim] = useState(true)
+  const [showCandidatesModal, setShowCandidatesModal] = useState(false)
+  const [snsMap, setSnsMap] = useState<Record<string, string>>({})
   // const { checkExpiration } = useWallet();
 
-  const { getMultiSNS } = useQuerySNS();
+  const { getMultiSNS } = useQuerySNS()
 
   useEffect(() => {
     // handleSNS(data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant));
-    const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
+    const proposalArr = data.proposals.filter(d => !!d.applicant).map(d => d.applicant)
 
-    const nodesArr = data.nodes.filter((d) => !!d.wallet).map((d) => d.wallet)
+    const nodesArr = data.nodes.filter(d => !!d.wallet).map(d => d.wallet)
 
-    const arr =[...proposalArr,...nodesArr,...data.candidates]
-    handleSNS([...new Set(arr)]);
+    const arr: string[] = [...proposalArr, ...nodesArr, ...data.candidates]
+    handleSNS([...new Set(arr)])
 
     // getExp()
-  },[data])
+  }, [data])
 
   // const getExp = async () =>{
   //
@@ -59,38 +63,40 @@ export default function MeetingStage({ data }: Props) {
   //   console.log("checkExpiration",rt.toString() * 1000)
   // }
   const handleSNS = async (wallets: string[]) => {
-    try{
-      const sns_map = await getMultiSNS(wallets);
-      setSnsMap(sns_map);
-    }catch(error:any){
-      console.log(error);
+    try {
+      const sns_map = await getMultiSNS(wallets)
+      setSnsMap(sns_map)
+    } catch (error: unknown) {
+      console.log(error)
     }
-
-  };
+  }
 
   // Group schedule by date
-  const scheduleByDate = data.schedule.reduce((acc, session) => {
-    const date = dayjs(session.time).format('YYYY-MM-DD');
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(session);
-    return acc;
-  }, {} as Record<string, typeof data.schedule>);
+  const scheduleByDate = data.schedule.reduce(
+    (acc, session) => {
+      const date = dayjs(session.time).format('YYYY-MM-DD')
+      if (!acc[date]) {
+        acc[date] = []
+      }
+      acc[date].push(session)
+      return acc
+    },
+    {} as Record<string, typeof data.schedule>
+  )
 
   // Determine meeting status
   const getMeetingStatus = () => {
-    const now = dayjs();
-    const startDate = dayjs(data.startDate);
-    const endDate = dayjs(data.endDate).endOf('day');
+    const now = dayjs()
+    const startDate = dayjs(data.startDate)
+    const endDate = dayjs(data.endDate).endOf('day')
 
-    if (now.isBefore(startDate)) return 'not-started';
-    if (now.isAfter(endDate)) return 'ended';
-    return 'in-progress';
-  };
+    if (now.isBefore(startDate)) return 'not-started'
+    if (now.isAfter(endDate)) return 'ended'
+    return 'in-progress'
+  }
 
   const getMeetingButtonContent = () => {
-    const status = getMeetingStatus();
+    const status = getMeetingStatus()
 
     switch (status) {
       case 'not-started':
@@ -98,33 +104,48 @@ export default function MeetingStage({ data }: Props) {
           text: '添加到日历',
           icon: (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
             </svg>
-          )
-        };
+          ),
+        }
       case 'in-progress':
         return {
           text: '进入会议室',
           icon: (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+              />
             </svg>
-          )
-        };
+          ),
+        }
       case 'ended':
         return {
           text: '会议已结束',
           icon: (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
-          )
-        };
+          ),
+        }
     }
-  };
+  }
 
-  const meetingStatus = getMeetingStatus();
-  const buttonContent = getMeetingButtonContent();
+  const meetingStatus = getMeetingStatus()
+  const buttonContent = getMeetingButtonContent()
 
   const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
     <div className="relative group w-40">
@@ -143,35 +164,33 @@ export default function MeetingStage({ data }: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 
   return (
     <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
       <section className="relative min-h-[80vh] hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl font-bold mb-6 text-gray-900">
-              第{data.season}季节点共识大会
-            </h1>
+            <h1 className="text-5xl font-bold mb-6 text-gray-900">第{data.season}季节点共识大会</h1>
             <p className="text-2xl text-gray-600 mb-12">
-              {dayjs(data.startDate).format('YYYY年MM月DD日 HH:mm')} - {dayjs(data.endDate).format('MM月DD日 HH:mm')}
+              {dayjs(data.startDate).format('YYYY年MM月DD日 HH:mm')} -{' '}
+              {dayjs(data.endDate).format('MM月DD日 HH:mm')}
             </p>
 
             {/* Claim Section */}
-            {(
+            {
               <div className="relative mt-12 mb-16">
                 <div className="relative max-w-2xl mx-auto">
                   <div className="space-y-8">
                     <p className="text-gray-600">成为SeeDAO节点，参与社区治理</p>
 
                     <div className="flex flex-col items-center gap-6">
-                      {
-                          showClaim && <ClaimButton
-                              contractAddress={data.sbtToken.contractAddress}
-                              candidates={data.candidates}
-                          />
-                      }
-
+                      {showClaim && (
+                        <ClaimButton
+                          contractAddress={data.sbtToken.contractAddress}
+                          candidates={data.candidates}
+                        />
+                      )}
 
                       <button
                         onClick={() => setShowCandidatesModal(true)}
@@ -180,41 +199,40 @@ export default function MeetingStage({ data }: Props) {
                         查看候选人名单
                       </button>
                     </div>
-                    {
-                        !showClaim && <div>
-                          <p className="text-gray-600">Mint结束时间:</p>
-                            <div className=""> {dayjs(CLAIM_END_AT).format('YYYY年MM月DD日')}</div>
-                        </div>
-                    }
-                    {
-                        showClaim && <div>
-                          <p className="text-gray-600 mb-3">剩余认领时间</p>
-                          <Countdown
-                              date={claimEndTime}
-                              onComplete={() => setShowClaim(false)}
-                              renderer={({ hours, minutes, seconds }) => (
-                                  <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
-                            <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                              {String(hours).padStart(2, '0')}
-                            </span>
-                                    <span className="w-4 text-center">:</span>
-                                    <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                              {String(minutes).padStart(2, '0')}
-                            </span>
-                                    <span className="w-4 text-center">:</span>
-                                    <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                              {String(seconds).padStart(2, '0')}
-                            </span>
-                                  </div>
-                              )}
-                          />
-                        </div>
-                    }
-
+                    {!showClaim && (
+                      <div>
+                        <p className="text-gray-600">Mint结束时间:</p>
+                        <div className=""> {dayjs(CLAIM_END_AT).format('YYYY年MM月DD日')}</div>
+                      </div>
+                    )}
+                    {showClaim && (
+                      <div>
+                        <p className="text-gray-600 mb-3">剩余认领时间</p>
+                        <Countdown
+                          date={claimEndTime}
+                          onComplete={() => setShowClaim(false)}
+                          renderer={({ hours, minutes, seconds }) => (
+                            <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
+                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                {String(hours).padStart(2, '0')}
+                              </span>
+                              <span className="w-4 text-center">:</span>
+                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                {String(minutes).padStart(2, '0')}
+                              </span>
+                              <span className="w-4 text-center">:</span>
+                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                {String(seconds).padStart(2, '0')}
+                              </span>
+                            </div>
+                          )}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            )}
+            }
 
             {meetingStatus === 'not-started' && (
               <div className="relative">
@@ -267,13 +285,19 @@ export default function MeetingStage({ data }: Props) {
                 <h3 className="text-xl font-semibold text-primary-700 mb-4">
                   {dayjs(date).format('YYYY年MM月DD日')}
                 </h3>
-                <div >
+                <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-gray-200">
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">时间</th>
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">主题</th>
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">演讲人</th>
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-[120px]">
+                          时间
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-1/2 ">
+                          主题
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                          演讲人
+                        </th>
                         {/*<th>&nbsp;</th>*/}
                       </tr>
                     </thead>
@@ -286,9 +310,7 @@ export default function MeetingStage({ data }: Props) {
                           <td className="py-3 px-4 text-sm font-medium text-gray-900">
                             {session.topic}
                           </td>
-                          <td className="py-3 px-4 text-sm text-primary-600">
-                            {session.speaker}
-                          </td>
+                          <td className="py-3 px-4 text-sm text-primary-600">{session.speaker}</td>
                           {/*<td>*/}
                           {/*  <div title="Add to Calendar" className="addeventatc" >*/}
                           {/*    添加到日历*/}
@@ -314,9 +336,9 @@ export default function MeetingStage({ data }: Props) {
       {/* Proposals Section */}
       <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {data.proposals.map((proposal) => (
+            {data.proposals.map(proposal => (
               <div
                 key={proposal.link}
                 className="bg-white rounded-lg p-6 transition-all duration-200 group"
@@ -341,9 +363,12 @@ export default function MeetingStage({ data }: Props) {
                       />
                     )}
                     <div>
-                      {!!proposal.applicant && <span className="text-gray-900 font-medium block">
-                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
-                      </span>}
+                      {!!proposal.applicant && (
+                        <span className="text-gray-900 font-medium block">
+                          {snsMap[proposal.applicant?.toLowerCase() ?? ''] ??
+                            truncateAddress(proposal.applicant!)}
+                        </span>
+                      )}
                       <span className="text-sm text-gray-500">提案人</span>
                     </div>
                   </div>
@@ -351,7 +376,7 @@ export default function MeetingStage({ data }: Props) {
                     href={proposal.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary"
+                    className="btn btn-primary px-2 sm:px-4"
                   >
                     查看提案
                   </a>
@@ -372,11 +397,13 @@ export default function MeetingStage({ data }: Props) {
           {data.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex flex-col sm:flex-row items-start gap-4 sm:items-center"
             >
-
-              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
-              <div className="text-sm  text-gray-500 font-mono">
+              <div className="font-medium text-gray-900">
+                {' '}
+                {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}
+              </div>
+              <div className="text-sm  text-gray-500 font-mono break-all">
                 {/*{truncateAddress(candidate)}*/}
                 {candidate}
               </div>
@@ -385,5 +412,5 @@ export default function MeetingStage({ data }: Props) {
         </div>
       </Modal>
     </div>
-  );
+  )
 }

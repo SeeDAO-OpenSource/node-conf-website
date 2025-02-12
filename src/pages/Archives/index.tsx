@@ -10,6 +10,15 @@ import { getSeasonCandidate } from '../../api/getSeasonCandidate.ts'
 import { getSeasonProposals } from '../../api/getSeasonProposals.ts'
 import { getSeasonNodes } from '../../api/getSeasonNodes.ts'
 import DefaultImg from '../../assets/images/defaultAvatar.png'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import styled from 'styled-components'
+
+const Box = styled.div`
+  td,
+  th {
+    white-space: nowrap;
+  }
+`
 
 export default function ArchivesPage() {
   const [data, setData] = useState<Record<number, ConferenceData>>({})
@@ -18,7 +27,7 @@ export default function ArchivesPage() {
   const [showCandidatesModal, setShowCandidatesModal] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
+  const [show, setShow] = useState(false)
   const [snsMap, setSnsMap] = useState<Record<string, string>>({})
 
   const { getMultiSNS } = useQuerySNS()
@@ -90,6 +99,7 @@ export default function ArchivesPage() {
 
   useEffect(() => {
     loadSeasonData()
+    setShow(false)
   }, [selectedSeason])
 
   if (loading) {
@@ -118,12 +128,23 @@ export default function ArchivesPage() {
 
   const selectedSeasonData = selectedSeason ? data[selectedSeason] : null
 
+  const handleShow = () => {
+    setShow(!show)
+  }
+
   return (
-    <div className="flex gap-8">
+    <Box className="gap-8 flex flex-col md:flex-row ">
       {/* Left Navigation Panel */}
-      <div className="w-64 sticky top-24 h-fit">
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-xl font-bold mb-6">历史会议</h2>
+      <div className="w-full sticky top-24 h-fit sm:w-64  ">
+        <div
+          className={`bg-white rounded-lg shadow-lg p-6 flex-1 ${show ? 'overflow-auto' : 'h-[75px] overflow-hidden'}  sm:h-auto md:overflow-auto `}
+        >
+          <div className="text-xl font-bold mb-6 flex justify-between">
+            <div>历史会议</div>
+            <div className="block sm:hidden" onClick={() => handleShow()}>
+              {show ? <ChevronUp /> : <ChevronDown />}
+            </div>
+          </div>
           <nav className="space-y-2">
             {[...Array(CURRENT_SEASON - 1)].map((_, index) => (
               <button
@@ -524,6 +545,6 @@ export default function ArchivesPage() {
           ))}
         </div>
       </Modal>
-    </div>
+    </Box>
   )
 }

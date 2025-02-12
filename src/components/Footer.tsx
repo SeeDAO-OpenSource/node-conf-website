@@ -84,13 +84,15 @@ export default function Footer() {
               <ul className="space-y-4">
                 {quickLinks.map(link => (
                   <li key={link.name}>
-                    <Link
-                      to={link.href}
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-gray-600 hover:text-primary-600 transition-colors flex items-center gap-2 group"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-gray-400 group-hover:bg-primary-500 transition-colors"></span>
                       {link.name}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

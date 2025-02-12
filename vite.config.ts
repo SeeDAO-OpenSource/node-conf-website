@@ -16,6 +16,7 @@ export default defineConfig(({ command }: { command: string }) => {
     build: {
       outDir: 'dist',
       sourcemap: true,
+      emptyOutDir: true,
     },
     preview: {
       port: 4173,

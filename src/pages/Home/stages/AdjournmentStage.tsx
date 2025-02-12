@@ -8,6 +8,14 @@ import faqContent from '../../../content/faq.md?raw'
 import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
 import { getStatus } from '../../../utils/public.ts'
 import DefaultImg from '../../../assets/images/defaultAvatar.png'
+import styled from 'styled-components'
+
+const Box = styled.div`
+  td,
+  th {
+    white-space: nowrap;
+  }
+`
 
 interface Props {
   data: ConferenceData
@@ -19,15 +27,6 @@ export default function AdjournmentStage({ data }: Props) {
   const [snsMap, setSnsMap] = useState<Record<string, string>>({})
   const { getMultiSNS } = useQuerySNS()
 
-  useEffect(() => {
-    const proposalArr = data.proposals.filter(d => !!d.applicant).map(d => d.applicant)
-
-    const nodesArr = data.nodes.filter(d => !!d.wallet).map(d => d.wallet)
-
-    const arr = [...proposalArr, ...nodesArr, ...data.candidates]
-    handleSNS([...new Set(arr)])
-  }, [data])
-
   const handleSNS = async (wallets: string[]) => {
     try {
       const sns_map = await getMultiSNS(wallets)
@@ -37,8 +36,17 @@ export default function AdjournmentStage({ data }: Props) {
     }
   }
 
+  useEffect(() => {
+    const proposalArr = data.proposals.filter(d => !!d.applicant).map(d => d.applicant)
+
+    const nodesArr = data.nodes.filter(d => !!d.wallet).map(d => d.wallet)
+
+    const arr = [...proposalArr, ...nodesArr, ...data.candidates]
+    handleSNS([...new Set(arr)])
+  }, [data])
+
   return (
-    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
+    <Box className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
       {/* Conference Info Section */}
       <section className="relative min-h-[calc(100vh-4rem)] flex flex-col hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
@@ -376,6 +384,6 @@ export default function AdjournmentStage({ data }: Props) {
           ))}
         </div>
       </Modal>
-    </div>
+    </Box>
   )
 }

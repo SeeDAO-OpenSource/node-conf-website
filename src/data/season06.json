@@ -8,7 +8,6 @@
     "tokenId": "5",
     "explorerUrl": "https://polygonscan.com/token/0x8765432109876543210987654321098765432109"
   },
-  "currentNodes": 15,
   "currentCriteria": {
     "validSCR": 30000,
     "activeSCR": 8000,
@@ -21,30 +20,6 @@
     "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-50812",
     "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-50812"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x7654321098765432109876543210987654321091",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice6"
-    }
-  ],
-  "candidates": [
-    "0x8765432109876543210987654321098765432111",
-    "0x8765432109876543210987654321098765432112"
-  ],
-  "proposals": [
-    {
-      "id": "40",
-      "tag": "Technology",
-      "status": "Completed",
-      "title": "技术基础设施升级",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice6"
-      },
-      "link": "https://app.seedao.xyz/proposal/44"
-    }
-  ],
   "schedule": [
     {
       "time": "2024-03-01 20:00",

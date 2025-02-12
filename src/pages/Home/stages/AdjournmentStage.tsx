@@ -11,7 +11,6 @@ import DefaultImg from '../../../assets/images/defaultAvatar.png'
 
 interface Props {
   data: ConferenceData
-  nextSeasonData: ConferenceData
 }
 
 export default function AdjournmentStage({ data }: Props) {

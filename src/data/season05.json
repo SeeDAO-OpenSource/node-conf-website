@@ -8,7 +8,6 @@
     "tokenId": "4",
     "explorerUrl": "https://polygonscan.com/token/0x7654321098765432109876543210987654321098"
   },
-  "currentNodes": 12,
   "currentCriteria": {
     "validSCR": 30000,
     "activeSCR": 5000,
@@ -21,29 +20,6 @@
     "validSCRProposalLink": "https://forum.seedao.xyz/thread/sip-120-47638",
     "activeSCRProposalLink": "https://forum.seedao.xyz/thread/sip-120-47638"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x6543210987654321098765432109876543210981",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice5"
-    }
-  ],
-  "candidates": [
-    "0x7654321098765432109876543210987654321111"
-  ],
-  "proposals": [
-    {
-      "id": "45",
-      "tag": "Community",
-      "status": "Completed",
-      "title": "社区激励机制改革",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice5"
-      },
-      "link": "https://app.seedao.xyz/proposal/49"
-    }
-  ],
   "schedule": [
     {
       "time": "2023-12-01 20:00",

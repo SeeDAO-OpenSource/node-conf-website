@@ -8,7 +8,6 @@
     "tokenId": "2",
     "explorerUrl": "https://polygonscan.com/token/0x5432109876543210987654321098765432109876"
   },
-  "currentNodes": 8,
   "currentCriteria": {
     "validSCR": 20000,
     "activeSCR": 5000,
@@ -21,29 +20,6 @@
     "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-44523",
     "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-44523"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x4321098765432109876543210987654321098761",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice3"
-    }
-  ],
-  "candidates": [
-    "0x5432109876543210987654321098765432111111"
-  ],
-  "proposals": [
-    {
-      "id": "55",
-      "tag": "Governance",
-      "status": "Completed",
-      "title": "治理框架初步建设",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice3"
-      },
-      "link": "https://app.seedao.xyz/proposal/59"
-    }
-  ],
   "schedule": [
     {
       "time": "2023-06-02 20:00",
@@ -54,11 +30,13 @@
       "time": "2023-06-02 21:00",
       "speaker": "主持人",
       "topic": "本届节点大会提案讨论 & 第一轮投票"
-    }, {
+    },
+    {
       "time": "2023-06-02 21:00",
       "speaker": "主持人",
       "topic": "本届节点大会提案讨论 & 第一轮投票"
-    }, {
+    },
+    {
       "time": "2023-06-02 21:00",
       "speaker": "主持人",
       "topic": "本届节点大会提案讨论 & 第一轮投票"

@@ -61,7 +61,7 @@ export default function ArchivesPage() {
 
         module.default.candidates = candidates ?? []
         module.default.proposals = proposals?.data ?? []
-        // module.default.nodes = nodes?.data ?? []
+        module.default.nodes = nodes?.data ?? []
 
         const proposalArr: string[] = proposals?.data
           .filter(d => !!d.applicant)

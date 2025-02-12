@@ -8,7 +8,6 @@
     "tokenId": "3",
     "explorerUrl": "https://polygonscan.com/token/0x6543210987654321098765432109876543210987"
   },
-  "currentNodes": 10,
   "currentCriteria": {
     "validSCR": 20000,
     "activeSCR": 4000,
@@ -21,29 +20,6 @@
     "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-46023",
     "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-46023"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x5432109876543210987654321098765432109871",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice4"
-    }
-  ],
-  "candidates": [
-    "0x6543210987654321098765432109876543211111"
-  ],
-  "proposals": [
-    {
-      "id": "50",
-      "tag": "Treasury",
-      "status": "Completed",
-      "title": "财务管理制度优化",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice4"
-      },
-      "link": "https://app.seedao.xyz/proposal/54"
-    }
-  ],
   "schedule": [
     {
       "time": "2023-09-01 21:00",

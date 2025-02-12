@@ -8,7 +8,6 @@
     "tokenId": "0",
     "explorerUrl": "https://polygonscan.com/token/0x3210987654321098765432109876543210987654"
   },
-  "currentNodes": 3,
   "currentCriteria": {
     "validSCR": 20000,
     "activeSCR": 0,
@@ -21,29 +20,6 @@
     "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-40885",
     "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-40885"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x2109876543210987654321098765432109876541",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice1"
-    }
-  ],
-  "candidates": [
-    "0x3210987654321098765432109876543211111111"
-  ],
-  "proposals": [
-    {
-      "id": "65",
-      "tag": "Governance",
-      "status": "Completed",
-      "title": "SeeDAO节点共识大会创建提案",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice1"
-      },
-      "link": "https://app.seedao.xyz/proposal/69"
-    }
-  ],
   "schedule": [
     {
       "time": "2022-10-28 21:00",

@@ -8,7 +8,6 @@
     "tokenId": "1",
     "explorerUrl": "https://polygonscan.com/token/0x4321098765432109876543210987654321098765"
   },
-  "currentNodes": 5,
   "currentCriteria": {
     "validSCR": 20000,
     "activeSCR": 3000,
@@ -21,29 +20,6 @@
     "validSCRProposalLink": "https://forum.seedao.xyz/thread/search-42530",
     "activeSCRProposalLink": "https://forum.seedao.xyz/thread/search-42530"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x3210987654321098765432109876543210987651",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice2"
-    }
-  ],
-  "candidates": [
-    "0x4321098765432109876543210987654321111111"
-  ],
-  "proposals": [
-    {
-      "id": "60",
-      "tag": "Community",
-      "status": "Completed",
-      "title": "社区初步组织架构",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice2"
-      },
-      "link": "https://app.seedao.xyz/proposal/64"
-    }
-  ],
   "schedule": [
     {
       "time": "2023-02-24 21:00",

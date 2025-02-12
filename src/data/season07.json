@@ -8,7 +8,6 @@
     "tokenId": "6",
     "explorerUrl": "https://polygonscan.com/token/0x9876543210987654321098765432109876543210"
   },
-  "currentNodes": 20,
   "currentCriteria": {
     "validSCR": 20000,
     "activeSCR": 5000,
@@ -21,36 +20,6 @@
     "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/111",
     "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/112"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x8765432109876543210987654321098765432101",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice7"
-    },
-    {
-      "sns": "bob.seedao",
-      "walletAddress": "0x8765432109876543210987654321098765432102",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob7"
-    }
-  ],
-  "candidates": [
-    "0x9876543210987654321098765432109876543211",
-    "0x9876543210987654321098765432109876543212",
-    "0x9876543210987654321098765432109876543213"
-  ],
-  "proposals": [
-    {
-      "id": "35",
-      "tag": "Governance",
-      "status": "Completed",
-      "title": "社区治理架构优化",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice7"
-      },
-      "link": "https://app.seedao.xyz/proposal/39"
-    }
-  ],
   "schedule": [
     {
       "time": "2024-05-31 20:00",

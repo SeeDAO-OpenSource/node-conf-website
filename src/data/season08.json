@@ -8,7 +8,6 @@
     "tokenId": "0",
     "explorerUrl": "https://polygonscan.com/token/0x0123456789012345678901234567890123456789"
   },
-  "currentNodes": 25,
   "currentCriteria": {
     "validSCR": 20000,
     "activeSCR": 5000,
@@ -21,80 +20,6 @@
     "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/201",
     "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/202"
   },
-  "nodes": [
-    {
-      "sns": "alice.seedao",
-      "walletAddress": "0x0123456789012345678901234567890123456789",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice8"
-    },
-    {
-      "sns": "bob.seedao",
-      "walletAddress": "0x0123456789012345678901234567890123456790",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob8"
-    },
-    {
-      "sns": "charlie.seedao",
-      "walletAddress": "0x0123456789012345678901234567890123456791",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie8"
-    },
-    {
-      "sns": "david.seedao",
-      "walletAddress": "0x0123456789012345678901234567890123456792",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david8"
-    },
-    {
-      "sns": "emma.seedao",
-      "walletAddress": "0x0123456789012345678901234567890123456793",
-      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma8"
-    }
-  ],
-  "candidates": [
-    "0x1234567890123456789012345678901234567890",
-    "0x1234567890123456789012345678901234567891",
-    "0x1234567890123456789012345678901234567892",
-    "0x1234567890123456789012345678901234567893",
-    "0x1234567890123456789012345678901234567894",
-    "0x1234567890123456789012345678901234567895",
-    "0x1234567890123456789012345678901234567896",
-    "0x1234567890123456789012345678901234567897",
-    "0x1234567890123456789012345678901234567898",
-    "0x1234567890123456789012345678901234567899"
-  ],
-  "proposals": [
-    {
-      "id": "31",
-      "tag": "Governance",
-      "status": "Completed",
-      "title": "节点治理框架优化",
-      "proposer": {
-        "sns": "alice.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice8"
-      },
-      "link": "https://app.seedao.xyz/proposal/32"
-    },
-    {
-      "id": "32",
-      "tag": "Treasury",
-      "status": "Completed",
-      "title": "社区资金管理方案",
-      "proposer": {
-        "sns": "bob.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob8"
-      },
-      "link": "https://app.seedao.xyz/proposal/33"
-    },
-    {
-      "id": "33",
-      "tag": "Technology",
-      "status": "Completed",
-      "title": "技术架构升级计划",
-      "proposer": {
-        "sns": "charlie.seedao",
-        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=charlie8"
-      },
-      "link": "https://app.seedao.xyz/proposal/34"
-    }
-  ],
   "schedule": [
     {
       "time": "2024-08-31 20:00",

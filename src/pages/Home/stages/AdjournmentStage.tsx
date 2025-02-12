@@ -1,46 +1,42 @@
-import React, {useEffect, useState} from 'react';
-import type { ConferenceData } from '../../../types/conference';
-import Modal from '../../../components/Modal';
-import { truncateAddress } from '../../../utils/address';
-import dayjs from 'dayjs';
-import ReactMarkdown from 'react-markdown';
-import faqContent from '../../../content/faq.md?raw';
-import useQuerySNS from "../../../hooks/useQuerySNS.tsx";
-import {getStatus} from "../../../utils/public.ts";
-import DefaultImg from "../../../assets/images/defaultAvatar.png";
+import React, { useEffect, useState } from 'react'
+import type { ConferenceData } from '../../../types/conference'
+import Modal from '../../../components/Modal'
+import { truncateAddress } from '../../../utils/address'
+import dayjs from 'dayjs'
+import ReactMarkdown from 'react-markdown'
+import faqContent from '../../../content/faq.md?raw'
+import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
+import { getStatus } from '../../../utils/public.ts'
+import DefaultImg from '../../../assets/images/defaultAvatar.png'
 
 interface Props {
-  data: ConferenceData;
-  nextSeasonData: ConferenceData;
+  data: ConferenceData
+  nextSeasonData: ConferenceData
 }
 
-export default function AdjournmentStage({ data, nextSeasonData }: Props) {
-  const [showNodesModal, setShowNodesModal] = useState(false);
-  const [showCandidatesModal, setShowCandidatesModal] = useState(false);
-  const [snsMap, setSnsMap] = useState<any>({});
-  const { getMultiSNS } = useQuerySNS();
+export default function AdjournmentStage({ data }: Props) {
+  const [showNodesModal, setShowNodesModal] = useState(false)
+  const [showCandidatesModal, setShowCandidatesModal] = useState(false)
+  const [snsMap, setSnsMap] = useState<Record<string, string>>({})
+  const { getMultiSNS } = useQuerySNS()
 
   useEffect(() => {
+    const proposalArr = data.proposals.filter(d => !!d.applicant).map(d => d.applicant)
 
-    const  proposalArr = data.proposals.filter((d) => !!d.applicant).map((d) => d.applicant);
+    const nodesArr = data.nodes.filter(d => !!d.wallet).map(d => d.wallet)
 
-    const nodesArr = data.nodes.filter((d) => !!d.wallet).map((d) => d.wallet)
-
-    const arr =[...proposalArr,...nodesArr,...data.candidates]
-    handleSNS([...new Set(arr)]);
-
-
-  },[data])
+    const arr = [...proposalArr, ...nodesArr, ...data.candidates]
+    handleSNS([...new Set(arr)])
+  }, [data])
 
   const handleSNS = async (wallets: string[]) => {
-    try{
-      const sns_map = await getMultiSNS(wallets);
-      setSnsMap(sns_map);
-    }catch(error:any){
-      console.log(error);
+    try {
+      const sns_map = await getMultiSNS(wallets)
+      setSnsMap(sns_map)
+    } catch (error: unknown) {
+      console.log(error)
     }
-
-  };
+  }
 
   return (
     <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden ">
@@ -48,17 +44,21 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
       <section className="relative min-h-[calc(100vh-4rem)] flex flex-col hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center min-h-[calc(100vh-4rem)]">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl font-bold mb-6 text-gray-900">
-              第{data.season}季节点共识大会
-            </h1>
+            <h1 className="text-5xl font-bold mb-6 text-gray-900">第{data.season}季节点共识大会</h1>
 
             {/* Conference Date */}
             <div className="inline-flex items-center gap-3 text-xl text-gray-600 mb-8">
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
               <span>
-                {dayjs(data.startDate).format('YYYY年MM月DD日')} - {dayjs(data.endDate).format('MM月DD日')}
+                {dayjs(data.startDate).format('YYYY年MM月DD日')} -{' '}
+                {dayjs(data.endDate).format('MM月DD日')}
               </span>
             </div>
 
@@ -81,7 +81,9 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">有效SCR要求</span>
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-primary-600">{data.currentCriteria.validSCR}</span>
+                        <span className="font-bold text-primary-600">
+                          {data.currentCriteria.validSCR}
+                        </span>
                         {data.currentCriteria.validSCRProposalLink && (
                           <a
                             href={data.currentCriteria.validSCRProposalLink}
@@ -97,7 +99,9 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">活跃SCR要求</span>
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-primary-600">{data.currentCriteria.activeSCR}</span>
+                        <span className="font-bold text-primary-600">
+                          {data.currentCriteria.activeSCR}
+                        </span>
                         {data.currentCriteria.activeSCRProposalLink && (
                           <a
                             href={data.currentCriteria.activeSCRProposalLink}
@@ -135,7 +139,9 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">有效SCR要求</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-primary-600">{data.nextSeasonCriteria.validSCR}</span>
+                      <span className="font-bold text-primary-600">
+                        {data.nextSeasonCriteria.validSCR}
+                      </span>
                       {data.nextSeasonCriteria.validSCRProposalLink && (
                         <a
                           href={data.nextSeasonCriteria.validSCRProposalLink}
@@ -151,7 +157,9 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">活跃SCR要求</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-primary-600">{data.nextSeasonCriteria.activeSCR}</span>
+                      <span className="font-bold text-primary-600">
+                        {data.nextSeasonCriteria.activeSCR}
+                      </span>
                       {data.nextSeasonCriteria.activeSCRProposalLink && (
                         <a
                           href={data.nextSeasonCriteria.activeSCRProposalLink}
@@ -176,12 +184,17 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">会议日程</h2>
           <div className="space-y-6">
-            {Object.entries(data.schedule.reduce((acc, session) => {
-              const date = dayjs(session.time).format('YYYY-MM-DD');
-              if (!acc[date]) acc[date] = [];
-              acc[date].push(session);
-              return acc;
-            }, {} as Record<string, typeof data.schedule>)).map(([date, sessions]) => (
+            {Object.entries(
+              data.schedule.reduce(
+                (acc, session) => {
+                  const date = dayjs(session.time).format('YYYY-MM-DD')
+                  if (!acc[date]) acc[date] = []
+                  acc[date].push(session)
+                  return acc
+                },
+                {} as Record<string, typeof data.schedule>
+              )
+            ).map(([date, sessions]) => (
               <div key={date} className="bg-gray-50 rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-semibold text-primary-700 mb-4">
                   {dayjs(date).format('YYYY年MM月DD日')}
@@ -190,9 +203,15 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-gray-200">
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">时间</th>
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">主题</th>
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">演讲人</th>
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-[120px]">
+                          时间
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                          主题
+                        </th>
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                          演讲人
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -204,9 +223,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                           <td className="py-3 px-4 text-sm font-medium text-gray-900">
                             {session.topic}
                           </td>
-                          <td className="py-3 px-4 text-sm text-primary-600">
-                            {session.speaker}
-                          </td>
+                          <td className="py-3 px-4 text-sm text-primary-600">{session.speaker}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -223,7 +240,7 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">本季提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {data.proposals.map((proposal) => (
+            {data.proposals.map(proposal => (
               <div
                 key={proposal.link}
                 className="bg-white rounded-xl p-6 shadow-lg transition-all duration-200 group hover:shadow-xl"
@@ -238,15 +255,18 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {proposal.avatar && (
-                        <img
-                            src={proposal.avatar}
-                            className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
-                        />
+                      <img
+                        src={proposal.avatar}
+                        className="w-10 h-10 rounded-full ring-2 ring-primary-100 group-hover:ring-primary-200 transition-colors"
+                      />
                     )}
                     <div>
-                      {!!proposal.applicant && <span className="text-gray-900 font-medium block">
-                        {snsMap[proposal.applicant?.toLowerCase()!] ?? truncateAddress(proposal.applicant!)}
-                      </span>}
+                      {!!proposal.applicant && (
+                        <span className="text-gray-900 font-medium block">
+                          {snsMap[proposal.applicant.toLowerCase()!] ??
+                            truncateAddress(proposal.applicant!)}
+                        </span>
+                      )}
                       <span className="text-sm text-gray-500">提案人</span>
                     </div>
                   </div>
@@ -270,41 +290,42 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">常见问题</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {faqContent.split('##').slice(1).map((section, index) => {
-              const [headerLine, ...contentLines] = section.trim().split('\n');
-              const [type, title] = headerLine.split(':').map(s => s.trim());
-              const content = contentLines.join('\n').trim();
+            {faqContent
+              .split('##')
+              .slice(1)
+              .map((section, index) => {
+                const [headerLine, ...contentLines] = section.trim().split('\n')
+                const [type, title] = headerLine.split(':').map(s => s.trim())
+                const content = contentLines.join('\n').trim()
 
-              return (
-                <div
-                  key={index}
-                  className={`bg-white rounded-xl p-6 shadow-lg transition-all duration-200 hover:shadow-xl border-l-4 ${
-                    type.includes('primary') 
-                      ? 'border-primary-500 hover:border-primary-600' 
-                      : 'border-accent-500 hover:border-accent-600'
-                  }`}
-                >
-                  <h3 className={`text-xl font-semibold mb-4 ${
-                    type.includes('primary') ? 'text-primary-700' : 'text-accent-700'
-                  }`}>
-                    {title}
-                  </h3>
-                  <div className="prose prose-sm max-w-none text-gray-600">
-                    <ReactMarkdown>{content}</ReactMarkdown>
+                return (
+                  <div
+                    key={index}
+                    className={`bg-white rounded-xl p-6 shadow-lg transition-all duration-200 hover:shadow-xl border-l-4 ${
+                      type.includes('primary')
+                        ? 'border-primary-500 hover:border-primary-600'
+                        : 'border-accent-500 hover:border-accent-600'
+                    }`}
+                  >
+                    <h3
+                      className={`text-xl font-semibold mb-4 ${
+                        type.includes('primary') ? 'text-primary-700' : 'text-accent-700'
+                      }`}
+                    >
+                      {title}
+                    </h3>
+                    <div className="prose prose-sm max-w-none text-gray-600">
+                      <ReactMarkdown>{content}</ReactMarkdown>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                )
+              })}
           </div>
         </div>
       </section>
 
       {/* Modals */}
-      <Modal
-        isOpen={showNodesModal}
-        onClose={() => setShowNodesModal(false)}
-        title="节点列表"
-      >
+      <Modal isOpen={showNodesModal} onClose={() => setShowNodesModal(false)} title="节点列表">
         <div className="space-y-4">
           {data.nodes.map((node, index) => (
             <div
@@ -318,11 +339,14 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
                   className="w-10 h-10 rounded-full"
                 />
                 {/*<div>*/}
-                  <div className="font-medium text-gray-900"> {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}</div>
-                  <div className="text-sm text-gray-500 font-mono">
-                    {/*{truncateAddress(node?.wallet)}*/}
-                    {node?.wallet}
-                  </div>
+                <div className="font-medium text-gray-900">
+                  {' '}
+                  {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                </div>
+                <div className="text-sm text-gray-500 font-mono">
+                  {/*{truncateAddress(node?.wallet)}*/}
+                  {node?.wallet}
+                </div>
                 {/*</div>*/}
               </div>
             </div>
@@ -341,8 +365,10 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
               key={index}
               className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
             >
-
-              <div className="font-medium text-gray-900"> {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}</div>
+              <div className="font-medium text-gray-900">
+                {' '}
+                {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}
+              </div>
               <div className="text-sm  text-gray-500 font-mono">
                 {/*{truncateAddress(candidate)}*/}
                 {candidate}
@@ -352,5 +378,5 @@ export default function AdjournmentStage({ data, nextSeasonData }: Props) {
         </div>
       </Modal>
     </div>
-  );
+  )
 }

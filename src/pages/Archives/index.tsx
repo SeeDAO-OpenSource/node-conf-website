@@ -61,12 +61,19 @@ export default function ArchivesPage() {
 
         module.default.candidates = candidates ?? []
         module.default.proposals = proposals?.data ?? []
-        module.default.nodes = nodes?.data ?? []
+        // module.default.nodes = nodes?.data ?? []
 
-        const proposalArr = proposals?.data.filter(d => !!d.applicant).map(d => d.applicant)
+        const proposalArr: string[] = proposals?.data
+          .filter(d => !!d.applicant)
+          .map(d => d.applicant ?? '')
 
-        const nodesArr = nodes?.data.filter(d => !!d.wallet).map(d => d.wallet) ?? []
-        const arr = [...proposalArr, ...nodesArr, ...candidates]
+        console.log('nodes?.data', nodes?.data)
+
+        const nodesArr =
+          (nodes?.data as unknown as Record<string, string>[])
+            .filter(d => !!d.wallet)
+            .map(d => d.wallet) ?? []
+        const arr: string[] = [...proposalArr, ...nodesArr, ...candidates]
         handleSNS([...new Set(arr)])
 
         seasonData[selectedSeason] = module.default
@@ -506,13 +513,13 @@ export default function ArchivesPage() {
               <div className="flex items-center gap-4">
                 <img
                   src={node.avatar || DefaultImg}
-                  alt={snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                  alt={snsMap[node?.wallet?.toLowerCase()] ?? truncateAddress(node?.wallet)}
                   className="w-10 h-10 rounded-full"
                 />
                 {/*<div>*/}
                 <div className="font-medium text-gray-900">
                   {' '}
-                  {snsMap[node?.wallet.toLowerCase()] ?? truncateAddress(node?.wallet)}
+                  {snsMap[node?.wallet?.toLowerCase()] ?? truncateAddress(node?.wallet)}
                 </div>
                 <div className="text-sm text-gray-500 font-mono">
                   {/*{truncateAddress(node?.wallet)}*/}

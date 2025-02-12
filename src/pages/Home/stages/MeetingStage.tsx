@@ -289,10 +289,10 @@ export default function MeetingStage({ data }: Props) {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-gray-200">
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-[120px]">
                           时间
                         </th>
-                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
+                        <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 w-1/2 ">
                           主题
                         </th>
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
@@ -376,7 +376,7 @@ export default function MeetingStage({ data }: Props) {
                     href={proposal.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary"
+                    className="btn btn-primary px-2 sm:px-4"
                   >
                     查看提案
                   </a>
@@ -397,13 +397,13 @@ export default function MeetingStage({ data }: Props) {
           {data.candidates.map((candidate, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex items-center gap-4"
+              className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors flex flex-col sm:flex-row items-start gap-4 sm:items-center"
             >
               <div className="font-medium text-gray-900">
                 {' '}
                 {snsMap[candidate.toLowerCase()] ?? truncateAddress(candidate)}
               </div>
-              <div className="text-sm  text-gray-500 font-mono">
+              <div className="text-sm  text-gray-500 font-mono break-all">
                 {/*{truncateAddress(candidate)}*/}
                 {candidate}
               </div>

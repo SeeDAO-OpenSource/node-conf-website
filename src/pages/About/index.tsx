@@ -133,7 +133,7 @@ export default function AboutPage() {
           ))}
         </nav>
       </div>
-      <main className="space-y-8 bg-white rounded-lg shadow-lg p-8 flex-1 ">
+      <main className="space-y-8 bg-white rounded-lg shadow-lg flex-1 p-4 sm:p-8  ">
         <div className="prose prose-lg prose-indigo mx-auto text-gray-500">
           <ReactMarkdown
             components={{

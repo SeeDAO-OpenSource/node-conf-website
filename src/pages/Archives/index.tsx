@@ -221,9 +221,25 @@ export default function ArchivesPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">节点数量</span>
-                    <span className="font-bold text-primary-600">
-                      {selectedSeasonData.nodes.length}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-primary-600">
+                        {selectedSeasonData.nodes.length}
+                      </span>
+                      {selectedSeasonData.sbtToken.explorerUrl && (
+                        <a
+                          href={
+                            selectedSeasonData.sbtToken.explorerUrl +
+                            '?a=' +
+                            selectedSeasonData.sbtToken.tokenId
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-primary-600 hover:text-primary-700"
+                        >
+                          合约 →
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
@@ -320,6 +336,22 @@ export default function ArchivesPage() {
                       )}
                     </div>
                   </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">要求SEED数量</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-primary-600">1</span>
+                      {
+                        <a
+                          href="https://node.seedao.xyz/about/noderules"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-primary-600 hover:text-primary-700"
+                        >
+                          规则 →
+                        </a>
+                      }
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -364,9 +396,7 @@ export default function ArchivesPage() {
                       </thead>
                       <tbody className="divide-y divide-gray-200">
                         {sessions.map((session, index) => {
-                          const recording = selectedSeasonData.recordings.find(
-                            r => r.topic === session.topic
-                          )
+                          const recording = selectedSeasonData.recordings[index]
                           return (
                             <tr key={index} className="hover:bg-white transition-colors">
                               <td className="py-3 px-4 text-sm text-gray-600">
@@ -380,9 +410,9 @@ export default function ArchivesPage() {
                               </td>
                               <td className="py-3 px-4">
                                 <div className="flex items-center gap-2">
-                                  {recording?.video && (
+                                  {recording?.type === 'video' && (
                                     <a
-                                      href={recording.video}
+                                      href={recording.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-xs px-2 py-1 rounded bg-primary-50 text-primary-600 hover:bg-primary-100 transition-colors"
@@ -397,9 +427,9 @@ export default function ArchivesPage() {
                                       </svg>
                                     </a>
                                   )}
-                                  {recording?.slides && (
+                                  {recording?.type === 'slides' && (
                                     <a
-                                      href={recording.slides}
+                                      href={recording.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-xs px-2 py-1 rounded bg-secondary-50 text-secondary-600 hover:bg-secondary-100 transition-colors"
@@ -418,9 +448,9 @@ export default function ArchivesPage() {
                                       </svg>
                                     </a>
                                   )}
-                                  {recording?.article && (
+                                  {recording?.type === 'article' && (
                                     <a
-                                      href={recording.article}
+                                      href={recording.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-xs px-2 py-1 rounded bg-accent-50 text-accent-600 hover:bg-accent-100 transition-colors"

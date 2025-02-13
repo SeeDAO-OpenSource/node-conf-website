@@ -140,8 +140,8 @@ export default function AboutPage() {
               img: ({ node, src, ...props }) => {
                 console.log(node)
                 const srcURl = src?.startsWith('./')
-                  ? `/node-conf-website/images/about/${src.slice(2)}`
-                  : `/node-conf-website/images/about/${src}`
+                  ? `/images/about/${src.slice(2)}`
+                  : `/images/about/${src}`
                 return <img {...props} src={srcURl} />
               },
             }}

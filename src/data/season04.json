@@ -4,9 +4,9 @@
   "endDate": "2023-09-03T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/ghi-jkl-mno",
   "sbtToken": {
-    "contractAddress": "0x6543210987654321098765432109876543210987",
-    "tokenId": "3",
-    "explorerUrl": "https://polygonscan.com/token/0x6543210987654321098765432109876543210987"
+    "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
+    "tokenId": "4",
+    "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
   },
   "currentCriteria": {
     "validSCR": 20000,
@@ -80,9 +80,18 @@
   "recordings": [
     {
       "topic": "开幕致辞",
-      "video": "https://example.com/video4-1",
-      "slides": "https://example.com/slides4-1",
-      "article": "https://mirror.xyz/seedao.eth/article4-1"
+      "type": "video",
+      "link": "https://example.com/video8-1"
+    },
+    {
+      "topic": "第八季度工作总结",
+      "type": "slides",
+      "link": "https://example.com/video8-1"
+    },
+    {
+      "topic": "技术架构升级计划",
+      "type": "article",
+      "link": "https://example.com/video8-1"
     }
   ]
 }

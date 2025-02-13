@@ -100,9 +100,18 @@
   "recordings": [
     {
       "topic": "开幕致辞",
-      "video": "https://example.com/video7-1",
-      "slides": "https://example.com/slides7-1",
-      "article": "https://mirror.xyz/seedao.eth/article7-1"
+      "type": "video",
+      "link": "https://example.com/video8-1"
+    },
+    {
+      "topic": "第八季度工作总结",
+      "type": "slides",
+      "link": "https://example.com/video8-1"
+    },
+    {
+      "topic": "技术架构升级计划",
+      "type": "article",
+      "link": "https://example.com/video8-1"
     }
   ]
 }

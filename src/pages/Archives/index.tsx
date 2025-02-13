@@ -396,9 +396,7 @@ export default function ArchivesPage() {
                       </thead>
                       <tbody className="divide-y divide-gray-200">
                         {sessions.map((session, index) => {
-                          const recording = selectedSeasonData.recordings.find(
-                            r => r.topic === session.topic
-                          )
+                          const recording = selectedSeasonData.recordings[index]
                           return (
                             <tr key={index} className="hover:bg-white transition-colors">
                               <td className="py-3 px-4 text-sm text-gray-600">
@@ -412,9 +410,9 @@ export default function ArchivesPage() {
                               </td>
                               <td className="py-3 px-4">
                                 <div className="flex items-center gap-2">
-                                  {recording?.video && (
+                                  {recording?.type === 'video' && (
                                     <a
-                                      href={recording.video}
+                                      href={recording.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-xs px-2 py-1 rounded bg-primary-50 text-primary-600 hover:bg-primary-100 transition-colors"
@@ -429,9 +427,9 @@ export default function ArchivesPage() {
                                       </svg>
                                     </a>
                                   )}
-                                  {recording?.slides && (
+                                  {recording?.type === 'slides' && (
                                     <a
-                                      href={recording.slides}
+                                      href={recording.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-xs px-2 py-1 rounded bg-secondary-50 text-secondary-600 hover:bg-secondary-100 transition-colors"
@@ -450,9 +448,9 @@ export default function ArchivesPage() {
                                       </svg>
                                     </a>
                                   )}
-                                  {recording?.article && (
+                                  {recording?.type === 'article' && (
                                     <a
-                                      href={recording.article}
+                                      href={recording.link}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-xs px-2 py-1 rounded bg-accent-50 text-accent-600 hover:bg-accent-100 transition-colors"

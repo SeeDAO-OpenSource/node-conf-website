@@ -105,33 +105,18 @@
   "recordings": [
     {
       "topic": "开幕致辞",
-      "video": "https://example.com/video1",
-      "slides": "https://example.com/slides1",
-      "article": "https://mirror.xyz/seedao.eth/article1"
+      "type": "video",
+      "link": "https://example.com/video8-1"
     },
     {
-      "topic": "第九季度工作总结",
-      "video": "https://example.com/video2",
-      "slides": "https://example.com/slides2",
-      "article": "https://mirror.xyz/seedao.eth/article2"
+      "topic": "第八季度工作总结",
+      "type": "slides",
+      "link": "https://example.com/video8-1"
     },
     {
-      "topic": "社区治理提案讨论",
-      "video": "https://example.com/video3",
-      "slides": "https://example.com/slides3",
-      "article": "https://mirror.xyz/seedao.eth/article3"
-    },
-    {
-      "topic": "财务报告与预算规划",
-      "video": "https://example.com/video4",
-      "slides": "https://example.com/slides4",
-      "article": "https://mirror.xyz/seedao.eth/article4"
-    },
-    {
-      "topic": "技术架构升级方案",
-      "video": "https://example.com/video5",
-      "slides": "https://example.com/slides5",
-      "article": "https://mirror.xyz/seedao.eth/article5"
+      "topic": "技术架构升级计划",
+      "type": "article",
+      "link": "https://example.com/video8-1"
     }
   ]
 }

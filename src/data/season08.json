@@ -85,33 +85,18 @@
   "recordings": [
     {
       "topic": "开幕致辞",
-      "video": "https://example.com/video8-1",
-      "slides": "https://example.com/slides8-1",
-      "article": "https://mirror.xyz/seedao.eth/article8-1"
+      "type": "video",
+      "link": "https://example.com/video8-1"
     },
     {
       "topic": "第八季度工作总结",
-      "video": "https://example.com/video8-2",
-      "slides": "https://example.com/slides8-2",
-      "article": "https://mirror.xyz/seedao.eth/article8-2"
+      "type": "slides",
+      "link": "https://example.com/video8-1"
     },
     {
       "topic": "技术架构升级计划",
-      "video": "https://example.com/video8-3",
-      "slides": "https://example.com/slides8-3",
-      "article": "https://mirror.xyz/seedao.eth/article8-3"
-    },
-    {
-      "topic": "社区资金管理方案",
-      "video": "https://example.com/video8-4",
-      "slides": "https://example.com/slides8-4",
-      "article": "https://mirror.xyz/seedao.eth/article8-4"
-    },
-    {
-      "topic": "节点治理框架优化",
-      "video": "https://example.com/video8-5",
-      "slides": "https://example.com/slides8-5",
-      "article": "https://mirror.xyz/seedao.eth/article8-5"
+      "type": "article",
+      "link": "https://example.com/video8-1"
     }
   ]
 }

@@ -4,9 +4,9 @@
   "endDate": "2024-06-02T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/pqr-stuv-wxy",
   "sbtToken": {
-    "contractAddress": "0x9876543210987654321098765432109876543210",
-    "tokenId": "6",
-    "explorerUrl": "https://polygonscan.com/token/0x9876543210987654321098765432109876543210"
+    "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
+    "tokenId": "7",
+    "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
   },
   "currentCriteria": {
     "validSCR": 20000,

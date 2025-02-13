@@ -221,9 +221,25 @@ export default function ArchivesPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">节点数量</span>
-                    <span className="font-bold text-primary-600">
-                      {selectedSeasonData.nodes.length}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-primary-600">
+                        {selectedSeasonData.nodes.length}
+                      </span>
+                      {selectedSeasonData.sbtToken.explorerUrl && (
+                        <a
+                          href={
+                            selectedSeasonData.sbtToken.explorerUrl +
+                            '?a=' +
+                            selectedSeasonData.sbtToken.tokenId
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-primary-600 hover:text-primary-700"
+                        >
+                          合约 →
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
@@ -318,6 +334,22 @@ export default function ArchivesPage() {
                           提案 →
                         </a>
                       )}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">要求SEED数量</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-primary-600">1</span>
+                      {
+                        <a
+                          href="https://node.seedao.xyz/about/noderules"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-primary-600 hover:text-primary-700"
+                        >
+                          规则 →
+                        </a>
+                      }
                     </div>
                   </div>
                 </div>

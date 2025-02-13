@@ -4,9 +4,9 @@
   "endDate": "2023-02-26T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/abc-def-ghi",
   "sbtToken": {
-    "contractAddress": "0x4321098765432109876543210987654321098765",
-    "tokenId": "1",
-    "explorerUrl": "https://polygonscan.com/token/0x4321098765432109876543210987654321098765"
+    "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
+    "tokenId": "2",
+    "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
   },
   "currentCriteria": {
     "validSCR": 20000,

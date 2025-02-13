@@ -5,8 +5,8 @@
   "meetingLink": "https://meet.google.com/abc-defg-hij",
   "sbtToken": {
     "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
-    "tokenId": "1",
-    "explorerUrl": "https://polygonscan.com/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
+    "tokenId": "9",
+    "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
   },
   "currentCriteria": {
     "validSCR": 20000,

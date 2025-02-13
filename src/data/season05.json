@@ -104,19 +104,19 @@
   ],
   "recordings": [
     {
-      "topic": "开幕致辞",
+      "name": "S5 Conference Day 1 Recording",
       "type": "video",
-      "link": "https://example.com/video8-1"
+      "link": "https://www.youtube.com/watch?example1"
     },
     {
-      "topic": "第八季度工作总结",
+      "name": "S5 Conference Slides",
       "type": "slides",
-      "link": "https://example.com/video8-1"
+      "link": "https://docs.google.com/presentation/example"
     },
     {
-      "topic": "技术架构升级计划",
+      "name": "S5 Conference Summary",
       "type": "article",
-      "link": "https://example.com/video8-1"
+      "link": "https://medium.com/example"
     }
   ]
 }

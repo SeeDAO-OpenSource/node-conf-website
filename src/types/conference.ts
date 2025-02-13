@@ -30,7 +30,7 @@ export interface ScheduleSession {
 }
 
 export interface Recording {
-  topic: string
+  name: string
   link: string
   type: 'video' | 'slides' | 'article'
 }

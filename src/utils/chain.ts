@@ -1,43 +1,54 @@
-const CHAIN: any = {
+interface objProp {
+  chainId: number
+  chainName: string
+  nativeCurrency: {
+    name: string
+    symbol: string
+    decimals: number
+  }
+  rpcUrls: string[]
+}
+
+const CHAIN: Record<string, objProp> = {
   BSC_TESTNET: {
     chainId: 97,
-    chainName: "BNB Smart Chain Testnet",
+    chainName: 'BNB Smart Chain Testnet',
     nativeCurrency: {
-      name: "BNB",
-      symbol: "BNB",
+      name: 'BNB',
+      symbol: 'BNB',
       decimals: 18,
     },
     rpcUrls: [],
   },
   SEPOLIA: {
     chainId: 11155111,
-    chainName: "Sepolia",
+    chainName: 'Sepolia',
     nativeCurrency: {
-      name: "ETH",
-      symbol: "ETH",
+      name: 'ETH',
+      symbol: 'ETH',
       decimals: 18,
     },
-    rpcUrls: ["https://rpc.sepolia.io"],
+    rpcUrls: ['https://gateway.tenderly.co/public/sepolia', 'https://rpc.sepolia.io'],
   },
   POLYGON: {
     chainId: 137,
-    chainName: "Polygon",
+    chainName: 'Polygon',
     nativeCurrency: {
-      name: "MATIC",
-      symbol: "MATIC",
+      name: 'MATIC',
+      symbol: 'MATIC',
       decimals: 18,
     },
-    rpcUrls: ["https://rpc-mainnet.maticvigil.com"],
+    rpcUrls: ['https://rpc-mainnet.maticvigil.com'],
   },
   ETHEREUM: {
     chainId: 1,
-    chainName: "Ethereum Mainnet",
+    chainName: 'Ethereum Mainnet',
     nativeCurrency: {
-      name: "Ether",
-      symbol: "ETH",
+      name: 'Ether',
+      symbol: 'ETH',
       decimals: 18,
     },
-    rpcUrls: ["https://cloudflare-eth.com", "https://rpc.flashbots.net/"],
+    rpcUrls: ['https://cloudflare-eth.com', 'https://rpc.flashbots.net/'],
   },
-};
-export default CHAIN;
+}
+export default CHAIN

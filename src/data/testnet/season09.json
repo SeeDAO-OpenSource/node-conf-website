@@ -1,0 +1,122 @@
+{
+  "season": 9,
+  "startDate": "2024-11-29T09:00:00+08:00",
+  "endDate": "2024-12-01T17:00:00+08:00",
+  "meetingLink": "https://meet.google.com/abc-defg-hij",
+  "sbtToken": {
+    "contractAddress": "0x49293552BC204270E8D1A043cfdaac314A8b01A5",
+    "tokenId": "9",
+    "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
+  },
+  "currentCriteria": {
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/201",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/202"
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/273",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/272"
+  },
+  "schedule": [
+    {
+      "time": "2024-11-29 20:00",
+      "speaker": "Shawn(L5贡献者, 孵化器负责人)",
+      "topic": "孵化器分享"
+    },
+    {
+      "time": "2024-11-29 20:20",
+      "speaker": "Frozen(SeeDAO OS开发团队负责人)",
+      "topic": "SeeDAO App/OS迭代功能分享"
+    },
+    {
+      "time": "2024-11-29 20:40",
+      "speaker": "Ricky(S8治理协调) & 栗子(S8财务官)",
+      "topic": "S8 社区运行情况 & S8 财务说明"
+    },
+    {
+      "time": "2024-11-29 21:00",
+      "speaker": "Ashely(S8社区运营)",
+      "topic": "复盘本季共学与未来规划"
+    },
+    {
+      "time": "2024-11-29 21:30",
+      "speaker": "文倩(S8品牌协调) & 木南(闪电网络共学组织者)",
+      "topic": "因作而是，社区成员交流"
+    },
+    {
+      "time": "2024-11-29 21:50",
+      "speaker": "自由交流",
+      "topic": "讨论 S9 愿景、重大社区举措"
+    },
+    {
+      "time": "2024-11-30 14:00",
+      "speaker": "白鱼(SeeDAO 发起人)",
+      "topic": "DAO低潮?还是DAO新阶段?"
+    },
+    {
+      "time": "2024-11-30 14:20",
+      "speaker": "唐晗(SeeDAO 发起人)",
+      "topic": "关于南塘DAO的见闻及关于Zuzalu的一些反思"
+    },
+    {
+      "time": "2024-11-30 14:40",
+      "speaker": "Nico(来自上海的增强现实艺术家)",
+      "topic": "popup city & intentional community"
+    },
+    {
+      "time": "2024-11-30 15:00",
+      "speaker": "孙哲(社会学者，播客爱好者)",
+      "topic": "直面ACC:技术困境与生活解法"
+    },
+    {
+      "time": "2024-11-30 15:30",
+      "speaker": "自由交流",
+      "topic": "嘉宾答疑交流"
+    },
+    {
+      "time": "2024-12-01 20:00",
+      "speaker": "方庭(以太坊Researcher)",
+      "topic": "加密人文"
+    },
+    {
+      "time": "2024-12-01 20:20",
+      "speaker": "胡翌霖(華文DAO发起人,清华科学史系副教授(2014-2024))",
+      "topic": "再论国家的消逝：网络城邦为何能取代民族国家"
+    },
+    {
+      "time": "2024-12-01 20:40",
+      "speaker": "Ashley(SeeDAO Builder)",
+      "topic": "跨越时间的对话：社区内容创作与人际网络"
+    },
+    {
+      "time": "2024-12-01 21:00",
+      "speaker": "定慧(DAO Builder)",
+      "topic": "SeeDAO 新业务调研进展同步与下一步意向收集"
+    },
+    {
+      "time": "2024-12-01 21:30",
+      "speaker": "自由交流",
+      "topic": "嘉宾答疑交流"
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "开幕致辞",
+      "type": "video",
+      "link": "https://example.com/video8-1"
+    },
+    {
+      "topic": "第八季度工作总结",
+      "type": "slides",
+      "link": "https://example.com/video8-1"
+    },
+    {
+      "topic": "技术架构升级计划",
+      "type": "article",
+      "link": "https://example.com/video8-1"
+    }
+  ]
+}

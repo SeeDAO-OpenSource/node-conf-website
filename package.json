@@ -6,8 +6,11 @@
   "scripts": {
     "copy-images": "node --experimental-json-modules scripts/copyImages.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "dev": "vite",
-    "build": "npm run copy-images && tsc && vite build && npm run generate-sitemap",
+    "dev": " VITE_CHAIN=mainnet vite",
+    "dev:test": " VITE_CHAIN=testnet vite",
+    "generate-route-html": "node scripts/generate-route-html.js",
+    "build": "npm run copy-images && tsc && VITE_CHAIN=mainnet  vite build && npm run generate-sitemap && npm run generate-route-html",
+    "build:dev": "npm run copy-images && tsc && VITE_CHAIN=testnet vite build && npm run generate-sitemap && npm run generate-route-html",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",

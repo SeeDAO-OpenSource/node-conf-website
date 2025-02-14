@@ -52,7 +52,11 @@ export default function ArchivesPage() {
       setLoading(true)
       try {
         const seasonNumber = String(selectedSeason).padStart(2, '0')
-        const module = (await import(`../../data/season${seasonNumber}.json`)) ?? {}
+
+        const module =
+          import.meta.env.VITE_CHAIN === 'testnet'
+            ? await import(`../../data/testnet/season${seasonNumber}.json`)
+            : await import(`../../data/season${seasonNumber}.json`)
 
         const candidates = await getSeasonCandidate(Number(seasonNumber))
 

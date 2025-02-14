@@ -10,23 +10,30 @@ import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
 import { truncateAddress } from '../../../utils/address.ts'
 import styled from 'styled-components'
 import { CLAIM_END_AT } from '../../../config/config.ts'
+import { X } from 'lucide-react'
+import QrCodeImg from '../../../assets/images/qrcode.jpg'
 
 const Box = styled.div`
-  .addeventatc {
-    box-shadow: none !important;
-    z-index: auto !important;
-    position: relative;
-    background-color: transparent !important;
-    font-size: 12px !important;
-    color: #222 !important;
-    font-weight: normal !important;
-  }
-  .addeventatc_dropdown {
-    z-index: 10 !important;
-  }
   td,
   th {
     white-space: nowrap;
+  }
+  #qrcode {
+    background: rgba(13, 12, 15, 0.8);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 999999999;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    img {
+      width: 300px;
+    }
   }
 `
 
@@ -39,6 +46,7 @@ export default function MeetingStage({ data }: Props) {
   // const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
   const [showClaim, setShowClaim] = useState(true)
   const [showCandidatesModal, setShowCandidatesModal] = useState(false)
+  const [showQr, setShowQr] = useState(false)
   const [snsMap, setSnsMap] = useState<Record<string, string>>({})
   // const { checkExpiration } = useWallet();
 
@@ -166,8 +174,24 @@ export default function MeetingStage({ data }: Props) {
     </div>
   )
 
+  const handleQrShow = () => {
+    setShowQr(true)
+  }
+  const handleQrHidden = () => {
+    setShowQr(false)
+  }
+
   return (
-    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
+    <Box className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
+      {showQr && (
+        <div id="qrcode">
+          <div className="relative">
+            <img src={QrCodeImg} alt="" className="img-qrcode" />
+            <X className="absolute right-2 top-2 cursor-pointer" onClick={() => handleQrHidden()} />
+          </div>
+        </div>
+      )}
+
       <section className="relative min-h-[80vh] hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto">
@@ -189,6 +213,7 @@ export default function MeetingStage({ data }: Props) {
                         <ClaimButton
                           contractAddress={data.sbtToken.contractAddress}
                           candidates={data.candidates}
+                          handleShow={handleQrShow}
                         />
                       )}
 
@@ -279,7 +304,7 @@ export default function MeetingStage({ data }: Props) {
               </div>
             )}
           </div>
-          <Box className="space-y-6">
+          <div className="space-y-6">
             {Object.entries(scheduleByDate).map(([date, sessions]) => (
               <div key={date} className="bg-white rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-primary-700 mb-4">
@@ -298,7 +323,6 @@ export default function MeetingStage({ data }: Props) {
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
                           演讲人
                         </th>
-                        {/*<th>&nbsp;</th>*/}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -311,17 +335,6 @@ export default function MeetingStage({ data }: Props) {
                             {session.topic}
                           </td>
                           <td className="py-3 px-4 text-sm text-primary-600">{session.speaker}</td>
-                          {/*<td>*/}
-                          {/*  <div title="Add to Calendar" className="addeventatc" >*/}
-                          {/*    添加到日历*/}
-                          {/*    <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>*/}
-                          {/*    /!*<span className="end">02/22/2025 10:00 AM</span>*!/*/}
-                          {/*    /!*<span className="timezone">America/Los_Angeles</span>*!/*/}
-                          {/*    <span className="title">{session.topic}</span>*/}
-                          {/*    /!*<span className="description">Description of the event</span>*!/*/}
-                          {/*    /!*<span className="location">Location of the event</span>*!/*/}
-                          {/*  </div>*/}
-                          {/*</td>*/}
                         </tr>
                       ))}
                     </tbody>
@@ -329,7 +342,7 @@ export default function MeetingStage({ data }: Props) {
                 </div>
               </div>
             ))}
-          </Box>
+          </div>
         </div>
       </section>
 
@@ -411,6 +424,6 @@ export default function MeetingStage({ data }: Props) {
           ))}
         </div>
       </Modal>
-    </div>
+    </Box>
   )
 }

@@ -107,7 +107,9 @@ export async function claimSBT(contractAddress: string, signer: Signer, address:
       throw new Error(`no proof`)
     }
 
-    const tx = await sbtContract.claim(CURRENT_SEASON, proof)
+    const tokenId = import.meta.env.VITE_CHAIN === 'testnet' ? 1 : CURRENT_SEASON
+
+    const tx = await sbtContract.claim(tokenId, proof)
     await tx.wait()
     return true
   } catch (error: unknown) {

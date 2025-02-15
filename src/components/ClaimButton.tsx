@@ -81,7 +81,7 @@ export default function ClaimButton({ contractAddress, candidates, handleShow }:
 
   return (
     <>
-      <LoginModal showModal={show} handleClose={handleClose} />
+      <LoginModal showModal={show.toString()} handleClose={handleClose} />
 
       {loading && (
         <button

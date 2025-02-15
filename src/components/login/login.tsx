@@ -51,7 +51,7 @@ const getConnectorStatic = (id: CONNECTOR_ID): { icon: string; wallet: string } 
 }
 
 const LoginModalContent = ({ handleClose }: { handleClose: () => void }) => {
-  const { connectors, isLoading: connectAsync } = useConnect()
+  const { connectors, connectAsync } = useConnect()
   const { isConnected, address } = useAccount()
 
   const [selectConnectorId, setSelectConnectorId] = useState<CONNECTOR_ID>()
@@ -120,7 +120,7 @@ const LoginModalContent = ({ handleClose }: { handleClose: () => void }) => {
     })
   }
   return (
-    <Mask show={true.toString()}>
+    <Mask show={true}>
       <Modal>
         <span className="icon-close" onClick={() => closeModal()}>
           <img src={CloseImg} alt="" />

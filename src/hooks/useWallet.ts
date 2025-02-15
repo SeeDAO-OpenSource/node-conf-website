@@ -1,81 +1,60 @@
-import { useState, useCallback, useEffect } from 'react';
-import {checkSBTOwnership, claimSBT, handleExpiration} from '../services/web3';
-import {useSelector} from "react-redux";
+import { useState, useCallback } from 'react'
+import { checkSBTOwnership, claimSBT, handleExpiration } from '../services/web3'
+import { useSelector } from 'react-redux'
 
-import {useEthersProvider, useEthersSigner} from "./ethersNew";
-import CHAIN from "../utils/chain.ts";
-import {USE_NETWORK} from "../utils/constant.ts";
+import { useEthersProvider, useEthersSigner } from './ethersNew'
+import CHAIN from '../utils/chain.ts'
+import { USE_NETWORK } from '../utils/constant.ts'
+import InitState from '../store/initState.ts'
 
 export function useWallet() {
-  const [account, setAccount] = useState<string | null>(null);
-  const [connecting, setConnecting] = useState(false);
-  const [claiming, setClaiming] = useState(false);
-  const address = useSelector((store:any) => store.account);
-  const signer = useEthersSigner({chainId:CHAIN[USE_NETWORK].chainId });
-  const provider = useEthersProvider({chainId:CHAIN[USE_NETWORK].chainId });
+  const [claiming, setClaiming] = useState(false)
+  const address = useSelector((store: typeof InitState) => store.account)
+  const signer = useEthersSigner({ chainId: CHAIN[USE_NETWORK].chainId })
+  const provider = useEthersProvider({ chainId: CHAIN[USE_NETWORK].chainId })
 
-  // // Handle account changes
-  // useEffect(() => {
-  //   if (window.ethereum) {
-  //     window.ethereum.on('accountsChanged', (accounts: string[]) => {
-  //       setAccount(accounts[0] || null);
-  //     });
-  //
-  //     window.ethereum.on('chainChanged', () => {
-  //       window.location.reload();
-  //     });
-  //   }
-  // }, []);
+  const claim = useCallback(
+    async (contractAddress: string) => {
+      if (!address) throw new Error('Wallet not connected')
+      if (!signer) return
 
-  // const connect = useCallback(async () => {
-  //   setConnecting(true);
-  //   try {
-  //     const account = await connectWallet();
-  //     setAccount(account);
-  //     return !!account;
-  //   } catch (error) {
-  //     console.error('Failed to connect wallet:', error);
-  //     return false;
-  //   } finally {
-  //     setConnecting(false);
-  //   }
-  // }, []);
+      setClaiming(true)
+      try {
+        await claimSBT(contractAddress, signer, address)
+        return true
+      } catch (error) {
+        console.error('Failed to claim SBT:', error)
+        throw error
+      } finally {
+        setClaiming(false)
+      }
+    },
+    [address, signer]
+  )
 
-  const claim = useCallback(async (contractAddress: string) => {
-    if (!address) throw new Error('Wallet not connected');
-    if(!signer)return;
+  const checkOwnership = useCallback(
+    async (contractAddress: string) => {
+      if (!address) return false
+      if (!signer) return false
+      return checkSBTOwnership(contractAddress, address, signer)
+    },
+    [address, signer]
+  )
 
-    setClaiming(true);
-    try {
-      await claimSBT(contractAddress,signer,address);
-      return true;
-    } catch (error) {
-      console.error('Failed to claim SBT:', error);
-      throw error;
-    } finally {
-      setClaiming(false);
-    }
-  }, [address,signer]);
-
-  const checkOwnership = useCallback(async (contractAddress: string) => {
-    if (!address) return false;
-    if(!provider)return false;
-    return checkSBTOwnership(contractAddress, address,provider);
-  }, [address,provider]);
-
-  const checkExpiration =  useCallback(async (contractAddress: string) => {
-    if (!address) return false;
-    if(!provider)return false;
-    return await handleExpiration(contractAddress,provider);
-  }, [address,provider]);
+  const checkExpiration = useCallback(
+    async (contractAddress: string) => {
+      if (!address) return false
+      if (!signer) return false
+      return await handleExpiration(contractAddress, signer)
+    },
+    [address, provider]
+  )
 
   return {
-    account,
-    connecting,
     claiming,
     checkExpiration,
     // connect,
     claim,
     checkOwnership,
-  };
+  }
 }

@@ -4,7 +4,7 @@
   "endDate": "2024-12-01T17:00:00+08:00",
   "meetingLink": "https://meet.google.com/abc-defg-hij",
   "sbtToken": {
-    "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
+    "contractAddress": "0x49293552BC204270E8D1A043cfdaac314A8b01A5",
     "tokenId": "9",
     "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
   },
@@ -104,17 +104,17 @@
   ],
   "recordings": [
     {
-      "name": "开幕致辞",
+      "topic": "开幕致辞",
       "type": "video",
       "link": "https://example.com/video8-1"
     },
     {
-      "name": "第九季度工作总结",
+      "topic": "第八季度工作总结",
       "type": "slides",
       "link": "https://example.com/video8-1"
     },
     {
-      "name": "技术架构升级计划",
+      "topic": "技术架构升级计划",
       "type": "article",
       "link": "https://example.com/video8-1"
     }

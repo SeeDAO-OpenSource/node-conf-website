@@ -10,23 +10,30 @@ import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
 import { truncateAddress } from '../../../utils/address.ts'
 import styled from 'styled-components'
 import { CLAIM_END_AT } from '../../../config/config.ts'
+import { X } from 'lucide-react'
+import QrCodeImg from '../../../assets/images/qrcode.jpg'
 
 const Box = styled.div`
-  .addeventatc {
-    box-shadow: none !important;
-    z-index: auto !important;
-    position: relative;
-    background-color: transparent !important;
-    font-size: 12px !important;
-    color: #222 !important;
-    font-weight: normal !important;
-  }
-  .addeventatc_dropdown {
-    z-index: 10 !important;
-  }
   td,
   th {
     white-space: nowrap;
+  }
+  #qrcode {
+    background: rgba(13, 12, 15, 0.8);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 999999999;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    img {
+      width: 300px;
+    }
   }
 `
 
@@ -39,6 +46,7 @@ export default function MeetingStage({ data }: Props) {
   // const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
   const [showClaim, setShowClaim] = useState(true)
   const [showCandidatesModal, setShowCandidatesModal] = useState(false)
+  const [showQr, setShowQr] = useState(false)
   const [snsMap, setSnsMap] = useState<Record<string, string>>({})
   // const { checkExpiration } = useWallet();
 
@@ -166,8 +174,24 @@ export default function MeetingStage({ data }: Props) {
     </div>
   )
 
+  const handleQrShow = () => {
+    setShowQr(true)
+  }
+  const handleQrHidden = () => {
+    setShowQr(false)
+  }
+
   return (
-    <div className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
+    <Box className="space-y-0 -mx-[calc((100vw-101%)/2)] overflow-x-hidden">
+      {showQr && (
+        <div id="qrcode">
+          <div className="relative">
+            <img src={QrCodeImg} alt="" className="img-qrcode" />
+            <X className="absolute right-2 top-2 cursor-pointer" onClick={() => handleQrHidden()} />
+          </div>
+        </div>
+      )}
+
       <section className="relative min-h-[80vh] hero-bg px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-4xl mx-auto">
@@ -189,6 +213,7 @@ export default function MeetingStage({ data }: Props) {
                         <ClaimButton
                           contractAddress={data.sbtToken.contractAddress}
                           candidates={data.candidates}
+                          handleShow={handleQrShow}
                         />
                       )}
 
@@ -209,23 +234,27 @@ export default function MeetingStage({ data }: Props) {
                       <div>
                         <p className="text-gray-600 mb-3">剩余认领时间</p>
                         <Countdown
-                          date={claimEndTime}
+                          // date={claimEndTime}
+                          date={CLAIM_END_AT}
                           onComplete={() => setShowClaim(false)}
-                          renderer={({ hours, minutes, seconds }) => (
-                            <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
-                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                {String(hours).padStart(2, '0')}
-                              </span>
-                              <span className="w-4 text-center">:</span>
-                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                {String(minutes).padStart(2, '0')}
-                              </span>
-                              <span className="w-4 text-center">:</span>
-                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                {String(seconds).padStart(2, '0')}
-                              </span>
-                            </div>
-                          )}
+                          renderer={({ days, hours, minutes, seconds }) => {
+                            const totalHours = days * 24 + hours
+                            return (
+                              <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
+                                <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                  {String(totalHours).padStart(2, '0')}
+                                </span>
+                                <span className="w-4 text-center">:</span>
+                                <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                  {String(minutes).padStart(2, '0')}
+                                </span>
+                                <span className="w-4 text-center">:</span>
+                                <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                  {String(seconds).padStart(2, '0')}
+                                </span>
+                              </div>
+                            )
+                          }}
                         />
                       </div>
                     )}
@@ -234,7 +263,7 @@ export default function MeetingStage({ data }: Props) {
               </div>
             }
 
-            {meetingStatus === 'not-started' && (
+            {/* {meetingStatus === 'not-started' && (
               <div className="relative">
                 <Countdown
                   date={new Date(data.startDate)}
@@ -250,13 +279,13 @@ export default function MeetingStage({ data }: Props) {
                   )}
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </section>
 
       {/* Schedule Section */}
-      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
+      {/* <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="relative flex items-center mb-12">
             <h2 className="text-4xl font-bold w-full text-center text-gray-900">会议日程</h2>
@@ -279,7 +308,7 @@ export default function MeetingStage({ data }: Props) {
               </div>
             )}
           </div>
-          <Box className="space-y-6">
+          <div className="space-y-6">
             {Object.entries(scheduleByDate).map(([date, sessions]) => (
               <div key={date} className="bg-white rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-primary-700 mb-4">
@@ -298,7 +327,6 @@ export default function MeetingStage({ data }: Props) {
                         <th className="py-3 px-4 text-left text-sm font-medium text-gray-500">
                           演讲人
                         </th>
-                        {/*<th>&nbsp;</th>*/}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -311,17 +339,6 @@ export default function MeetingStage({ data }: Props) {
                             {session.topic}
                           </td>
                           <td className="py-3 px-4 text-sm text-primary-600">{session.speaker}</td>
-                          {/*<td>*/}
-                          {/*  <div title="Add to Calendar" className="addeventatc" >*/}
-                          {/*    添加到日历*/}
-                          {/*    <span className="start">{dayjs(session.time).format('MM/DD/YYYY hh:mm a')}</span>*/}
-                          {/*    /!*<span className="end">02/22/2025 10:00 AM</span>*!/*/}
-                          {/*    /!*<span className="timezone">America/Los_Angeles</span>*!/*/}
-                          {/*    <span className="title">{session.topic}</span>*/}
-                          {/*    /!*<span className="description">Description of the event</span>*!/*/}
-                          {/*    /!*<span className="location">Location of the event</span>*!/*/}
-                          {/*  </div>*/}
-                          {/*</td>*/}
                         </tr>
                       ))}
                     </tbody>
@@ -329,12 +346,12 @@ export default function MeetingStage({ data }: Props) {
                 </div>
               </div>
             ))}
-          </Box>
+          </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Proposals Section */}
-      <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
+      {/* <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -385,7 +402,7 @@ export default function MeetingStage({ data }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Candidates Modal */}
       <Modal
@@ -411,6 +428,6 @@ export default function MeetingStage({ data }: Props) {
           ))}
         </div>
       </Modal>
-    </div>
+    </Box>
   )
 }

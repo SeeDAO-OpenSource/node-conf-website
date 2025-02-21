@@ -1,0 +1,37 @@
+{
+  "season": 11,
+  "startDate": "",
+  "endDate": "",
+  "meetingLink": "",
+  "sbtToken": {
+    "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
+    "tokenId": "11",
+    "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
+  },
+  "currentCriteria": {
+    "validSCR": 0,
+    "activeSCR": 0,
+    "validSCRProposalLink": "",
+    "activeSCRProposalLink": ""
+  },
+  "nextSeasonCriteria": {
+    "validSCR": 0,
+    "activeSCR": 0,
+    "validSCRProposalLink": "",
+    "activeSCRProposalLink": ""
+  },
+  "schedule": [
+    {
+      "time": "",
+      "speaker": "",
+      "topic": ""
+    }
+  ],
+  "recordings": [
+    {
+      "topic": "",
+      "type": "",
+      "link": ""
+    }
+  ]
+}

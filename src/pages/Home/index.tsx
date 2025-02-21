@@ -23,13 +23,13 @@ export default function HomePage() {
 
         // Load current and next season data first
         const [currentSeasonModule, candidates, proposals, nodes] = await Promise.all([
-          import(`../../data/season${currentSeasonFormatted}.json`),
+          import.meta.env.VITE_CHAIN === 'testnet'
+            ? import(`../../data/testnet/season${currentSeasonFormatted}.json`)
+            : import(`../../data/season${currentSeasonFormatted}.json`),
+
           getSeasonCandidate(Number(currentSeasonFormatted)),
           getSeasonProposals(Number(currentSeasonFormatted)),
           getSeasonNodes(Number(currentSeasonFormatted)),
-          getSeasonCandidate(Number(nextSeasonFormatted)),
-          getSeasonProposals(Number(nextSeasonFormatted)),
-          getSeasonNodes(Number(nextSeasonFormatted)),
         ])
 
         currentSeasonModule.default.candidates = candidates
@@ -41,10 +41,10 @@ export default function HomePage() {
         if (CONFERENCE_STAGE === 'meeting') {
           try {
             const previousSeasonFormatted = String(CURRENT_SEASON - 1).padStart(2, '0')
-            // const previousSeasonModule = await import(`../../data/season${previousSeasonFormatted}.json`);
-
             const [previousSeasonModule, candidates, proposals, nodes] = await Promise.all([
-              import(`../../data/season${previousSeasonFormatted}.json`),
+              import.meta.env.VITE_CHAIN === 'testnet'
+                ? import(`../../data/testnet/season${previousSeasonFormatted}.json`)
+                : import(`../../data/season${previousSeasonFormatted}.json`),
               getSeasonCandidate(Number(previousSeasonFormatted)),
               getSeasonProposals(Number(previousSeasonFormatted)),
               getSeasonNodes(Number(previousSeasonFormatted)),

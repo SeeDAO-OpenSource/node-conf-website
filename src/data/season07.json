@@ -99,17 +99,17 @@
   ],
   "recordings": [
     {
-      "topic": "开幕致辞",
+      "name": "开幕致辞",
       "type": "video",
       "link": "https://example.com/video8-1"
     },
     {
-      "topic": "第八季度工作总结",
+      "name": "第八季度工作总结",
       "type": "slides",
       "link": "https://example.com/video8-1"
     },
     {
-      "topic": "技术架构升级计划",
+      "name": "技术架构升级计划",
       "type": "article",
       "link": "https://example.com/video8-1"
     }

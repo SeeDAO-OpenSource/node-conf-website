@@ -234,23 +234,27 @@ export default function MeetingStage({ data }: Props) {
                       <div>
                         <p className="text-gray-600 mb-3">剩余认领时间</p>
                         <Countdown
-                          date={claimEndTime}
+                          // date={claimEndTime}
+                          date={CLAIM_END_AT}
                           onComplete={() => setShowClaim(false)}
-                          renderer={({ hours, minutes, seconds }) => (
-                            <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
-                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                {String(hours).padStart(2, '0')}
-                              </span>
-                              <span className="w-4 text-center">:</span>
-                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                {String(minutes).padStart(2, '0')}
-                              </span>
-                              <span className="w-4 text-center">:</span>
-                              <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                {String(seconds).padStart(2, '0')}
-                              </span>
-                            </div>
-                          )}
+                          renderer={({ days, hours, minutes, seconds }) => {
+                            const totalHours = days * 24 + hours
+                            return (
+                              <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
+                                <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                  {String(totalHours).padStart(2, '0')}
+                                </span>
+                                <span className="w-4 text-center">:</span>
+                                <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                  {String(minutes).padStart(2, '0')}
+                                </span>
+                                <span className="w-4 text-center">:</span>
+                                <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                  {String(seconds).padStart(2, '0')}
+                                </span>
+                              </div>
+                            )
+                          }}
                         />
                       </div>
                     )}

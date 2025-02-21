@@ -30,9 +30,6 @@ export default function HomePage() {
           getSeasonCandidate(Number(currentSeasonFormatted)),
           getSeasonProposals(Number(currentSeasonFormatted)),
           getSeasonNodes(Number(currentSeasonFormatted)),
-          getSeasonCandidate(Number(nextSeasonFormatted)),
-          getSeasonProposals(Number(nextSeasonFormatted)),
-          getSeasonNodes(Number(nextSeasonFormatted)),
         ])
 
         currentSeasonModule.default.candidates = candidates

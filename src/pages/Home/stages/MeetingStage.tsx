@@ -259,7 +259,7 @@ export default function MeetingStage({ data }: Props) {
               </div>
             }
 
-            {meetingStatus === 'not-started' && (
+            {/* {meetingStatus === 'not-started' && (
               <div className="relative">
                 <Countdown
                   date={new Date(data.startDate)}
@@ -275,13 +275,13 @@ export default function MeetingStage({ data }: Props) {
                   )}
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </section>
 
       {/* Schedule Section */}
-      <section className="relative bg-white px-[calc((100vw-101%)/2)]">
+      {/* <section className="relative bg-white px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="relative flex items-center mb-12">
             <h2 className="text-4xl font-bold w-full text-center text-gray-900">会议日程</h2>
@@ -344,10 +344,10 @@ export default function MeetingStage({ data }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Proposals Section */}
-      <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
+      {/* <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -398,7 +398,7 @@ export default function MeetingStage({ data }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Candidates Modal */}
       <Modal

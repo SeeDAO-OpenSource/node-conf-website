@@ -1,7 +1,7 @@
 {
   "season": 10,
-  "startDate": "",
-  "endDate": "",
+  "startDate": "2025-02-28T09:00:00+08:00",
+  "endDate": "2025-03-01T23:00:00+08:00",
   "meetingLink": "",
   "sbtToken": {
     "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",

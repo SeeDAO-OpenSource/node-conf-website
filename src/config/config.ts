@@ -5,7 +5,7 @@
 export const CONFERENCE_STAGE: 'adjournment' | 'preparatory' | 'meeting' = 'meeting'
 
 // Season configuration
-export const CURRENT_SEASON = 9 //当前季度
+export const CURRENT_SEASON = 10 //当前季度
 
 // export const CLAIM_START_AT = new Date("2024-11-28T00:00:00+08:00").getTime(); // 节点mint开始时间
 // export const CLAIM_END_AT = new Date("2024-11-28T00:00:00+08:00").getTime(); // 节点mint结束时间

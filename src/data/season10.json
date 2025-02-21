@@ -14,24 +14,7 @@
     "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/273",
     "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/272"
   },
-  "nextSeasonCriteria": {
-    "validSCR": 20000,
-    "activeSCR": 5000,
-    "validSCRProposalLink": "",
-    "activeSCRProposalLink": ""
-  },
-  "schedule": [
-    {
-      "time": "",
-      "speaker": "",
-      "topic": ""
-    }
-  ],
-  "recordings": [
-    {
-      "topic": "",
-      "type": "",
-      "link": ""
-    }
-  ]
+  "nextSeasonCriteria": {},
+  "schedule": [],
+  "recordings": []
 }

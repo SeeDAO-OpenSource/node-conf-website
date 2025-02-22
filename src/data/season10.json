@@ -16,6 +16,11 @@
   },
   "nextSeasonCriteria": {},
   "schedule": [
+   {
+      "time": "2025-03-01 20:00",
+      "speaker": "咖啡 & 栗子 (SeeDAO L5级贡献者，多季市政厅成员)",
+      "topic": "S9 社区运行状况分享"
+    },
     
   ],
   "recordings": []

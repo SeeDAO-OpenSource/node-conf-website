@@ -13,7 +13,14 @@ import styled from 'styled-components'
 const Box = styled.div`
   td,
   th {
-    white-space: nowrap;
+    word-break: break-all;
+  }
+
+  @media (max-width: 1024px) {
+    td,
+    th {
+      white-space: nowrap;
+    }
   }
 `
 

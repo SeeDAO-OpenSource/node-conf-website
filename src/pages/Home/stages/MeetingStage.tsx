@@ -16,7 +16,7 @@ import QrCodeImg from '../../../assets/images/qrcode.jpg'
 const Box = styled.div`
   td,
   th {
-    white-space: nowrap;
+    word-break: break-all;
   }
   #qrcode {
     background: rgba(13, 12, 15, 0.8);
@@ -33,6 +33,12 @@ const Box = styled.div`
     margin: 0;
     img {
       width: 300px;
+    }
+  }
+  @media (max-width: 1024px) {
+    td,
+    th {
+      white-space: nowrap;
     }
   }
 `
@@ -335,7 +341,7 @@ export default function MeetingStage({ data }: Props) {
                           <td className="py-3 px-4 text-sm text-gray-600">
                             {dayjs(session.time).format('HH:mm')}
                           </td>
-                          <td className="py-3 px-4 text-sm font-medium text-gray-900">
+                          <td className="py-3 px-4 text-sm font-medium text-gray-900 ">
                             {session.topic}
                           </td>
                           <td className="py-3 px-4 text-sm text-primary-600">{session.speaker}</td>

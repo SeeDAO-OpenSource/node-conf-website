@@ -17,10 +17,11 @@ SeeDAO致力于满足成员对经济基础、公共服务与治理等多方面�
 2. 满足以下任一条件者，均可被认定为SeeDAO成员：
    a. SeeDAO PoW账本上被记录的贡献者；
    b. SeeDAO SGN 或 身份 MSC 持有者。
+（说明：在提案 https://forum.seedao.xyz/thread/search-46334 中，SGN 已升级为Seed）
 
-3. SeeDAO成员享有知晓SeeDAO历史、接受SeeDAO教育、参与PoW获得薪酬回报、竞选SeeDAO公共岗位、监督SeeDAO公共服务、维护SeeDAO公地利益、依据SeeDAO规则自由表达、依据贡献度参与相应层级治理之权利。
+4. SeeDAO成员享有知晓SeeDAO历史、接受SeeDAO教育、参与PoW获得薪酬回报、竞选SeeDAO公共岗位、监督SeeDAO公共服务、维护SeeDAO公地利益、依据SeeDAO规则自由表达、依据贡献度参与相应层级治理之权利。
 
-4. 与之相应，SeeDAO成员具有同步SeeDAO PoW 账本、在DAO内参与工作前明晰相应权责利、维护SeeDAO公地利益、遵守SeeDAO元规则及相应规则并保护其不受践踏之义务。
+5. 与之相应，SeeDAO成员具有同步SeeDAO PoW 账本、在DAO内参与工作前明晰相应权责利、维护SeeDAO公地利益、遵守SeeDAO元规则及相应规则并保护其不受践踏之义务。
 
 ### 第二章 SeeDAO的治理原则及架构
 

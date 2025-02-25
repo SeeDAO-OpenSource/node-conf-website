@@ -1,6 +1,6 @@
 ## SeeDAO 元规则 (版本: SIP-2)
 
-论坛提案链接：https://forum.seedao.xyz/thread/39871
+论坛提案链接：https://app.seedao.xyz/notion/3f765106-ba70-4c23-80c4-2e0925caf64d
 
 ### 序言
 

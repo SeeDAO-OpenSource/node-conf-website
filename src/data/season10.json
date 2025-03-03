@@ -14,7 +14,12 @@
     "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/273",
     "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/272"
   },
-  "nextSeasonCriteria": {},
+  "nextSeasonCriteria": {
+     "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/380",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/379"
+  },
   "schedule": [
     {
       "time": "2025-03-01 20:00",

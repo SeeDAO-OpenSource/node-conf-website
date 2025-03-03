@@ -9,10 +9,10 @@
     "explorerUrl": "https://etherscan.io/token/0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C"
   },
   "currentCriteria": {
-    "validSCR": 0,
-    "activeSCR": 0,
-    "validSCRProposalLink": "",
-    "activeSCRProposalLink": ""
+    "validSCR": 20000,
+    "activeSCR": 5000,
+    "validSCRProposalLink": "https://app.seedao.xyz/proposal/thread/380",
+    "activeSCRProposalLink": "https://app.seedao.xyz/proposal/thread/379"
   },
   "nextSeasonCriteria": {
     "validSCR": 0,

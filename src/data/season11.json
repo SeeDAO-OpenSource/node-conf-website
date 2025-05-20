@@ -1,8 +1,8 @@
 {
   "season": 11,
-  "startDate": "",
-  "endDate": "",
-  "meetingLink": "",
+  "startDate": "2025-05-30T20:00:00+08:00",
+  "endDate": "2025-05-31T16:00:00+08:00",
+  "meetingLink": "https://us06web.zoom.us/j/84451238009?pwd=3kCGr8Rsrwo1IxgYA03U7Rcwa5LNxe.1",
   "sbtToken": {
     "contractAddress": "0x9d34D407D8586478b3e4c39BE633ED3D7be1c80C",
     "tokenId": "11",
@@ -22,9 +22,59 @@
   },
   "schedule": [
     {
-      "time": "",
+      "time": "2025-05-30 20:00",
       "speaker": "",
       "topic": ""
+    },
+    {
+      "time": "2025-05-30 20:20",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-30 20:40",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-30 21:00",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-30 21:20",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-30 21:50",
+      "speaker": "自由发言",
+      "topic": "圆桌自由交流"
+    },
+    {
+      "time": "2025-05-31 14:00",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-31 14:20",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-31 14:40",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-31 15:00",
+      "speaker": "",
+      "topic": ""
+    },
+    {
+      "time": "2025-05-31 15:30",
+      "speaker": "自由发言",
+      "topic": "圆桌自由交流"
     }
   ],
   "recordings": [

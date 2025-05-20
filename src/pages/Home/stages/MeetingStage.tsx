@@ -9,7 +9,7 @@ import { getStatus } from '../../../utils/public.ts'
 import useQuerySNS from '../../../hooks/useQuerySNS.tsx'
 import { truncateAddress } from '../../../utils/address.ts'
 import styled from 'styled-components'
-import { CLAIM_END_AT } from '../../../config/config.ts'
+import { CLAIM_END_AT, CLAIM_START_AT } from '../../../config/config.ts'
 import { X } from 'lucide-react'
 import QrCodeImg from '../../../assets/images/qrcode.jpg'
 
@@ -49,8 +49,9 @@ interface Props {
 
 export default function MeetingStage({ data }: Props) {
   const [claimEndTime] = useState(CLAIM_END_AT)
+  const [claimStartTime] = useState(CLAIM_START_AT)
   // const [claimEndTime,setClaimEndTime] = useState<undefined|number>(undefined);
-  const [showClaim, setShowClaim] = useState(true)
+  const [showClaim, setShowClaim] = useState(Date.now() >= claimStartTime ? true : false)
   const [showCandidatesModal, setShowCandidatesModal] = useState(false)
   const [showQr, setShowQr] = useState(false)
   const [snsMap, setSnsMap] = useState<Record<string, string>>({})
@@ -232,8 +233,11 @@ export default function MeetingStage({ data }: Props) {
                     </div>
                     {!showClaim && (
                       <div>
-                        <p className="text-gray-600">Mint结束时间:</p>
-                        <div className=""> {dayjs(CLAIM_END_AT).format('YYYY年MM月DD日')}</div>
+                        <p className="text-gray-600">节点资格 Mint 开始时间 :</p>
+                        <div className="">
+                          {' '}
+                          {dayjs(CLAIM_START_AT).format('YYYY 年 MM 月 DD 日')}
+                        </div>
                       </div>
                     )}
                     {showClaim && (

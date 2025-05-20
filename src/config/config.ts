@@ -2,7 +2,7 @@
 // adjournment 休会期
 // preparatory 筹备期
 // meeting 会议期
-export const CONFERENCE_STAGE: 'adjournment' | 'preparatory' | 'meeting' = 'adjournment'
+export const CONFERENCE_STAGE: 'adjournment' | 'preparatory' | 'meeting' = 'meeting'
 
 // Season configuration
 export const CURRENT_SEASON = 11 //当前季度

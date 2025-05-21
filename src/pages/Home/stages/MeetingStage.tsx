@@ -364,6 +364,7 @@ export default function MeetingStage({ data }: Props) {
       <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
+          <h3 className="text-center">社区持续征集提案中，截止日期为 5/26 (一)，敬请期待！</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map(proposal => (
               <div

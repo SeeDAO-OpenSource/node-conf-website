@@ -18,14 +18,19 @@ const BASE_URL = 'https://api.seedao.tech/v1'
 
 export async function getSeasonProposals(seasonIdx: number): Promise<ResSeasonProposalsData> {
   try {
-    const response = await fetch(`${BASE_URL}/public_data/get_season_proposals/${seasonIdx}`)
+    if (seasonIdx >= 11) {
+      const seasonData = await import(`../data/season${seasonIdx}.json`)
+      return { code: 200, msg: 'OK', data: seasonData.proposals } as ResSeasonProposalsData
+    } else {
+      const response = await fetch(`${BASE_URL}/public_data/get_season_proposals/${seasonIdx}`)
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const data = await response.json()
+      console.log('data::', data)
+      return data as ResSeasonProposalsData
     }
-
-    const data = await response.json()
-    return data as ResSeasonProposalsData
   } catch (error) {
     console.error('Error fetching season proposals:', error)
     throw error

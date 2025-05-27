@@ -363,8 +363,8 @@ export default function MeetingStage({ data }: Props) {
       {/* Proposals Section */}
       <section className="relative bg-gray-50 px-[calc((100vw-101%)/2)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">当前提案</h2>
-          <h3 className="text-center">社区持续征集提案中，截止日期为 5/26 (一)，敬请期待！</h3>
+          <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">节点共识大会提案</h2>
+          {/* <h3 className="text-center">社区持续征集提案中，截止日期为 5/26 (一)，敬请期待！</h3> */}
           <div className="grid md:grid-cols-2 gap-6">
             {data.proposals.map(proposal => (
               <div
@@ -372,12 +372,12 @@ export default function MeetingStage({ data }: Props) {
                 className="bg-white rounded-lg p-6 transition-all duration-200 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className="tag tag-primary group-hover:bg-primary-100 transition-colors">
+                  {/* <span className="tag tag-primary group-hover:bg-primary-100 transition-colors">
                     {proposal.category}
-                  </span>
-                  <span className="tag tag-accent group-hover:bg-accent-100 transition-colors">
+                  </span> */}
+                  {/* <span className="tag tag-accent group-hover:bg-accent-100 transition-colors">
                     {getStatus(proposal.state!)}
-                  </span>
+                  </span> */}
                 </div>
                 <h3 className="text-xl font-medium mb-4 text-gray-900 group-hover:text-primary-700 transition-colors">
                   {proposal.title}

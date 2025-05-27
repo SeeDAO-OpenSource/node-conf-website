@@ -33,18 +33,18 @@
     },
     {
       "time": "2025-05-30 20:40",
-      "speaker": "Ricky",
-      "topic": "三层提案改革讨论"
+      "speaker": "白鱼",
+      "topic": "数字游民如何在数字世界自由迁徙兼论SeeDAO的任务与方向"
     },
     {
       "time": "2025-05-30 21:20",
-      "speaker": "Ricky",
-      "topic": "S11战略小组提案"
+      "speaker": "唐晗",
+      "topic": "屏南“数字游民生活周”介绍"
     },
     {
       "time": "2025-05-30 21:40",
       "speaker": "酸奶",
-      "topic": "SeeDAO媒体战略提案讨论"
+      "topic": "SeeDAO基础媒体运营外包提案讨论"
     },
     {
       "time": "2025-05-30 22:00",
@@ -53,13 +53,13 @@
     },
     {
       "time": "2025-05-31 14:00",
-      "speaker": "白鱼",
-      "topic": "数字游民如何在数字世界自由迁徙兼论SeeDAO的任务与方向"
+      "speaker": "Ricky",
+      "topic": "三层提案改革讨论"
     },
     {
       "time": "2025-05-31 14:20",
-      "speaker": "唐晗",
-      "topic": "待确认"
+      "speaker": "Ricky",
+      "topic": "S11战略小组提案"
     },
     {
       "time": "2025-05-31 14:40",
@@ -69,7 +69,7 @@
     {
       "time": "2025-05-31 15:00",
       "speaker": "Owen",
-      "topic": "待确认"
+      "topic": "SeeDAO 财务健康分析"
     },
     {
       "time": "2025-05-31 15:30",
@@ -82,6 +82,129 @@
       "topic": "",
       "type": "",
       "link": ""
+    }
+  ],
+  "proposals": [
+    {
+      "applicant": "0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb",
+      "avatar": "https://seedao-os-superapp.s3.ap-northeast-2.amazonaws.com/user_avatars/0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb_1720008812036.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/442",
+      "name": "Ricky Wang",
+      "season": "S11",
+      "state": 99,
+      "title": "组织 Seekers 共好研究所"
+    },
+    {
+      "applicant": "0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb",
+      "avatar": "https://seedao-os-superapp.s3.ap-northeast-2.amazonaws.com/user_avatars/0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb_1720008812036.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/441",
+      "name": "Ricky Wang",
+      "season": "S11",
+      "state": 99,
+      "title": "SeeDAO 基础媒体运营外包支持提案"
+    },
+    {
+      "applicant": "0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb",
+      "avatar": "https://seedao-os-superapp.s3.ap-northeast-2.amazonaws.com/user_avatars/0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb_1720008812036.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/440",
+      "name": "Ricky Wang",
+      "season": "S11",
+      "state": 99,
+      "title": "组织第二期战略小组与业务探索"
+    },
+    {
+      "applicant": "0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb",
+      "avatar": "https://seedao-os-superapp.s3.ap-northeast-2.amazonaws.com/user_avatars/0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb_1720008812036.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/436",
+      "name": "Ricky Wang",
+      "season": "S11",
+      "state": 99,
+      "title": "节点共识大会规则更新提案"
+    },
+    {
+      "applicant": "0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb",
+      "avatar": "https://seedao-os-superapp.s3.ap-northeast-2.amazonaws.com/user_avatars/0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb_1720008812036.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/435",
+      "name": "Ricky Wang",
+      "season": "S11",
+      "state": 99,
+      "title": "元规则修改版本"
+    },
+    {
+      "applicant": "0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb",
+      "avatar": "https://seedao-os-superapp.s3.ap-northeast-2.amazonaws.com/user_avatars/0x7EA1EaA27b313D04D359bF3e654FE927376e31Bb_1720008812036.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/434",
+      "name": "Ricky Wang",
+      "season": "S11",
+      "state": 99,
+      "title": "三层提案机制改革"
+    },
+    {
+      "applicant": "0xb8aEe482305B7B219704350786FCE47847CEC996",
+      "avatar": "https://superapp-backend-prod.s3.ap-northeast-1.amazonaws.com/user_avatars/0xb8aee482305b7b219704350786fce47847cec996.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/433",
+      "name": "栗子",
+      "season": "S11",
+      "state": 99,
+      "title": "S12节点资格门槛设置投票-节点有效门槛"
+    },
+    {
+      "applicant": "0xb8aEe482305B7B219704350786FCE47847CEC996",
+      "avatar": "https://superapp-backend-prod.s3.ap-northeast-1.amazonaws.com/user_avatars/0xb8aee482305b7b219704350786fce47847cec996.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/432",
+      "name": "栗子",
+      "season": "S11",
+      "state": 99,
+      "title": "S12节点资格门槛设置投票-活跃度门槛"
+    },
+    {
+      "applicant": "0xb8aEe482305B7B219704350786FCE47847CEC996",
+      "avatar": "https://superapp-backend-prod.s3.ap-northeast-1.amazonaws.com/user_avatars/0xb8aee482305b7b219704350786fce47847cec996.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/431",
+      "name": "栗子",
+      "season": "S11",
+      "state": 99,
+      "title": "【S10市政厅岗位评估】治理协调-栗子"
+    },
+    {
+      "applicant": "0xb8aEe482305B7B219704350786FCE47847CEC996",
+      "avatar": "https://superapp-backend-prod.s3.ap-northeast-1.amazonaws.com/user_avatars/0xb8aee482305b7b219704350786fce47847cec996.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/430",
+      "name": "栗子",
+      "season": "S11",
+      "state": 99,
+      "title": "【S10市政厅岗位评估】品牌协调-酸奶"
+    },
+    {
+      "applicant": "0xb8aEe482305B7B219704350786FCE47847CEC996",
+      "avatar": "https://superapp-backend-prod.s3.ap-northeast-1.amazonaws.com/user_avatars/0xb8aee482305b7b219704350786fce47847cec996.png",
+      "category": "节点共识大会提案",
+      "create": 0,
+      "link": "https://app.seedao.xyz/proposal/thread/429",
+      "name": "栗子",
+      "season": "S11",
+      "state": 99,
+      "title": "【S10市政厅岗位评估】社区运营-Ricky"
     }
   ]
 }

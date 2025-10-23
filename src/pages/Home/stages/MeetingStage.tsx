@@ -236,7 +236,7 @@ export default function MeetingStage({ data }: Props) {
                         <p className="text-gray-600">节点资格 Mint 开始时间 :</p>
                         <div className="">
                           {' '}
-                          {dayjs(CLAIM_START_AT).format('YYYY 年 MM 月 DD 日')}
+                          {dayjs(CLAIM_START_AT).format('YYYY 年 MM 月 DD 日 HH:mm')}
                         </div>
                       </div>
                     )}

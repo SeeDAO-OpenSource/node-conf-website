@@ -248,20 +248,28 @@ export default function MeetingStage({ data }: Props) {
                           date={CLAIM_END_AT}
                           onComplete={() => setShowClaim(false)}
                           renderer={({ days, hours, minutes, seconds }) => {
-                            const totalHours = days * 24 + hours
                             return (
-                              <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums">
+                              <div className="text-3xl font-bold text-primary-600 inline-flex gap-2 tabular-nums items-center">
+                                {days > 0 && (
+                                  <>
+                                    <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
+                                      {String(days).padStart(2, '0')}
+                                    </span>
+                                    <span className="text-lg">天</span>
+                                  </>
+                                )}
                                 <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
-                                  {String(totalHours).padStart(2, '0')}
+                                  {String(hours).padStart(2, '0')}
                                 </span>
-                                <span className="w-4 text-center">:</span>
+                                <span className="text-lg">时</span>
                                 <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
                                   {String(minutes).padStart(2, '0')}
                                 </span>
-                                <span className="w-4 text-center">:</span>
+                                <span className="text-lg">分</span>
                                 <span className="bg-white px-4 py-2 rounded-lg w-20 text-center">
                                   {String(seconds).padStart(2, '0')}
                                 </span>
+                                <span className="text-lg">秒</span>
                               </div>
                             )
                           }}
